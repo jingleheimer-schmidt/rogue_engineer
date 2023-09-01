@@ -276,6 +276,6 @@ local function on_init()
     end
 end
 
-script.on_nth_tick(60, on_tick)
+script.on_nth_tick(600, on_tick)
 script.on_configuration_changed(on_init)
 script.on_init(on_init)
