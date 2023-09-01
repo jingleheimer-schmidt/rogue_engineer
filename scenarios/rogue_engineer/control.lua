@@ -693,9 +693,6 @@ local function on_tick(event)
             if player.surface_index ~= lobby_surface.index then
                 player.teleport({ x = -20, y = 0 }, lobby_surface)
             end
-            if player.character_running_speed_modifier < 0.4 then
-                player.character_running_speed_modifier = 0.4
-            end
             local lobby_options = global.lobby_options
             local player_index = player.index
             if not global.player_data[player_index] then
@@ -706,6 +703,9 @@ local function on_tick(event)
             end
             local character = valid_player_character(player)
             if character then
+                if player.character_running_speed_modifier < 0.4 then
+                    player.character_running_speed_modifier = 0.4
+                end
                 local position = character.position
                 local x = position.x
                 local y = position.y
