@@ -1,3 +1,4 @@
+
 local cate_by_blazej_kozlowski = [[
 
           _.----.                          
@@ -51,7 +52,7 @@ local cate_by_blazej_kozlowski = [[
    :         /        :         :
 ]]
 
-local lara_croft_by_blazej_kozlowski = [[
+local lara_croft_1_by_blazej_kozlowski = [[
 
                             __          .gp.__/                            
                        .ssSSSSSs.__    d$P^^^"                             
@@ -119,6 +120,95 @@ local lara_croft_by_blazej_kozlowski = [[
                              """"""""""
 ]]
 
+local lara_croft_by_john_stachowicz = [[
+    __
+    | |l
+    | ||
+   _l[]|
+ __d/J||
+|=='")l|
+"\ '/""'
+ | |
+ | |
+ | |        .-..-,
+ | |       /   \  ". 
+ | |      //   _\_  )
+ | |     (//  (   )((
+ |  \    (     ) _ | )
+  \  \   (    /  ""|
+   \  \  )    ( - /
+    \  \ (    )= /
+     \  ')    (-/
+      \ (   ) ) |_.--.
+       /  .( (   /    \
+      ( .'  \( .'\  .  \
+      .''._.-"    \_/\  \
+     /             /  \  \
+    /   /         |    \  \
+   (    |  (      /     \  \
+    \__  \___ /  |       \  \
+       '-.       |        \  |
+          \ \    (         | |
+           \      \        | |
+           \       \       | |
+           |        ".     | |
+           \          '.   | |
+           |            \  | |
+           |            _./  \.
+           |           l ] L|u|
+           \           |J/b""
+           |           []l"
+           /      |    | | \
+          /       _\   |_| |
+         /      ." \   "    \
+         |   \.' /  "._      \
+         |   .'  |    \"-. _  \
+        /  ."    |     \     ".",
+        | / |    |      \      \_",
+        |(  |    |       \      .  '.
+        ".  |    '        \     '    '.
+          ".|   /          \     \     \
+            |   |           \     \     \
+            |  /             '.    .     \
+            |  \ '-.           \   '      \
+            |   |   '-._        |   \      '.
+            |   |       '-.     '    \       '.
+            |   |          "'-.  \    \        \
+            |   '              '-.\    \        \
+            |  /                   '.   \        \
+            |  |                     `.  \       )
+            |  |                       \  \.    (
+            |  /                        \  \ "-._">
+            '  \                         \  \    "
+           /__/)                          \  \
+          /   V                           (\__\
+        <_>_/                              \_  \
+                                             \<_>
+]]
+
+local lara_croft_2_by_blazej_kozlowski = [[
+    __                                                                                      
+    /_/l                                                                                     
+   : : :                                                                                     
+    ; ; ;                                                                                    
+    : : :                                                                                    
+     L ; ;  __.-._.-+.                                                                       
+    /."^.:.L.' .^-.  \`.                                                                     
+   :`.`. \"/\ /.-. `. \ \                                                                    
+   ;\ \ ` ;-.y(_.-\  \ `.`.                                                                  
+   :   _. ;;  `    \  \. `-\                                                                 
+    \ T :: :=,   ,=^\  \"-._;          __..------.._                                         
+    /;:-'; ; `._L.--^.     .-""-.`.   \     ""--..                                   
+   : :_.': :           ;/     \   /      \ \   ;          ""--._                             
+   ;  T   \ \  s      /:.---.  ;_/    `-._; ;  :     ______    \"-.      ___                 
+  :   :\   \ `.-=^" .:-"    _\   \_.      : :  _:.--".-"  .T"---:-.""--""\  ""-.             
+  ;    \\   "-.\__.:'      /-'. ; ;    _. ; ;  /   -'    '    .- \        ;     "-._.-"""""-,
+  :     ;\     `..'      .'    \: ;      / / .'               )   ;  __  /         T        :
+   ;      `,     \    .-"       ;/"---" /.' /                 `- /"""  ""---""""----..___..-'
+   :    .-" `.      .'.-\      / ""----""""^-.._              .-"  bug                       
+    \_.'      "._.-"-..-'`-..-'                 ""--..__..--""
+]]
+
 local clippy = [[
     __
     /  \
@@ -130,6 +220,47 @@ local clippy = [[
     |\_/|
     \___/
 
+]]
+
+local bathing_by_hwj = [[
+        o    .   _     .
+          .     (_)         o
+   o      ____            _       o
+  _   ,-/   /)))  .   o  (_)   .
+ (_)  \_\  ( e(     O             _
+ o       \/' _/   ,_ ,  o   o    (_)
+  . O    _/ (_   / _/      .  ,        o
+     o8o/    \\_/ / ,-.  ,oO8/( -TT
+    o8o8O | } }  / /   \Oo8OOo8Oo||     O
+   Oo(""o8"""""""""""""""8oo""""""")
+  _   `\`'                  `'   /'   o
+ (_)    \                       /    _   .
+      O  \           _         /    (_)
+o   .     `-. .----<(o)_--. .-'
+   --------(_/------(_<_/--\_)--------o
+]]
+
+local little_robot = [[
+         __
+ _(\    |@@|
+(__/\__ \--/ __
+   \___|----|  |   __
+       \ }{ /\ )_ / _\
+       /\__/\ \__O (__
+      (--/\--)    \__/
+      _)(  )(_
+     `---''---`
+]]
+local little_robot_stretched = [[
+                        .__
+ _(\         |@@|
+(__/\__  \--/  __           
+       \___|----|     |          __
+               \   }{   /\   )__ /   _\
+               /\__/\   \__O   (__
+               (--/\--)             \__/
+              _)(     )(_
+              `---''---`
 ]]
 
 local error_message = [[
@@ -151,6 +282,12 @@ local error_message = [[
 
 return {
     cate_by_blazej_kozlowski = cate_by_blazej_kozlowski,
-    lara_croft_by_blazej_kozlowski = lara_croft_by_blazej_kozlowski,
+    lara_croft_1_by_blazej_kozlowski = lara_croft_1_by_blazej_kozlowski,
+    lara_croft_by_john_stachowicz = lara_croft_by_john_stachowicz,
+    lara_croft_2_by_blazej_kozlowski = lara_croft_2_by_blazej_kozlowski,
+    clippy = clippy,
+    bathing_by_hwj = bathing_by_hwj,
+    little_robot = little_robot,
+    little_robot_stretched = little_robot_stretched,
     error_message = error_message
 }
