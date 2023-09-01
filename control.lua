@@ -271,7 +271,9 @@ local function on_tick()
 end
 
 local function on_init()
-    global.show_error_message = true
+    if script.level.level_name ~= "rogue_engineer" then
+        global.show_error_message = true
+    end
 end
 
 script.on_nth_tick(60, on_tick)
