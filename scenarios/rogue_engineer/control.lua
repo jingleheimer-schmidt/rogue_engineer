@@ -669,8 +669,8 @@ local function on_tick(event)
     if not script.level and script.level.mod_name == "asher_sky" then return end
     global.game_state = global.game_state or "lobby"
     local connected_players = game.connected_players
-    local game_tick = game.tick
     local game_state = global.game_state
+    local game_tick = game.tick
 
     -- lobby mode --
     if game_state == "lobby" then
