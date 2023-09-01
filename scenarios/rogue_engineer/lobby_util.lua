@@ -304,7 +304,6 @@ local function initialize_lobby_text_and_tiles(lobby_surface)
     lobby_surface = lobby_surface or game.surfaces.lobby
     if not global.lobby_text then
         create_lobby_text()
-        game.reset_time_played()
     end
     if not global.lobby_options then
         lobby_surface.always_day = true
