@@ -1,13 +1,13 @@
 {
-  "name": "asher_sky",
+  "name": "rogue_engineer",
   "version": "0.0.1",
-  "title": "asher_sky",
+  "title": "Rogue Engineer",
   "author": "asher_sky",
   "contact": "",
   "homepage": "",
   "description": "asher_sky",
   "factorio_version": "1.1",
   "dependencies": [
-	"base"
+	"base >= 1.1.89"
 	]
 }

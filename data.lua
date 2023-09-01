@@ -1,11 +1,11 @@
 
-local constants = require("__asher_sky__/constants")
+local constants = require("__rogue_engineer__/constants")
 
 for animation_name, animation_data in pairs(constants.ability_data) do
     local animation = {
         type = "animation",
         name = animation_name,
-        filename = "__asher_sky__/graphics/" .. animation_data.filename,
+        filename = "__rogue_engineer__/graphics/" .. animation_data.filename,
         width = animation_data.width,
         height = animation_data.height,
         frame_count = animation_data.frame_count,

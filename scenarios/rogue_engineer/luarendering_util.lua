@@ -1,5 +1,5 @@
 
-local constants = require("__asher_sky__/constants")
+local constants = require("__rogue_engineer__/constants")
 local raw_abilities_data = constants.ability_data
 
 local statistics_util = require("statistics_util")

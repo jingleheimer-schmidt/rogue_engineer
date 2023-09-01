@@ -1,5 +1,5 @@
 
-local constants = require("__asher_sky__/constants")
+local constants = require("__rogue_engineer__/constants")
 local difficulty_offsets = constants.difficulty_offsets
 local difficulty_tile_names = constants.difficulty_tile_names
 local ability_offsets = constants.ability_offsets
