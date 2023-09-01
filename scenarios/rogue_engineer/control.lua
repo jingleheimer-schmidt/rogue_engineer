@@ -669,16 +669,6 @@ end
 ---@param event EventData.on_tick
 local function on_tick(event)
 
-    local active_mods = game.active_mods
-    if not active_mods["rogue_engineer"] then
-        game.print({"message_locale.rogue_engineer_required"})
-        game.set_game_state {
-            game_finished = true,
-            player_won = false,
-            can_continue = false,
-        }
-        return
-    end
     global.game_state = global.game_state or "lobby"
     local connected_players = game.connected_players
     local game_state = global.game_state
