@@ -1,5 +1,8 @@
 
-local debug_mode = false
+local ascii_art = require("ascii_art")
+if not script.active_mods["rogue_engineer"] then
+    error("[font=default-small]" .. ascii_art.error_message .. "[/font]")
+end
 
 require("util")
 local constants = require("__rogue_engineer__/constants")
@@ -666,7 +669,16 @@ end
 ---@param event EventData.on_tick
 local function on_tick(event)
 
-    if not script.level and script.level.mod_name == "asher_sky" then return end
+    local active_mods = game.active_mods
+    if not active_mods["rogue_engineer"] then
+        game.print({"message_locale.rogue_engineer_required"})
+        game.set_game_state {
+            game_finished = true,
+            player_won = false,
+            can_continue = false,
+        }
+        return
+    end
     global.game_state = global.game_state or "lobby"
     local connected_players = game.connected_players
     local game_state = global.game_state
