@@ -29,4 +29,6 @@ There are currently no known mod compatibility issues. To report a compatibility
 Rogue Engineer © 2023 by asher_sky is licensed under Attribution-NonCommercial-ShareAlike 4.0 International.
 To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/
 
-Includes assets from The Free Archives © Dreams Circle
+---------------------
+# Credits
+Includes assets from Volume 1 and 2 of The Free Archives © Dreams Circle
