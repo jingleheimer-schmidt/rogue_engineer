@@ -8,6 +8,3 @@ It allows reusers to distribute, remix, adapt, and build upon
 the material in any medium or format, for noncommercial purposes
 only. If others modify or adapt the material, they must license
 the modified material under identical terms.
-
-This mod uses assets courtesy of The Free Archives Volume 1 and 2 © Dreams Circle.
-See /graphics/FA01_Manual.txt and /graphics/FA02_Manual.txt for additional information.

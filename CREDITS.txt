@@ -1,0 +1,5 @@
+This mod uses assets courtesy of The Free Archives Volume 1 and 2 © Dreams Circle.
+See /graphics/FA01_Manual.txt and /graphics/FA02_Manual.txt for additional information.
+
+Thank you to justarandomgeek for resetting the scenario save file flags,
+and for making the Facotrio Mod Debugger, a critical and invaluable tool.
