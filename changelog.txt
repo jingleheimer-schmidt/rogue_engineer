@@ -5,4 +5,18 @@ Date: TBD
     - initial release to the mod portal
   Features:
     - Multiplayer compatible
+    - Interactive lobby with statistics
     - 20 unique abilities
+    - Armor is unlocked by killing biters. Every 500 kills repairs your current armor by 30% max, or upgrades it to the next tier if duribility is near max
+  TODO:
+    - Armor duribility progressbar is displayed to player above the hotbar
+    - Free booster armor is automatically equiped on respawn
+    - Display messages when armor is repaired or upgraded
+    - Display messages when player is healed
+    - Floating damage numbers color coded by damage type
+    - A chat command to reset all the statistics data
+    - A chat command to reset all the statistics data for a specific player
+    - A chat command to destroy and rebuild the arena
+    - ability that turns acid into trees and rocks
+    - ability that launches grenades at trees and rocks
+    - indestructable starting area / platform? 
