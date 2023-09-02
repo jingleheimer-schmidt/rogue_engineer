@@ -709,8 +709,8 @@ local function enter_arena()
                 new_attempt_stats_reset(player.index)
                 increase_arena_attempts_statistics_data(player_index)
                 create_arena_gui(player)
-                local abilities = global.player_data[player_index].abilities
-                for _, ability_data in pairs(abilities) do
+                local player_abilities = global.player_data[player_index].abilities
+                for _, ability_data in pairs(player_abilities) do
                     activate_ability(ability_data, player, player.character)
                 end
             end
