@@ -48,3 +48,24 @@ local arena_gui_font_default_bold = table.deepcopy(data.raw["font"]["default-bol
 arena_gui_font_default_bold.name = "arena-gui-default-bold"
 arena_gui_font_default_bold.size = font_size
 data:extend{arena_gui_font_default_bold}
+
+local light_armor = data.raw["armor"]["light-armor"]
+light_armor.infinite = false
+light_armor.durability = 100
+
+local heavy_armor = data.raw["armor"]["heavy-armor"]
+heavy_armor.infinite = false
+heavy_armor.durability = 150
+
+local modular_armor = data.raw["armor"]["modular-armor"]
+modular_armor.infinite = false
+modular_armor.durability = 200
+
+local power_armor = data.raw["armor"]["power-armor"]
+power_armor.infinite = false
+power_armor.durability = 250
+
+local power_armor_mk2 = data.raw["armor"]["power-armor-mk2"]
+power_armor_mk2.infinite = false
+power_armor_mk2.durability = 300
+
