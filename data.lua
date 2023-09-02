@@ -69,3 +69,18 @@ local power_armor_mk2 = data.raw["armor"]["power-armor-mk2"]
 power_armor_mk2.infinite = false
 power_armor_mk2.durability = 300
 
+local default_gui_styles = data.raw["gui-style"].default
+local health_status_bar_style = table.deepcopy(default_gui_styles["health_progressbar"])
+health_status_bar_style.color = { r = 0, g = 1, b = 0 }
+health_status_bar_style.other_colors = {
+    { less_than = 0.25, color = { r = 1, g = 0, b = 0 } },
+    { less_than = 0.5, color = { r = 1, g = 1, b = 0 } },
+}
+data.raw["gui-style"].default["rogue_health_status_bar"] = health_status_bar_style
+local armor_status_bar_style = table.deepcopy(default_gui_styles["health_progressbar"])
+armor_status_bar_style.color = { r = 0, g = 0, b = 1 }
+armor_status_bar_style.other_colors = {
+    { less_than = 0.25, color = { r = 1, g = 0, b = 0 } },
+    { less_than = 0.5, color = { r = 1, g = 1, b = 0 } },
+}
+data.raw["gui-style"].default["rogue_armor_status_bar"] = armor_status_bar_style

@@ -58,6 +58,7 @@ local distance = general_util.distance
 local filter_valid_entities = general_util.filter_valid_entities
 
 local gooey_util = require("gooey_util")
+local create_status_bar_gui = gooey_util.create_status_bar_gui
 local create_arena_gui = gooey_util.create_arena_gui
 local update_arena_gui_kills = gooey_util.update_arena_gui_kills
 local update_arena_gui_time_remaining = gooey_util.update_arena_gui_time_remaining
@@ -287,6 +288,82 @@ local function get_damage_attribution(event)
     return player
 end
 
+---@param player LuaPlayer
+local function update_status_bar_location(player)
+    local screen = player.gui.screen
+    if screen.status_bars then
+        local display_resolution = player.display_resolution
+        local display_height = display_resolution.height
+        local display_width = display_resolution.width
+        local display_scale = player.display_scale
+        local hotbar_border_height = 8
+        local hotbar_inner_padding = 1
+        local hotbar_single_row_height = 38
+        local hotbar_between_row_padding = 2
+        local hotbar_count = 2
+        local hotbar_height = (hotbar_border_height * 2) + (hotbar_inner_padding * 2) + (hotbar_single_row_height * hotbar_count) + (hotbar_between_row_padding * (hotbar_count - 1))
+        hotbar_height = hotbar_height * display_scale
+
+        local status_bar_height = (screen.status_bars.health_bar.style.maximal_height * 2) + 4 -- there's 2 bars, plus 4 px padding between them for some reason :)
+        local status_bar_width = screen.status_bars.health_bar.style.maximal_width
+        status_bar_height = status_bar_height * display_scale
+        status_bar_width = status_bar_width * display_scale
+        local width_offset = 24
+        width_offset = width_offset * display_scale
+        local location = {
+            x = (display_width / 2) - (status_bar_width / 2) - width_offset,
+            y = display_height - hotbar_height - status_bar_height,
+        }
+        screen.status_bars.location = location
+    end
+end
+
+---@param event EventData.on_player_display_resolution_changed|EventData.on_player_display_scale_changed
+local function on_display_changed(event)
+    local player = game.get_player(event.player_index)
+    if not player then return end
+    update_status_bar_location(player)
+end
+
+script.on_event(defines.events.on_player_display_resolution_changed, on_display_changed)
+script.on_event(defines.events.on_player_display_scale_changed, on_display_changed)
+
+---@param player LuaPlayer?
+local function update_armor_status_bar_gui(player)
+    if not player then return end
+    local character = valid_player_character(player)
+    if not character then return end
+    local armor = character.get_inventory(defines.inventory.character_armor)[1]
+    if not armor or not armor.valid_for_read then return end
+    local durability = armor.durability
+    local max_durability = armor.prototype.durability
+    local percentage = durability / max_durability
+    local screen = player.gui.screen
+    if not screen then return end
+    local status_bars = screen.status_bars
+    if not status_bars then return end
+    if status_bars.armor_bar then
+        status_bars.armor_bar.value = percentage
+    end
+end
+
+---@param player LuaPlayer?
+local function update_health_status_bar_gui(player)
+    if not player then return end
+    local character = valid_player_character(player)
+    if not character then return end
+    local health = character.health
+    local max_health = character.prototype.max_health
+    local percentage = health / max_health
+    local screen = player.gui.screen
+    if not screen then return end
+    local status_bars = screen.status_bars
+    if not status_bars then return end
+    if status_bars.health_bar then
+        status_bars.health_bar.value = percentage
+    end
+end
+
 ---@param event EventData.on_entity_damaged
 local function on_entity_damaged(event)
     local entity = event.entity
@@ -316,6 +393,10 @@ local function on_entity_damaged(event)
             if player then
                 entity.health = entity.health + event.final_damage_amount * 0.75
             end
+        end
+        if entity.type == "character" then
+            local player = entity.player
+            update_armor_status_bar_gui(player)
         end
     end
 end
@@ -724,6 +805,7 @@ local function on_tick(event)
                 reset_player_statistics_data(player_index)
                 initialize_statistics_render_ids()
                 update_lobby_statistics_renderings()
+                create_status_bar_gui(player)
             end
             local character = valid_player_character(player)
             if character then
@@ -796,7 +878,9 @@ local function on_tick(event)
             reset_player_statistics_data(player_index)
             initialize_statistics_render_ids()
             update_lobby_statistics_renderings()
+            create_status_bar_gui(player)
         end
+        update_health_status_bar_gui(player)
         local player_data = global.player_data[player_index]
         for ability_name, ability_data in pairs(player_data.abilities) do
             if (((event.tick + (player_index * 25)) % ability_data.cooldown) == 0) then

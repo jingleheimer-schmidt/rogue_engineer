@@ -10,6 +10,34 @@ local arena_ticks_remaining = general_util.arena_ticks_remaining
 local arena_ticks_elapsed = general_util.arena_ticks_elapsed
 
 ---@param player LuaPlayer
+local function create_status_bar_gui(player)
+    local screen = player.gui.screen
+    screen.add {
+        type = "flow",
+        name = "status_bars",
+        direction = "vertical",
+    }
+    local status_bars = screen.status_bars
+    if not status_bars then return end
+    status_bars.add {
+        type = "progressbar",
+        name = "armor_bar",
+        value = 0,
+    }
+    status_bars.armor_bar.style = "rogue_armor_status_bar"
+    status_bars.armor_bar.style.width = 467 -- width of hotbar
+    status_bars.armor_bar.style.height = 13 -- height of original health bar
+    status_bars.add {
+        type = "progressbar",
+        name = "health_bar",
+        value = 1,
+    }
+    status_bars.health_bar.style = "rogue_health_status_bar"
+    status_bars.health_bar.style.width = 467 -- width of hotbar
+    status_bars.health_bar.style.height = 13 -- height of original health bar
+end
+
+---@param player LuaPlayer
 local function create_arena_gui(player)
     local screen = player.gui.screen
     if screen.arena_gui then
@@ -251,6 +279,7 @@ local function update_arena_gui_ability_info(player, ability_data)
 end
 
 return {
+    create_status_bar_gui = create_status_bar_gui,
     create_arena_gui = create_arena_gui,
     update_arena_gui_kills = update_arena_gui_kills,
     update_arena_gui_kills_per_minute = update_arena_gui_kills_per_minute,
