@@ -8,6 +8,7 @@
   "description": "asher_sky",
   "factorio_version": "1.1",
   "dependencies": [
-    "base >= 1.1.89"
+    "base >= 1.1.89",
+    "status_bars"
   ]
 }
