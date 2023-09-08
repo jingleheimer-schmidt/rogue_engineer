@@ -71,3 +71,23 @@ power_armor_mk2.durability = 300
 
 }
 }
+local raw_fish = data.raw["capsule"]["raw-fish"]
+local cluster_grenade = data.raw["capsule"]["cluster-grenade"]
+raw_fish.stack_size = 1
+raw_fish.capsule_action = cluster_grenade.capsule_action
+raw_fish.subgroup = "rogue-engineer"
+raw_fish.order = "rogue-[b]-[1]"
+
+for _, fish in pairs(data.raw["fish"]) do
+    if fish.mineable then
+        if fish.mineable.results then
+            for _, result in pairs(fish.mineable.results) do
+                result.amount = 1
+            end
+        end
+        if fish.mineable.result then
+            fish.mineable.count = 1
+        end
+    end
+end
+
