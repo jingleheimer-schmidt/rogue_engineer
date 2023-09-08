@@ -70,6 +70,27 @@ power_armor_mk2.infinite = false
 power_armor_mk2.durability = 300
 
 
+for _, recipe in pairs(data.raw["recipe"]) do
+    if not armor_costs[recipe.name] then
+        recipe.hide_from_player_crafting = true
+        recipe.allow_intermediates = false
+        recipe.allow_decomposition = false
+        recipe.allow_as_intermediate = false
+        if recipe.normal then
+            recipe.normal.hide_from_player_crafting = true
+            recipe.normal.allow_intermediates = false
+            recipe.normal.allow_decomposition = false
+            recipe.normal.allow_as_intermediate = false
+        end
+        if recipe.expensive then
+            recipe.expensive.hide_from_player_crafting = true
+            recipe.expensive.allow_intermediates = false
+            recipe.expensive.allow_decomposition = false
+            recipe.expensive.allow_as_intermediate = false
+        end
+    end
+end
+
 local rogue_subgroup = {
     type = "item-subgroup",
     name = "rogue-engineer",
