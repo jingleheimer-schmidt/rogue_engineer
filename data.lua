@@ -70,6 +70,15 @@ power_armor_mk2.infinite = false
 power_armor_mk2.durability = 300
 
 
+data.raw["character"]["character"].loot = {
+    {
+        item = "coin",
+        probability = 1,
+        count_min = 555,
+        count_max = 999,
+    }
+}
+
 local armor_costs = {
     ["light-armor"] = 500,
     ["heavy-armor"] = 1500,
