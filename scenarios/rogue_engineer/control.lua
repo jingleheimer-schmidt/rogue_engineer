@@ -371,27 +371,36 @@ local function upgrade_character_armor(character)
     local character_armor = character.get_inventory(defines.inventory.character_armor)
     if character_armor and character_armor.valid then
         if character_armor.is_empty() then
-            character_armor.insert({name = "light-armor"})
+            -- character_armor.insert({name = "light-armor"})
+            -- draw_upgrade_text({"", {"message_locale.armor_upgraded"}, {"item-name.light-armor"}}, character.player, {x = 0, y = 3})
         else
             local armor = character_armor[1]
-            local durability = armor.durability
-            local max_durability = armor.prototype.durability
-            if durability < max_durability * 0.95 then
-                armor.durability = durability + max_durability / 3
-            elseif armor.name == "light-armor" then
-                character_armor.clear()
-                character_armor.insert({name = "heavy-armor"})
-            elseif armor.name == "heavy-armor" then
-                character_armor.clear()
-                character_armor.insert({name = "modular-armor"})
-            elseif armor.name == "modular-armor" then
-                character_armor.clear()
-                character_armor.insert({name = "power-armor"})
-            elseif armor.name == "power-armor" then
-                character_armor.clear()
-                character_armor.insert({name = "power-armor-mk2"})
-            elseif armor.name == "power-armor-mk2" then
-                armor.durability = durability + max_durability / 3
+            if armor and armor.valid and armor.valid_for_read then
+                local durability = armor.durability
+                local max_durability = armor.prototype.durability
+                if durability < max_durability * 0.95 then
+                    armor.durability = durability + max_durability / 1.5
+                    draw_upgrade_text({"", {"message_locale.armor_repaired"}}, character.player, {x = 0, y = 3})
+                elseif armor.name == "light-armor" then
+                    character_armor.clear()
+                    character_armor.insert({name = "heavy-armor"})
+                    draw_upgrade_text({"", {"message_locale.armor_upgraded"}, {"item-name.heavy-armor"}}, character.player, {x = 0, y = 3})
+                elseif armor.name == "heavy-armor" then
+                    character_armor.clear()
+                    character_armor.insert({name = "modular-armor"})
+                    draw_upgrade_text({"", {"message_locale.armor_upgraded"}, {"item-name.modular-armor"}}, character.player, {x = 0, y = 3})
+                elseif armor.name == "modular-armor" then
+                    character_armor.clear()
+                    character_armor.insert({name = "power-armor"})
+                    draw_upgrade_text({"", {"message_locale.armor_upgraded"}, {"item-name.power-armor"}}, character.player, {x = 0, y = 3})
+                elseif armor.name == "power-armor" then
+                    character_armor.clear()
+                    character_armor.insert({name = "power-armor-mk2"})
+                    draw_upgrade_text({"", {"message_locale.armor_upgraded"}, {"item-name.power-armor-mk2"}}, character.player, {x = 0, y = 3})
+                elseif armor.name == "power-armor-mk2" then
+                    armor.durability = durability + max_durability / 3
+                    draw_upgrade_text({"", {"message_locale.armor_repaired"}}, character.player, {x = 0, y = 3})
+                end
             end
         end
     end
