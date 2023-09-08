@@ -1027,6 +1027,26 @@ local function on_research_finished(event)
     force.print({"", {"message_locale.research_finished"}, "[technology=", event.research.name, "]"})
 end
 script.on_event(defines.events.on_research_finished, on_research_finished)
+
+-- ---@param event EventData.on_gui_opened
+-- local function on_gui_opened(event)
+--     local player_index = event.player_index
+--     local gui_type = event.gui_type
+--     if gui_type == defines.gui_type.controller then
+--         local player = game.get_player(player_index)
+--         if not player then return end
+--         local character = valid_player_character(player)
+--         if not character then return end
+--         global.gui_message = global.gui_message or {}
+--         global.gui_message[player_index] = global.gui_message[player_index] or false
+--         if not global.gui_message[player_index] then
+--             player.print({"", {"message_locale.gui_message"}})
+--             global.gui_message[player_index] = true
+--         end
+--     end
+-- end
+-- script.on_event(defines.events.on_gui_opened, on_gui_opened)
+
 -- [[ event registration ]] -- 
 
 script.on_init(on_init)
