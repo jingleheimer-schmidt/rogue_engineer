@@ -457,9 +457,9 @@ local function on_entity_died(event)
             end
         end
         local difficulty_spawn_chances = {
-            ["easy"] = 0.75,
-            ["normal"] = 0.9,
-            ["hard"] = 1,
+            ["easy"] = 0.77,
+            ["normal"] = 0.82,
+            ["hard"] = 0.88,
         }
         local difficulty = global.lobby_options.difficulty
         local chance = difficulty_spawn_chances[difficulty]
