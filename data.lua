@@ -70,7 +70,29 @@ power_armor_mk2.infinite = false
 power_armor_mk2.durability = 300
 
 }
+
+local running_speed_recipe = {
+    type = "recipe",
+    name = "running-speed",
+    enabled = true,
+    ingredients = {
+        { type = "item", name = "coin", amount = 250 },
+    },
+    results = {
+        { type = "item", name = "coin", amount_min = 50, amount_max = 200 }
+    },
+    localised_name = { "recipe-name.running-speed" },
+    subgroup = "rogue-engineer",
+    order = "rogue-[a]-[2]",
+    icon = data.raw["character"]["character"].icon,
+    icon_size = data.raw["character"]["character"].icon_size,
+    allow_intermediates = false,
+    allow_decomposition = false,
+    allow_as_intermediate = false,
+    show_amount_in_title = false,
+    energy_required = 2.5,
 }
+data:extend{running_speed_recipe}
 
 local health_bonus_recipe = {
     type = "recipe",
