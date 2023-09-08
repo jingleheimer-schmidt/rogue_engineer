@@ -69,6 +69,40 @@ local power_armor_mk2 = data.raw["armor"]["power-armor-mk2"]
 power_armor_mk2.infinite = false
 power_armor_mk2.durability = 300
 
+local enemy_loot = {
+    ["unit"] = {
+        ["small-biter"] = 1,
+        ["small-spitter"] = 1,
+        ["medium-biter"] = 2,
+        ["medium-spitter"] = 2,
+        ["big-biter"] = 4,
+        ["big-spitter"] = 4,
+        ["behemoth-biter"] = 6,
+        ["behemoth-spitter"] = 6,
+    },
+    ["turret"] = {
+        ["small-worm-turret"] = 3,
+        ["medium-worm-turret"] = 5,
+        ["big-worm-turret"] = 7,
+        ["behemoth-worm-turret"] = 8,
+    },
+    ["unit-spawner"] = {
+        ["biter-spawner"] = 9,
+        ["spitter-spawner"] = 9,
+    },
+}
+for type, names in pairs(enemy_loot) do
+    for name, loot in pairs(names) do
+        data.raw[type][name].loot = {
+            {
+                item = "coin",
+                probability = 1,
+                count_min = math.ceil(loot / 2),
+                count_max = math.ceil(loot * 2),
+            }
+        }
+    end
+end
 
 data.raw["character"]["character"].loot = {
     {
