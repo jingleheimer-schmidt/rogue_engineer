@@ -998,6 +998,29 @@ local function on_tick(event)
     end
 end
 
+---@param event EventData.on_player_crafted_item
+local function on_player_crafted_item(event)
+    local player = game.get_player(event.player_index)
+    if not player then return end
+    local character = valid_player_character(player)
+    if not character then return end
+    local recipe = event.recipe
+    if recipe.name == "loot-distance" then
+        player.character_loot_pickup_distance_bonus = player.character_loot_pickup_distance_bonus + 1
+        local text = { "", { "message_locale.loot_distance_upgraded" }, " [", player.character_loot_pickup_distance_bonus, "]" }
+        draw_upgrade_text(text, player, {x = 0, y = 3})
+    elseif recipe.name == "running-speed" then
+        player.character_running_speed_modifier = player.character_running_speed_modifier + 0.03
+        local text = { "", { "message_locale.running_speed_upgraded" }, "[ ", player.character_running_speed_modifier * 100, "%]" }
+        draw_upgrade_text(text, player, {x = 0, y = 3})
+    elseif recipe.name == "health-bonus" then
+        player.character_health_bonus = player.character_health_bonus + 5
+        local text = { "", { "message_locale.health_upgraded" }, " [", 350 + player.character_health_bonus, "]" }
+        draw_upgrade_text(text, player, {x = 0, y = 3})
+    end
+end
+script.on_event(defines.events.on_player_crafted_item, on_player_crafted_item)
+
 -- [[ event registration ]] -- 
 
 script.on_init(on_init)
