@@ -69,7 +69,29 @@ local power_armor_mk2 = data.raw["armor"]["power-armor-mk2"]
 power_armor_mk2.infinite = false
 power_armor_mk2.durability = 300
 
+
+local loot_distance_recipe = {
+    type = "recipe",
+    name = "loot-distance",
+    enabled = true,
+    ingredients = {
+        { type = "item", name = "coin", amount = 250 },
+    },
+    results = {
+        { type = "item", name = "coin", amount_min = 50, amount_max = 200 }
+    },
+    localised_name = { "recipe-name.loot-distance" },
+    subgroup = "rogue-engineer",
+    order = "rogue-[a]-[1]",
+    icon = data.raw["item"]["coin"].icon,
+    icon_size = data.raw["item"]["coin"].icon_size,
+    allow_intermediates = false,
+    allow_decomposition = false,
+    allow_as_intermediate = false,
+    show_amount_in_title = false,
+    energy_required = 2.5,
 }
+data:extend{loot_distance_recipe}
 
 local running_speed_recipe = {
     type = "recipe",
