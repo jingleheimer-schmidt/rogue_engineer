@@ -1021,6 +1021,12 @@ local function on_player_crafted_item(event)
 end
 script.on_event(defines.events.on_player_crafted_item, on_player_crafted_item)
 
+---@param event EventData.on_research_finished
+local function on_research_finished(event)
+    local force = event.research.force
+    force.print({"", {"message_locale.research_finished"}, "[technology=", event.research.name, "]"})
+end
+script.on_event(defines.events.on_research_finished, on_research_finished)
 -- [[ event registration ]] -- 
 
 script.on_init(on_init)
