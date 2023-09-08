@@ -231,7 +231,7 @@ local bathing_by_hwj = [[
  o       \/' _/   ,_ ,  o   o    (_)
   . O    _/ (_   / _/      .  ,        o
      o8o/    \\_/ / ,-.  ,oO8/( -TT
-    o8o8O | } }  / /   \Oo8OOo8Oo||     O
+    o8o8O | ) )  / /   \Oo8OOo8Oo||     O
    Oo(""o8"""""""""""""""8oo""""""")
   _   `\`'                  `'   /'   o
  (_)    \                       /    _   .
