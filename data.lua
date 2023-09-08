@@ -91,3 +91,4 @@ for _, fish in pairs(data.raw["fish"]) do
     end
 end
 
+data.raw["item"]["coin"].stack_size = 250
