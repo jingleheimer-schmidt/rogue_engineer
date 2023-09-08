@@ -251,7 +251,9 @@ local function activate_distractor_capsule_ability(ability_data, player, charact
     local character_position = character.position
     local force = character.force
     local radius = ability_data.radius
-    for i = -2, 2 do
+    local level = ability_data.level
+    local count = math.ceil(level / 10)
+    for i = -count, count do
         local angle = direction_to_angle(player.character.direction)
         local offset_angle = angle + degrees_to_radians(i * 30)
         local position = get_position_on_circumference(character_position, radius, offset_angle)
