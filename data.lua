@@ -70,6 +70,26 @@ power_armor_mk2.infinite = false
 power_armor_mk2.durability = 300
 
 
+local armor_costs = {
+    ["light-armor"] = 500,
+    ["heavy-armor"] = 1500,
+    ["modular-armor"] = 3000,
+    ["power-armor"] = 5000,
+    ["power-armor-mk2"] = 8000,
+}
+for name, cost in pairs(armor_costs) do
+    local recipe = data.raw["recipe"][name]
+    recipe.ingredients = {
+        { "coin", cost },
+    }
+    recipe.normal = nil
+    recipe.expensive = nil
+    recipe.enabled = true
+    recipe.allow_intermediates = false
+    recipe.allow_decomposition = false
+    recipe.allow_as_intermediate = false
+end
+
 for _, recipe in pairs(data.raw["recipe"]) do
     if not armor_costs[recipe.name] then
         recipe.hide_from_player_crafting = true
