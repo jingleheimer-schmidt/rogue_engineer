@@ -355,10 +355,10 @@ local function upgrade_damage_bonuses(level_threshold)
                     local tech_name = name .. math.min(i, 7)
                     local technology = force_technologies[tech_name]
                     if not technology then break end
-                    local prerequisites = technology.prerequisites
-                    for _, prerequisite in pairs(prerequisites) do
-                        prerequisite.researched = true
-                    end
+                    -- local prerequisites = technology.prerequisites
+                    -- for _, prerequisite in pairs(prerequisites) do
+                    --     prerequisite.researched = true
+                    -- end
                     technology.researched = true
                 end
             end
