@@ -71,6 +71,30 @@ power_armor_mk2.durability = 300
 
 }
 }
+
+local health_bonus_recipe = {
+    type = "recipe",
+    name = "health-bonus",
+    enabled = true,
+    ingredients = {
+        { type = "item", name = "coin", amount = 250 },
+    },
+    results = {
+        { type = "item", name = "coin", amount_min = 50, amount_max = 200 }
+    },
+    localised_name = { "recipe-name.health-bonus" },
+    subgroup = "rogue-engineer",
+    order = "rogue-[a]-[3]",
+    icon = data.raw["unit"]["small-biter"].icon,
+    icon_size = data.raw["unit"]["small-biter"].icon_size,
+    allow_intermediates = false,
+    allow_decomposition = false,
+    allow_as_intermediate = false,
+    show_amount_in_title = false,
+    energy_required = 2.5,
+}
+data:extend{health_bonus_recipe}
+
 local raw_fish = data.raw["capsule"]["raw-fish"]
 local cluster_grenade = data.raw["capsule"]["cluster-grenade"]
 raw_fish.stack_size = 1
