@@ -614,7 +614,7 @@ local function reset_last_attempt_statistics_data(player_index)
     local player_stats = global.statistics[player_index] --[[@type player_statistics]]
     if player_stats then
         -- player_stats.total.attempts = player_stats.total.attempts + 1
-        -- player_stats.last_attempt.attempts = 1
+        player_stats.last_attempt.attempts = 0
         player_stats.last_attempt.kills = 0
         player_stats.last_attempt.deaths = 0
         player_stats.last_attempt.damage_dealt = 0
