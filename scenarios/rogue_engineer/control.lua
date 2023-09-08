@@ -476,6 +476,7 @@ local function on_player_respawned(event)
     local player = game.get_player(player_index)
     if not player then return end
     player.character_running_speed_modifier = 0.4
+    upgrade_character_armor(player.character)
     global.remaining_lives = global.remaining_lives or {}
     global.remaining_lives[player_index] = global.remaining_lives[player_index] or 0
     if global.remaining_lives[player_index] < 1 then
