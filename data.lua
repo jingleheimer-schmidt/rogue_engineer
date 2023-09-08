@@ -70,6 +70,14 @@ power_armor_mk2.infinite = false
 power_armor_mk2.durability = 300
 
 
+local rogue_subgroup = {
+    type = "item-subgroup",
+    name = "rogue-engineer",
+    group = "combat",
+    order = "aa",
+}
+data:extend{rogue_subgroup}
+
 local loot_distance_recipe = {
     type = "recipe",
     name = "loot-distance",
