@@ -973,6 +973,7 @@ local function on_tick(event)
                     local player_stats = global.statistics[player.index] --[[@type player_statistics]]
                     player_stats.total.victories = player_stats.total.victories + 1
                     player_stats.last_attempt.victories = player_stats.last_attempt.victories + 1
+                    global.remaining_lives = global.remaining_lives or {}
                     global.remaining_lives[player.index] = 0
                 end
             end
