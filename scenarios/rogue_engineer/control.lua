@@ -206,11 +206,16 @@ local function on_player_died(event)
     }
     local player = game.get_player(event.player_index)
     if not player then return end
+
+    global.remaining_lives = global.remaining_lives or {}
+    global.remaining_lives[player.index] = global.remaining_lives[player.index] or 0
+    local remaining_lives = global.remaining_lives[player.index]
+
     local ticks_remaining = arena_ticks_remaining()
     local player_is_in_lobby = player.surface.name == "lobby"
     local less_than_nine_seconds_remaining = (ticks_remaining <= 60 * 9) and (ticks_remaining > 0)
     local lobby_ticks = player_is_in_lobby and (60 * 5) --[[@as uint]]
-    local close_finish_ticks = less_than_nine_seconds_remaining and math.ceil(ticks_remaining / 3) --[[@as uint]]
+    local close_finish_ticks = remaining_lives and remaining_lives > 0 and less_than_nine_seconds_remaining and math.ceil(ticks_remaining / 3) --[[@as uint]]
     local arena_ticks = 60 * 8 --[[@as uint]]
     local ticks = lobby_ticks or close_finish_ticks or arena_ticks
     player.ticks_to_respawn = ticks
@@ -221,9 +226,7 @@ local function on_player_died(event)
             player_stats.total.deaths = player_stats.total.deaths + 1
             player_stats.last_attempt.deaths = player_stats.last_attempt.deaths + 1
         end
-        global.remaining_lives = global.remaining_lives or {}
-        global.remaining_lives[player.index] = global.remaining_lives[player.index] or 0
-        local text = { "", { "message_locale.engineer_down" }, "! ", global.remaining_lives[player.index], " ", { "message_locale.lives_remaining" } }
+        local text = { "", { "message_locale.engineer_down" }, "! ", remaining_lives, " ", { "message_locale.lives_remaining" } }
         if ticks_remaining <= 0 then
             text = { "", { "message_locale.engineer_victorious" }, "!" }
         end
