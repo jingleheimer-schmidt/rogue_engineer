@@ -709,6 +709,7 @@ local function on_player_joined_game(event)
     if not player then return end
     global.player_data = global.player_data or {}
     if not global.player_data[player_index] then
+        player.game_view_settings.show_entity_info = true
         initialize_lobby_text_and_tiles()
         reset_player_ability_data(player)
         reset_player_statistics_data(player_index)
@@ -749,6 +750,7 @@ local function on_tick(event)
             local lobby_options = global.lobby_options
             local player_index = player.index
             if not global.player_data[player_index] then
+                player.game_view_settings.show_entity_info = true
                 reset_player_ability_data(player)
                 reset_player_statistics_data(player_index)
                 initialize_statistics_render_ids()
@@ -819,6 +821,7 @@ local function on_tick(event)
         local player_index = player.index
         global.player_data = global.player_data or {}
         if not global.player_data[player_index] then
+            player.game_view_settings.show_entity_info = true
             reset_player_ability_data(player)
             reset_player_statistics_data(player_index)
             initialize_statistics_render_ids()
