@@ -730,6 +730,23 @@ for _, icon_data in pairs(laser_shooting_speed_recipe.icons) do
     end
 end
 data:extend{laser_shooting_speed_recipe}
+
+local visible_technologies = {
+    ["rogue-follower-robot-count"] = true,
+    ["rogue-physical-projectile-damage"] = true,
+    ["rogue-energy-weapons-damage"] = true,
+    ["rogue-stronger-explosives"] = true,
+    ["rogue-refined-flammables"] = true,
+    ["rogue-weapon-shooting-speed"] = true,
+    ["rogue-laser-shooting-speed"] = true,
+}
+
+for _, technology in pairs(data.raw["technology"]) do
+    if not visible_technologies[technology.name] then
+        technology.hidden = true
+    end
+end
+
 local raw_fish = data.raw["capsule"]["raw-fish"]
 local cluster_grenade = data.raw["capsule"]["cluster-grenade"]
 raw_fish.stack_size = 1
