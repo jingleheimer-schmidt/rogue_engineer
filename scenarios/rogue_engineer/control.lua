@@ -437,9 +437,7 @@ local function on_entity_died(event)
             player_stats.total.kills = player_stats.total.kills + 1
             player_stats.last_attempt.kills = player_stats.last_attempt.kills + 1
         end
-        -- if player_stats.last_attempt.kills % 750 == 0 then
-        --     upgrade_character_armor(character)
-        -- end
+
         local player_data = global.player_data[player_index]
         player_data.exp = player_data.exp + 1
         if player_data.exp >= 5 * player_data.level then
@@ -448,19 +446,8 @@ local function on_entity_died(event)
             local level = player_data.level
             upgrade_random_ability(player)
             draw_animation("shimmer", character, surface, 0, 2)
-            -- if level % 8 == 0 then
-            --     unlock_random_ability(player)
-            -- end
-            -- global.remaining_lives = global.remaining_lives or {}
-            -- global.remaining_lives[player_index] = global.remaining_lives[player_index] or 0
-            -- if level % 33 == 0 then
-            --     global.remaining_lives[player_index] = global.remaining_lives[player_index] + 1
-            --     draw_upgrade_text({"", {"message_locale.level_up"}, "! ", global.remaining_lives[player_index], " ", {"message_locale.lives_remaining"}}, player, { x = 0, y = 3 })
-            -- end
-            -- if level % 2 == 0 then
-            --     upgrade_damage_bonuses(level)
-            -- end
         end
+
         local difficulty_spawn_chances = {
             ["easy"] = 0.77,
             ["normal"] = 0.82,
