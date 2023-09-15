@@ -158,7 +158,7 @@ local rogue_subgroup = {
     type = "item-subgroup",
     name = "rogue-engineer",
     group = "combat",
-    order = "aa",
+    order = "aa-2",
 }
 data:extend{rogue_subgroup}
 
