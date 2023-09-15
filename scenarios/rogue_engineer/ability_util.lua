@@ -266,14 +266,14 @@ local function unlock_named_ability(ability_name, player)
         local text = {"", { "ability_name." .. ability_name }, " [lvl 1] unlocked!"}
         draw_upgrade_text(text, player, { x = 0, y = 3 })
         add_arena_gui_ability_info(player, player_data.abilities[ability_name])
-        global.healing_players = global.healing_players or {}
-        global.healing_players[player.index] = {
-            player = player,
-            damage = - player.character.prototype.max_health / (60 * 15),
-            final_tick = game.tick + (60 * 7.5),
-        }
-        text = {"", { "message_locale.heal_half" } }
-        draw_upgrade_text(text, player, { x = 0, y = 6 })
+        -- global.healing_players = global.healing_players or {}
+        -- global.healing_players[player.index] = {
+        --     player = player,
+        --     damage = - player.character.prototype.max_health / (60 * 15),
+        --     final_tick = game.tick + (60 * 7.5),
+        -- }
+        -- text = {"", { "message_locale.heal_half" } }
+        -- draw_upgrade_text(text, player, { x = 0, y = 6 })
     end
 end
 
