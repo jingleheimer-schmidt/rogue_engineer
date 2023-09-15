@@ -476,8 +476,8 @@ local function on_player_respawned(event)
     local player_index = event.player_index
     local player = game.get_player(player_index)
     if not player then return end
-    player.character_running_speed_modifier = 0.4
-    upgrade_character_armor(player.character)
+    -- player.character_running_speed_modifier = 0.4
+    -- upgrade_character_armor(player.character)
     global.remaining_lives = global.remaining_lives or {}
     global.remaining_lives[player_index] = global.remaining_lives[player_index] or 0
     if global.remaining_lives[player_index] < 1 then
@@ -582,6 +582,14 @@ local function player_is_standing_on_arena_entrance(player)
     return false
 end
 
+local function reset_forces()
+    for _, force in pairs(game.forces) do
+        force.reset()
+        force.character_running_speed_modifier = 0.4
+        force.character_reach_distance_bonus = 10
+    end
+end
+
 local function enter_arena()
     local players = game.connected_players
     local ready_players = {}
@@ -621,6 +629,7 @@ local function enter_arena()
             end
         end
         if actually_ready then
+            reset_forces()
             create_arena_surface()
             destroy_arena_enemies()
             replenish_arena_enemies()
@@ -634,9 +643,8 @@ local function enter_arena()
                 local position = game.get_surface("arena").find_non_colliding_position("character", {x = 0, y = 0}, 100, 1)
                 position = position or {x = player.index * 2, y = 0}
                 player.teleport(position, "arena")
-                player.character_running_speed_modifier = 0.4
                 local player_index = player.index
-                new_attempt_stats_reset(player.index)
+                reset_player_ability_data(player)
                 increase_arena_attempts_statistics_data(player_index)
                 create_arena_gui(player)
                 local player_abilities = global.player_data[player_index].abilities
@@ -741,12 +749,10 @@ local function on_tick(event)
                 reset_player_statistics_data(player_index)
                 initialize_statistics_render_ids()
                 update_lobby_statistics_renderings()
+                reset_forces()
             end
             local character = valid_player_character(player)
             if character then
-                if player.character_running_speed_modifier < 0.4 then
-                    player.character_running_speed_modifier = 0.4
-                end
                 local position = character.position
                 local x = position.x
                 local y = position.y
@@ -1018,7 +1024,8 @@ local function on_tick(event)
             global.kill_counter_render_ids = nil
             global.remaining_lives = nil
             global.kpm_counter_render_ids = nil
-            game.forces.player.reset()
+            -- game.forces.player.reset()
+            reset_forces()
             randomize_starting_abilities()
             update_lobby_starting_ability_text()
             update_lobby_statistics_renderings()
