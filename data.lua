@@ -181,7 +181,7 @@ local loot_distance_recipe = {
     allow_decomposition = false,
     allow_as_intermediate = false,
     show_amount_in_title = false,
-    energy_required = 2.5,
+    energy_required = 5,
 }
 data:extend{loot_distance_recipe}
 
@@ -204,7 +204,7 @@ local running_speed_recipe = {
     allow_decomposition = false,
     allow_as_intermediate = false,
     show_amount_in_title = false,
-    energy_required = 2.5,
+    energy_required = 5,
 }
 data:extend{running_speed_recipe}
 
@@ -227,7 +227,7 @@ local health_bonus_recipe = {
     allow_decomposition = false,
     allow_as_intermediate = false,
     show_amount_in_title = false,
-    energy_required = 2.5,
+    energy_required = 5,
 }
 data:extend{health_bonus_recipe}
 
