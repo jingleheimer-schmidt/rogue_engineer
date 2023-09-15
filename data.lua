@@ -1,5 +1,7 @@
 
 local constants = require("__rogue_engineer__/constants")
+require("util")
+local deepcopy = util.table.deepcopy
 
 for animation_name, animation_data in pairs(constants.ability_data) do
     local animation = {
