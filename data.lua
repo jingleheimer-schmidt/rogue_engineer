@@ -231,6 +231,14 @@ local health_bonus_recipe = {
 }
 data:extend{health_bonus_recipe}
 
+local ability_subgroup = {
+    type = "item-subgroup",
+    name = "abilities",
+    group = "combat",
+    order = "aa-1",
+}
+data:extend{ability_subgroup}
+
 local raw_fish = data.raw["capsule"]["raw-fish"]
 local cluster_grenade = data.raw["capsule"]["cluster-grenade"]
 raw_fish.stack_size = 1
