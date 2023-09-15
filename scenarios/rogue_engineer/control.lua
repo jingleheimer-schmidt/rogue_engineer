@@ -453,9 +453,9 @@ local function on_entity_died(event)
             --     global.remaining_lives[player_index] = global.remaining_lives[player_index] + 1
             --     draw_upgrade_text({"", {"message_locale.level_up"}, "! ", global.remaining_lives[player_index], " ", {"message_locale.lives_remaining"}}, player, { x = 0, y = 3 })
             -- end
-            if level % 2 == 0 then
-                upgrade_damage_bonuses(level)
-            end
+            -- if level % 2 == 0 then
+            --     upgrade_damage_bonuses(level)
+            -- end
         end
         local difficulty_spawn_chances = {
             ["easy"] = 0.77,
@@ -1027,6 +1027,16 @@ local function on_tick(event)
     end
 end
 
+local endless_techs = {
+    ["follower-robot-count"] = true,
+    ["physical-projectile-damage"] = true,
+    ["energy-weapons-damage"] = true,
+    ["stronger-explosives"] = true,
+    ["refined-flammables"] = true,
+    ["weapon-shooting-speed"] = true,
+    ["laser-shooting-speed"] = true,
+}
+
 ---@param event EventData.on_player_crafted_item
 local function on_player_crafted_item(event)
     local player = game.get_player(event.player_index)
@@ -1072,6 +1082,8 @@ local function on_player_crafted_item(event)
         global.remaining_lives[player.index] = global.remaining_lives[player.index] + 1
         local text = {"", {"message_locale.level_up"}, "! ", global.remaining_lives[player.index], " ", {"message_locale.lives_remaining"}}
         draw_upgrade_text(text, player, { x = 0, y = 3 })
+    elseif endless_techs[name] then
+        player.force.technologies["rogue-" .. name].researched = true
     end
 end
 script.on_event(defines.events.on_player_crafted_item, on_player_crafted_item)

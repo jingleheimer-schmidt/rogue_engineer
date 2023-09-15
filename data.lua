@@ -331,6 +331,396 @@ local repair_armor_recipe = {
 }
 data:extend{repair_armor_recipe}
 
+local technology_subgroup = {
+    type = "item-subgroup",
+    name = "technologies",
+    group = "combat",
+    order = "tt-1",
+}
+data:extend{technology_subgroup}
+
+local infinite_technology_unit = {
+    count_formula = "L",
+    ingredients =
+    {
+        { "automation-science-pack", 1 },
+        -- { "logistic-science-pack",   1 },
+        -- { "chemical-science-pack",   1 },
+        -- { "military-science-pack",   1 },
+        -- { "utility-science-pack",    1 },
+        -- { "space-science-pack",      1 }
+    },
+    time = 60
+}
+
+local follower_robot_count_technology = deepcopy(data.raw["technology"]["follower-robot-count-7"])
+follower_robot_count_technology.name = "rogue-follower-robot-count"
+follower_robot_count_technology.prerequisites = nil
+follower_robot_count_technology.unit = infinite_technology_unit
+follower_robot_count_technology.max_level = "infinite"
+follower_robot_count_technology.effects = {
+    {
+        type = "maximum-following-robots-count",
+        modifier = 1
+    }
+}
+data:extend{follower_robot_count_technology}
+
+local follower_robot_count_recipe = {
+    type = "recipe",
+    name = "follower-robot-count",
+    enabled = true,
+    ingredients = {
+        { type = "item", name = "coin", amount = 100 },
+    },
+    results = {
+        { type = "item", name = "coin", amount_min = 10, amount_max = 50 }
+    },
+    localised_name = { "technology-name.rogue-follower-robot-count"},
+    localised_description = { "technology-description.rogue-follower-robot-count"},
+    subgroup = "technologies",
+    order = "technologies-[a]-[1]",
+    icon = deepcopy(data.raw["technology"]["follower-robot-count-7"].icon),
+    icon_size = deepcopy(data.raw["technology"]["follower-robot-count-7"].icon_size),
+    icons = deepcopy(data.raw["technology"]["follower-robot-count-7"].icons),
+    allow_intermediates = false,
+    allow_decomposition = false,
+    allow_as_intermediate = false,
+    show_amount_in_title = false,
+    energy_required = 10,
+}
+for _, icon_data in pairs(follower_robot_count_recipe.icons) do
+    if icon_data.shift then
+        icon_data.shift[1] = icon_data.shift[1] / -15
+        icon_data.shift[2] = icon_data.shift[2] / 8
+    end
+end
+data:extend{follower_robot_count_recipe}
+
+local physical_projectile_damage_technology = deepcopy(data.raw["technology"]["physical-projectile-damage-7"])
+physical_projectile_damage_technology.name = "rogue-physical-projectile-damage"
+physical_projectile_damage_technology.prerequisites = nil
+physical_projectile_damage_technology.unit = infinite_technology_unit
+physical_projectile_damage_technology.max_level = "infinite"
+physical_projectile_damage_technology.effects = {
+    {
+        type = "ammo-damage",
+        ammo_category = "bullet",
+        modifier = 0.1
+    },
+    {
+        type = "turret-attack",
+        turret_id = "gun-turret",
+        modifier = 0.1
+    },
+    {
+        type = "ammo-damage",
+        ammo_category = "shotgun-shell",
+        modifier = 0.1
+    },
+    {
+        type = "ammo-damage",
+        ammo_category = "cannon-shell",
+        modifier = 0.1
+    }
+}
+data:extend{physical_projectile_damage_technology}
+
+local physical_projectile_damage_recipe = {
+    type = "recipe",
+    name = "physical-projectile-damage",
+    enabled = true,
+    ingredients = {
+        { type = "item", name = "coin", amount = 100 },
+    },
+    results = {
+        { type = "item", name = "coin", amount_min = 10, amount_max = 50 }
+    },
+    localised_name = { "technology-name.rogue-physical-projectile-damage"},
+    localised_description = { "technology-description.rogue-physical-projectile-damage"},
+    subgroup = "technologies",
+    order = "technologies-[weapon]-[damage]",
+    icon = deepcopy(data.raw["technology"]["physical-projectile-damage-7"].icon),
+    icon_size = deepcopy(data.raw["technology"]["physical-projectile-damage-7"].icon_size),
+    icons = deepcopy(data.raw["technology"]["physical-projectile-damage-7"].icons),
+    allow_intermediates = false,
+    allow_decomposition = false,
+    allow_as_intermediate = false,
+    show_amount_in_title = false,
+    energy_required = 10,
+}
+for _, icon_data in pairs(physical_projectile_damage_recipe.icons) do
+    if icon_data.shift then
+        icon_data.shift[1] = icon_data.shift[1] / -15
+        icon_data.shift[2] = icon_data.shift[2] / 8
+    end
+end
+data:extend{physical_projectile_damage_recipe}
+
+local energy_weapons_damage_technology = deepcopy(data.raw["technology"]["energy-weapons-damage-7"])
+energy_weapons_damage_technology.name = "rogue-energy-weapons-damage"
+energy_weapons_damage_technology.prerequisites = nil
+energy_weapons_damage_technology.unit = infinite_technology_unit
+energy_weapons_damage_technology.max_level = "infinite"
+energy_weapons_damage_technology.effects = {
+    {
+        type = "ammo-damage",
+        ammo_category = "laser",
+        modifier = 0.1
+    },
+    {
+        type = "ammo-damage",
+        ammo_category = "electric",
+        modifier = 0.1
+    },
+    {
+        type = "ammo-damage",
+        ammo_category = "beam",
+        modifier = 0.1
+    }
+}
+data:extend{energy_weapons_damage_technology}
+
+local energy_weapons_damage_recipe = {
+    type = "recipe",
+    name = "energy-weapons-damage",
+    enabled = true,
+    ingredients = {
+        { type = "item", name = "coin", amount = 100 },
+    },
+    results = {
+        { type = "item", name = "coin", amount_min = 10, amount_max = 50 }
+    },
+    localised_name = { "technology-name.rogue-energy-weapons-damage"},
+    localised_description = { "technology-description.rogue-energy-weapons-damage"},
+    subgroup = "technologies",
+    order = "technologies-[laser]-[damage]",
+    icon = deepcopy(data.raw["technology"]["energy-weapons-damage-7"].icon),
+    icon_size = deepcopy(data.raw["technology"]["energy-weapons-damage-7"].icon_size),
+    icons = deepcopy(data.raw["technology"]["energy-weapons-damage-7"].icons),
+    allow_intermediates = false,
+    allow_decomposition = false,
+    allow_as_intermediate = false,
+    show_amount_in_title = false,
+    energy_required = 10,
+}
+for _, icon_data in pairs(energy_weapons_damage_recipe.icons) do
+    if icon_data.shift then
+        icon_data.shift[1] = icon_data.shift[1] / -15
+        icon_data.shift[2] = icon_data.shift[2] / 8
+    end
+end
+data:extend{energy_weapons_damage_recipe}
+
+local stronger_explosives_technology = deepcopy(data.raw["technology"]["stronger-explosives-7"])
+stronger_explosives_technology.name = "rogue-stronger-explosives"
+stronger_explosives_technology.prerequisites = nil
+stronger_explosives_technology.unit = infinite_technology_unit
+stronger_explosives_technology.max_level = "infinite"
+stronger_explosives_technology.effects = {
+    {
+        type = "ammo-damage",
+        ammo_category = "rocket",
+        modifier = 0.1
+    },
+    {
+        type = "ammo-damage",
+        ammo_category = "grenade",
+        modifier = 0.1
+    },
+    {
+        type = "ammo-damage",
+        ammo_category = "landmine",
+        modifier = 0.1
+    }
+}
+data:extend{stronger_explosives_technology}
+
+local stronger_explosives_recipe = {
+    type = "recipe",
+    name = "stronger-explosives",
+    enabled = true,
+    ingredients = {
+        { type = "item", name = "coin", amount = 100 },
+    },
+    results = {
+        { type = "item", name = "coin", amount_min = 10, amount_max = 50 }
+    },
+    localised_name = { "technology-name.rogue-stronger-explosives"},
+    localised_description = { "technology-description.rogue-stronger-explosives"},
+    subgroup = "technologies",
+    order = "technologies-[explosives]-[damage]",
+    icon = deepcopy(data.raw["technology"]["stronger-explosives-7"].icon),
+    icon_size = deepcopy(data.raw["technology"]["stronger-explosives-7"].icon_size),
+    icons = deepcopy(data.raw["technology"]["stronger-explosives-7"].icons),
+    allow_intermediates = false,
+    allow_decomposition = false,
+    allow_as_intermediate = false,
+    show_amount_in_title = false,
+    energy_required = 10,
+}
+for _, icon_data in pairs(stronger_explosives_recipe.icons) do
+    if icon_data.shift then
+        icon_data.shift[1] = icon_data.shift[1] / -15
+        icon_data.shift[2] = icon_data.shift[2] / 8
+    end
+end
+data:extend{stronger_explosives_recipe}
+
+local refined_flammables_technology = deepcopy(data.raw["technology"]["refined-flammables-7"])
+refined_flammables_technology.name = "rogue-refined-flammables"
+refined_flammables_technology.prerequisites = nil
+refined_flammables_technology.unit = infinite_technology_unit
+refined_flammables_technology.max_level = "infinite"
+refined_flammables_technology.effects = {
+    {
+        type = "ammo-damage",
+        ammo_category = "flamethrower",
+        modifier = 0.1
+    },
+    {
+        type = "turret-attack",
+        turret_id = "flamethrower-turret",
+        modifier = 0.1
+    }
+}
+data:extend{refined_flammables_technology}
+
+local refined_flammables_recipe = {
+    type = "recipe",
+    name = "refined-flammables",
+    enabled = true,
+    ingredients = {
+        { type = "item", name = "coin", amount = 100 },
+    },
+    results = {
+        { type = "item", name = "coin", amount_min = 10, amount_max = 50 }
+    },
+    localised_name = { "technology-name.rogue-refined-flammables"},
+    localised_description = { "technology-description.rogue-refined-flammables"},
+    subgroup = "technologies",
+    order = "technologies-[flammables]-[damage]",
+    icon = deepcopy(data.raw["technology"]["refined-flammables-7"].icon),
+    icon_size = deepcopy(data.raw["technology"]["refined-flammables-7"].icon_size),
+    icons = deepcopy(data.raw["technology"]["refined-flammables-7"].icons),
+    allow_intermediates = false,
+    allow_decomposition = false,
+    allow_as_intermediate = false,
+    show_amount_in_title = false,
+    energy_required = 10,
+}
+for _, icon_data in pairs(refined_flammables_recipe.icons) do
+    if icon_data.shift then
+        icon_data.shift[1] = icon_data.shift[1] / -15
+        icon_data.shift[2] = icon_data.shift[2] / 8
+    end
+end
+data:extend{refined_flammables_recipe}
+
+local weapon_shooting_speed_technology = deepcopy(data.raw["technology"]["weapon-shooting-speed-6"])
+weapon_shooting_speed_technology.name = "rogue-weapon-shooting-speed"
+weapon_shooting_speed_technology.prerequisites = nil
+weapon_shooting_speed_technology.unit = infinite_technology_unit
+weapon_shooting_speed_technology.max_level = "infinite"
+weapon_shooting_speed_technology.effects = {
+    {
+        type = "gun-speed",
+        ammo_category = "bullet",
+        modifier = 0.1
+    },
+    {
+        type = "gun-speed",
+        ammo_category = "shotgun-shell",
+        modifier = 0.1
+    },
+    {
+        type = "gun-speed",
+        ammo_category = "cannon-shell",
+        modifier = 1.1
+    },
+    {
+        type = "gun-speed",
+        ammo_category = "rocket",
+        modifier = 0.1
+    }
+}
+data:extend{weapon_shooting_speed_technology}
+
+local weapon_shooting_speed_recipe = {
+    type = "recipe",
+    name = "weapon-shooting-speed",
+    enabled = true,
+    ingredients = {
+        { type = "item", name = "coin", amount = 100 },
+    },
+    results = {
+        { type = "item", name = "coin", amount_min = 10, amount_max = 50 }
+    },
+    localised_name = { "technology-name.rogue-weapon-shooting-speed"},
+    localised_description = { "technology-description.rogue-weapon-shooting-speed"},
+    subgroup = "technologies",
+    order = "technologies-[weapon]-[speed]",
+    icon = deepcopy(data.raw["technology"]["weapon-shooting-speed-6"].icon),
+    icon_size = deepcopy(data.raw["technology"]["weapon-shooting-speed-6"].icon_size),
+    icons = deepcopy(data.raw["technology"]["weapon-shooting-speed-6"].icons),
+    allow_intermediates = false,
+    allow_decomposition = false,
+    allow_as_intermediate = false,
+    show_amount_in_title = false,
+    energy_required = 10,
+}
+for _, icon_data in pairs(weapon_shooting_speed_recipe.icons) do
+    if icon_data.shift then
+        icon_data.shift[1] = icon_data.shift[1] / -15
+        icon_data.shift[2] = icon_data.shift[2] / 8
+    end
+end
+data:extend{weapon_shooting_speed_recipe}
+
+local laser_shooting_speed_technology = deepcopy(data.raw["technology"]["laser-shooting-speed-6"])
+laser_shooting_speed_technology.name = "rogue-laser-shooting-speed"
+laser_shooting_speed_technology.prerequisites = nil
+laser_shooting_speed_technology.unit = infinite_technology_unit
+laser_shooting_speed_technology.max_level = "infinite"
+laser_shooting_speed_technology.effects = {
+    {
+        type = "gun-speed",
+        ammo_category = "laser",
+        modifier = 0.1
+    }
+}
+data:extend{laser_shooting_speed_technology}
+
+local laser_shooting_speed_recipe = {
+    type = "recipe",
+    name = "laser-shooting-speed",
+    enabled = true,
+    ingredients = {
+        { type = "item", name = "coin", amount = 100 },
+    },
+    results = {
+        { type = "item", name = "coin", amount_min = 10, amount_max = 50 }
+    },
+    localised_name = { "technology-name.rogue-laser-shooting-speed"},
+    localised_description = { "technology-description.rogue-laser-shooting-speed"},
+    subgroup = "technologies",
+    order = "technologies-[laser]-[speed]",
+    icon = deepcopy(data.raw["technology"]["laser-shooting-speed-6"].icon),
+    icon_size = deepcopy(data.raw["technology"]["laser-shooting-speed-6"].icon_size),
+    icons = deepcopy(data.raw["technology"]["laser-shooting-speed-6"].icons),
+    allow_intermediates = false,
+    allow_decomposition = false,
+    allow_as_intermediate = false,
+    show_amount_in_title = false,
+    energy_required = 10,
+}
+for _, icon_data in pairs(laser_shooting_speed_recipe.icons) do
+    if icon_data.shift then
+        icon_data.shift[1] = icon_data.shift[1] / -15
+        icon_data.shift[2] = icon_data.shift[2] / 8
+    end
+end
+data:extend{laser_shooting_speed_recipe}
 local raw_fish = data.raw["capsule"]["raw-fish"]
 local cluster_grenade = data.raw["capsule"]["cluster-grenade"]
 raw_fish.stack_size = 1
