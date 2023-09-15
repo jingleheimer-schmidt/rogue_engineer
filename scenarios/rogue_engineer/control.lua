@@ -441,7 +441,7 @@ local function on_entity_died(event)
         -- end
         local player_data = global.player_data[player_index]
         player_data.exp = player_data.exp + 1
-        if player_data.exp >= 3 * player_data.level then
+        if player_data.exp >= 5 * player_data.level then
             player_data.exp = 0
             player_data.level = player_data.level + 1
             local level = player_data.level
