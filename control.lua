@@ -264,16 +264,16 @@ local little_robot_stretched = [[
 ]]
 
 local function on_tick()
-    if global.show_error_message then
-        game.print({"error_locale.wrong_scenario", {"scenario-name"}, {"error_locale.rogue_engineer"}})
-        global.show_error_message = false
-    end
+  if global.show_error_message then
+    game.print({ "error_locale.wrong_scenario", { "scenario-name" }, { "error_locale.rogue_engineer" } })
+    global.show_error_message = false
+  end
 end
 
 local function on_init()
-    if script.level.level_name ~= "rogue_engineer" then
-        global.show_error_message = true
-    end
+  if script.level.level_name ~= "rogue_engineer" then
+    global.show_error_message = true
+  end
 end
 
 script.on_nth_tick(600, on_tick)
