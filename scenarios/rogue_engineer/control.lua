@@ -1021,6 +1021,33 @@ local function on_player_crafted_item(event)
 end
 script.on_event(defines.events.on_player_crafted_item, on_player_crafted_item)
 
+---@param event EventData.on_player_armor_inventory_changed
+local function on_player_armor_inventory_changed(event)
+    local player = game.get_player(event.player_index)
+    local character = valid_player_character(player)
+    if player and character then
+        local data = nil
+        local inventory = character.get_inventory(defines.inventory.character_armor)
+        if inventory and inventory.valid then
+            if not inventory.is_empty() then
+                local armor = inventory[1]
+                if armor and armor.valid and armor.valid_for_read then
+                    local durability = armor.durability
+                    local max_durability = armor.prototype.durability
+                    data = {
+                        armor = armor,
+                        durability = durability,
+                        max_durability = max_durability,
+                    }
+                end
+            end
+        end
+        global.player_armor = global.player_armor or {}
+        global.player_armor[player.index] = data
+    end
+end
+script.on_event(defines.events.on_player_armor_inventory_changed, on_player_armor_inventory_changed)
+
 ---@param event EventData.on_research_finished
 local function on_research_finished(event)
     local force = event.research.force
