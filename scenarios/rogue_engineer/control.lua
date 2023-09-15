@@ -180,6 +180,7 @@ local function on_init()
     global.burn_zones = {}
     global.poison_zones = {}
     global.laser_beam_targets = {}
+    global.active_vampires = {}
     global.game_length = 60 * 60 * 15
     global.game_duration = {
         easy = 60 * 60 * 7,
@@ -859,6 +860,23 @@ local function on_tick(event)
                 draw_on_ground = true,
                 only_in_alt_mode = true,
             }
+            color.r = color.r * multiplier
+            color.g = color.g * multiplier
+            color.b = color.b * multiplier
+            color.a = multiplier
+            for i = 1, lines do
+                rendering.draw_circle{
+                    surface = surface,
+                    target = position,
+                    color = color,
+                    filled = false,
+                    width = 5,
+                    radius = loot_pickup_distance - (loot_pickup_distance * (((game.tick + speed * i/lines) % speed) / speed )),
+                    time_to_live = 2,
+                    draw_on_ground = true,
+                    only_in_alt_mode = true,
+                }
+            end
         end
     end
     for id, damage_zone in pairs(global.damage_zones) do
@@ -930,6 +948,68 @@ local function on_tick(event)
             global.laser_beam_targets[id] = nil
         elseif laser_beam_target.final_tick <= event.tick then
             global.laser_beam_targets[id] = nil
+        end
+    end
+    for id, vampire_data in pairs(global.active_vampires) do
+        local player = vampire_data.player
+        local character = valid_player_character(player)
+        if player and character then
+            local strength = vampire_data.strength
+            local corpses = character.surface.find_entities_filtered{
+                position = character.position,
+                radius = character.loot_pickup_distance,
+                type = "corpse",
+                name = {
+                    "small-biter-corpse",
+                    "medium-biter-corpse",
+                    "big-biter-corpse",
+                    "behemoth-biter-corpse",
+                    "small-spitter-corpse",
+                    "medium-spitter-corpse",
+                    "big-spitter-corpse",
+                    "behemoth-spitter-corpse",
+                    "small-worm-corpse",
+                    "medium-worm-corpse",
+                    "big-worm-corpse",
+                    "behemoth-worm-corpse",
+                    "spitter-spawner",
+                    "biter-spawner",
+                }
+            }
+            for _, corpse in pairs(corpses) do
+                if math.random() < 1 / 60 then
+                    local modifier = 1 / 120
+                    local damage = modifier * strength
+                    character.damage(-damage, "enemy")
+                    ---@diagnostic disable: missing-fields
+                    character.surface.create_entity{
+                        name = "flying-text",
+                        position = character.position,
+                        text = "+" .. string.format("%.3f", tostring(damage)),
+                        color = {r = 0, g = 1, b = 0}
+                    }
+                    ---@diagnostic enable: missing-fields
+                    local color = player.chat_color
+                    local multiplier = 0.75
+                    color.r = color.r * multiplier
+                    color.g = color.g * multiplier
+                    color.b = color.b * multiplier
+                    color.a = multiplier
+                    rendering.draw_line{
+                        surface = character.surface,
+                        color = color,
+                        width = 5,
+                        from = character.position,
+                        to = corpse.position,
+                        time_to_live = 2,
+                        draw_on_ground = true,
+                        only_in_alt_mode = true,
+                    }
+                    if math.random() < (1 / strength) then
+                        corpse.destroy()
+                    end
+                end
+            end
         end
     end
 
@@ -1042,6 +1122,7 @@ local function on_tick(event)
             global.kill_counter_render_ids = nil
             global.remaining_lives = nil
             global.kpm_counter_render_ids = nil
+            global.active_vampires = {}
             -- game.forces.player.reset()
             reset_forces()
             randomize_starting_abilities()
@@ -1109,6 +1190,15 @@ local function on_player_crafted_item(event)
         draw_upgrade_text(text, player, { x = 0, y = 3 })
     elseif endless_techs[name] then
         player.force.technologies["rogue-" .. name].researched = true
+    elseif name == "vampire-strength" then
+        global.active_vampires = global.active_vampires or {}
+        global.active_vampires[player.index] = global.active_vampires[player.index] or {
+            player = player,
+            strength = 0,
+        }
+        global.active_vampires[player.index].strength = global.active_vampires[player.index].strength + 1
+        local text = {"", { "message_locale.vampire_workout", " [", global.active_vampires[player.index].strength, "]" } }
+        draw_upgrade_text(text, player, { x = 0, y = 3 })
     end
 end
 script.on_event(defines.events.on_player_crafted_item, on_player_crafted_item)

@@ -292,6 +292,30 @@ local extra_life_recipe = {
 }
 data:extend{extra_life_recipe}
 
+local vampire_workout_recipe = {
+    type = "recipe",
+    name = "vampire-strength",
+    enabled = true,
+    ingredients = {
+        { type = "item", name = "coin", amount = 500 },
+    },
+    results = {
+        { type = "item", name = "coin", amount_min = 1, amount_max = 50 }
+    },
+    localised_name = { "recipe-name.vampire-strength" },
+    subgroup = "abilities",
+    order = "abilities-[a]-[3]",
+    icon = data.raw["tool"]["space-science-pack"].icon,
+    icon_size = data.raw["tool"]["space-science-pack"].icon_size,
+    icons = data.raw["tool"]["space-science-pack"].icons,
+    allow_intermediates = false,
+    allow_decomposition = false,
+    allow_as_intermediate = false,
+    show_amount_in_title = false,
+    energy_required = 5,
+}
+data:extend{vampire_workout_recipe}
+
 local restore_health_recipe = {
     type = "recipe",
     name = "restore-health",
