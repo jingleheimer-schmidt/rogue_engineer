@@ -308,6 +308,29 @@ local restore_health_recipe = {
 }
 data:extend{restore_health_recipe}
 
+local repair_armor_recipe = {
+    type = "recipe",
+    name = "repair-armor",
+    enabled = true,
+    ingredients = {
+        { type = "item", name = "coin", amount = 250 },
+    },
+    results = {
+        { type = "item", name = "coin", amount_min = 50, amount_max = 200 }
+    },
+    localised_name = { "recipe-name.repair-armor" },
+    subgroup = "rogue-engineer",
+    order = "rogue-[a]-[5]",
+    icon = data.raw["repair-tool"]["repair-pack"].icon,
+    icon_size = data.raw["repair-tool"]["repair-pack"].icon_size,
+    allow_intermediates = false,
+    allow_decomposition = false,
+    allow_as_intermediate = false,
+    show_amount_in_title = false,
+    energy_required = 5,
+}
+data:extend{repair_armor_recipe}
+
 local raw_fish = data.raw["capsule"]["raw-fish"]
 local cluster_grenade = data.raw["capsule"]["cluster-grenade"]
 raw_fish.stack_size = 1
