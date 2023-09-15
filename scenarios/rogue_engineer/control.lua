@@ -1171,7 +1171,7 @@ local function on_player_crafted_item(event)
         global.remaining_lives = global.remaining_lives or {}
         global.remaining_lives[player.index] = global.remaining_lives[player.index] or 0
         global.remaining_lives[player.index] = global.remaining_lives[player.index] + 1
-        local text = {"", {"message_locale.level_up"}, "! ", global.remaining_lives[player.index], " ", {"message_locale.lives_remaining"}}
+        local text = { "", { "message_locale.level_up" }, "! ", global.remaining_lives[player.index], " ", { "message_locale.lives_remaining" } }
         draw_upgrade_text(text, player, { x = 0, y = 3 })
     elseif endless_techs[name] then
         player.force.technologies["rogue-" .. name].researched = true
@@ -1182,7 +1182,7 @@ local function on_player_crafted_item(event)
             strength = 0,
         }
         global.active_vampires[player.index].strength = global.active_vampires[player.index].strength + 1
-        local text = {"", { "message_locale.vampire_workout", " [", global.active_vampires[player.index].strength, "]" } }
+        local text = {"", { "message_locale.vampire_workout" }, " [", global.active_vampires[player.index].strength, "]" }
         draw_upgrade_text(text, player, { x = 0, y = 3 })
     end
 end
