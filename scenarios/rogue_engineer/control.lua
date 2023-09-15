@@ -694,10 +694,14 @@ local function on_player_joined_game(event)
     local player_index = event.player_index
     local player = game.get_player(player_index)
     if not player then return end
-    -- local player_data = global.player_data[player_index]
-    -- if not player_data then
-    --     initialize_player_data(player)
-    -- end
+    global.player_data = global.player_data or {}
+    if not global.player_data[player_index] then
+        initialize_lobby_text_and_tiles()
+        reset_player_ability_data(player)
+        reset_player_statistics_data(player_index)
+        initialize_statistics_render_ids()
+        update_lobby_statistics_renderings()
+    end
     if game_state == "lobby" then
         local position = {x = -20, y = 0}
         position = game.surfaces.lobby.find_non_colliding_position("character", position, 100, 1) or position
