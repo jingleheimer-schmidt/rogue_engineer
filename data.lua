@@ -261,6 +261,29 @@ local unlock_ability_recipe = {
     energy_required = 10,
 }
 data:extend{unlock_ability_recipe}
+
+local extra_life_recipe = {
+    type = "recipe",
+    name = "extra-life",
+    enabled = true,
+    ingredients = {
+        { type = "item", name = "coin", amount = 500 },
+    },
+    results = {
+        { type = "item", name = "coin", amount_min = 50, amount_max = 200 }
+    },
+    localised_name = { "recipe-name.extra-life" },
+    subgroup = "abilities",
+    order = "abilities-[a]-[2]",
+    icon = data.raw["tool"]["automation-science-pack"].icon,
+    icon_size = data.raw["tool"]["automation-science-pack"].icon_size,
+    allow_intermediates = false,
+    allow_decomposition = false,
+    allow_as_intermediate = false,
+    show_amount_in_title = false,
+    energy_required = 10,
+}
+data:extend{extra_life_recipe}
 local raw_fish = data.raw["capsule"]["raw-fish"]
 local cluster_grenade = data.raw["capsule"]["cluster-grenade"]
 raw_fish.stack_size = 1
