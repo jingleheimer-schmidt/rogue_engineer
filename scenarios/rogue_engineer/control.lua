@@ -711,6 +711,8 @@ local function on_player_joined_game(event)
         player.set_controller{type = defines.controllers.spectator}
         if character then character.destroy() end
         player.teleport({x = 0, y = 0}, "arena")
+        new_attempt_stats_reset(player.index)
+        create_arena_gui(player)
     end
 end
 
