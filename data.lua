@@ -71,24 +71,24 @@ power_armor_mk2.durability = 300
 
 local enemy_loot = {
     ["unit"] = {
-        ["small-biter"] = 1,
-        ["small-spitter"] = 1,
-        ["medium-biter"] = 2,
-        ["medium-spitter"] = 2,
-        ["big-biter"] = 4,
-        ["big-spitter"] = 4,
-        ["behemoth-biter"] = 6,
-        ["behemoth-spitter"] = 6,
+        ["small-biter"] = { min = 1, max = 10 },
+        ["small-spitter"] = { min = 5, max = 15 },
+        ["medium-biter"] = { min = 5, max = 20 },
+        ["medium-spitter"] = { min = 10, max = 25 },
+        ["big-biter"] = { min = 10, max = 30 },
+        ["big-spitter"] = { min = 15, max = 35 },
+        ["behemoth-biter"] = { min = 15, max = 40 },
+        ["behemoth-spitter"] = { min = 20, max = 45 },
     },
     ["turret"] = {
-        ["small-worm-turret"] = 3,
-        ["medium-worm-turret"] = 5,
-        ["big-worm-turret"] = 7,
-        ["behemoth-worm-turret"] = 8,
+        ["small-worm-turret"] = { min = 5, max = 25 },
+        ["medium-worm-turret"] = { min = 10, max = 35 },
+        ["big-worm-turret"] = { min = 15, max = 45 },
+        ["behemoth-worm-turret"] = { min = 20, max = 55 },
     },
     ["unit-spawner"] = {
-        ["biter-spawner"] = 9,
-        ["spitter-spawner"] = 9,
+        ["biter-spawner"] = { min = 25, max = 75 },
+        ["spitter-spawner"] = { min = 25, max = 75 },
     },
 }
 for type, names in pairs(enemy_loot) do
@@ -97,8 +97,8 @@ for type, names in pairs(enemy_loot) do
             {
                 item = "coin",
                 probability = 1,
-                count_min = math.ceil(loot / 2),
-                count_max = math.ceil(loot * 2),
+                count_min = loot.min,
+                count_max = loot.max,
             }
         }
     end
