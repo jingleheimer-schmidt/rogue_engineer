@@ -1053,6 +1053,12 @@ local function on_player_crafted_item(event)
         }
         local text = {"", { "message_locale.repair_thirty" } }
         draw_upgrade_text(text, player, { x = 0, y = 3 })
+    elseif name == "extra-life" then
+        global.remaining_lives = global.remaining_lives or {}
+        global.remaining_lives[player.index] = global.remaining_lives[player.index] or 0
+        global.remaining_lives[player.index] = global.remaining_lives[player.index] + 1
+        local text = {"", {"message_locale.level_up"}, "! ", global.remaining_lives[player.index], " ", {"message_locale.lives_remaining"}}
+        draw_upgrade_text(text, player, { x = 0, y = 3 })
     end
 end
 script.on_event(defines.events.on_player_crafted_item, on_player_crafted_item)
