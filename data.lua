@@ -284,6 +284,30 @@ local extra_life_recipe = {
     energy_required = 10,
 }
 data:extend{extra_life_recipe}
+
+local restore_health_recipe = {
+    type = "recipe",
+    name = "restore-health",
+    enabled = true,
+    ingredients = {
+        { type = "item", name = "coin", amount = 250 },
+    },
+    results = {
+        { type = "item", name = "coin", amount_min = 50, amount_max = 200 }
+    },
+    localised_name = { "recipe-name.restore-health" },
+    subgroup = "rogue-engineer",
+    order = "rogue-[a]-[4]",
+    icon = data.raw["capsule"]["raw-fish"].icon,
+    icon_size = data.raw["capsule"]["raw-fish"].icon_size,
+    allow_intermediates = false,
+    allow_decomposition = false,
+    allow_as_intermediate = false,
+    show_amount_in_title = false,
+    energy_required = 5,
+}
+data:extend{restore_health_recipe}
+
 local raw_fish = data.raw["capsule"]["raw-fish"]
 local cluster_grenade = data.raw["capsule"]["cluster-grenade"]
 raw_fish.stack_size = 1
