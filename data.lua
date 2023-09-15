@@ -169,14 +169,14 @@ local loot_distance_recipe = {
     name = "loot-distance",
     enabled = true,
     ingredients = {
-        { type = "item", name = "coin", amount = 250 },
+        { type = "item", name = "coin", amount = 150 },
     },
     results = {
-        { type = "item", name = "coin", amount_min = 50, amount_max = 200 }
+        { type = "item", name = "coin", amount_min = 1, amount_max = 15 }
     },
     localised_name = { "recipe-name.loot-distance" },
     subgroup = "rogue-engineer",
-    order = "rogue-[a]-[1]",
+    order = "rogue-[a]-[3]",
     icon = data.raw["item"]["coin"].icon,
     icon_size = data.raw["item"]["coin"].icon_size,
     icons = data.raw["item"]["coin"].icons,
@@ -184,7 +184,7 @@ local loot_distance_recipe = {
     allow_decomposition = false,
     allow_as_intermediate = false,
     show_amount_in_title = false,
-    energy_required = 5,
+    energy_required = 2.5,
 }
 data:extend{loot_distance_recipe}
 
@@ -193,14 +193,14 @@ local running_speed_recipe = {
     name = "running-speed",
     enabled = true,
     ingredients = {
-        { type = "item", name = "coin", amount = 250 },
+        { type = "item", name = "coin", amount = 100 },
     },
     results = {
-        { type = "item", name = "coin", amount_min = 50, amount_max = 200 }
+        { type = "item", name = "coin", amount_min = 1, amount_max = 10 }
     },
     localised_name = { "recipe-name.running-speed" },
     subgroup = "rogue-engineer",
-    order = "rogue-[a]-[2]",
+    order = "rogue-[a]-[1]",
     icon = data.raw["character"]["character"].icon,
     icon_size = data.raw["character"]["character"].icon_size,
     icons = data.raw["character"]["character"].icons,
@@ -208,7 +208,7 @@ local running_speed_recipe = {
     allow_decomposition = false,
     allow_as_intermediate = false,
     show_amount_in_title = false,
-    energy_required = 5,
+    energy_required = 2.5,
 }
 data:extend{running_speed_recipe}
 
@@ -217,14 +217,14 @@ local health_bonus_recipe = {
     name = "health-bonus",
     enabled = true,
     ingredients = {
-        { type = "item", name = "coin", amount = 250 },
+        { type = "item", name = "coin", amount = 100 },
     },
     results = {
-        { type = "item", name = "coin", amount_min = 50, amount_max = 200 }
+        { type = "item", name = "coin", amount_min = 1, amount_max = 10 }
     },
     localised_name = { "recipe-name.health-bonus" },
     subgroup = "rogue-engineer",
-    order = "rogue-[a]-[3]",
+    order = "rogue-[a]-[2]",
     icon = data.raw["unit"]["small-biter"].icon,
     icon_size = data.raw["unit"]["small-biter"].icon_size,
     icons = data.raw["unit"]["small-biter"].icons,
@@ -232,7 +232,7 @@ local health_bonus_recipe = {
     allow_decomposition = false,
     allow_as_intermediate = false,
     show_amount_in_title = false,
-    energy_required = 5,
+    energy_required = 2.5,
 }
 data:extend{health_bonus_recipe}
 
@@ -252,7 +252,7 @@ local unlock_ability_recipe = {
         { type = "item", name = "coin", amount = 250 },
     },
     results = {
-        { type = "item", name = "coin", amount_min = 50, amount_max = 200 }
+        { type = "item", name = "coin", amount_min = 1, amount_max = 25 }
     },
     localised_name = { "recipe-name.unlock-ability" },
     subgroup = "abilities",
@@ -276,7 +276,7 @@ local extra_life_recipe = {
         { type = "item", name = "coin", amount = 500 },
     },
     results = {
-        { type = "item", name = "coin", amount_min = 50, amount_max = 200 }
+        { type = "item", name = "coin", amount_min = 1, amount_max = 50 }
     },
     localised_name = { "recipe-name.extra-life" },
     subgroup = "abilities",
@@ -288,7 +288,7 @@ local extra_life_recipe = {
     allow_decomposition = false,
     allow_as_intermediate = false,
     show_amount_in_title = false,
-    energy_required = 10,
+    energy_required = 5,
 }
 data:extend{extra_life_recipe}
 
@@ -324,7 +324,7 @@ local restore_health_recipe = {
         { type = "item", name = "coin", amount = 250 },
     },
     results = {
-        { type = "item", name = "coin", amount_min = 50, amount_max = 200 }
+        { type = "item", name = "coin", amount_min = 1, amount_max = 25 }
     },
     localised_name = { "recipe-name.restore-health" },
     subgroup = "rogue-engineer",
@@ -348,7 +348,7 @@ local repair_armor_recipe = {
         { type = "item", name = "coin", amount = 250 },
     },
     results = {
-        { type = "item", name = "coin", amount_min = 50, amount_max = 200 }
+        { type = "item", name = "coin", amount_min = 1, amount_max = 25 }
     },
     localised_name = { "recipe-name.repair-armor" },
     subgroup = "rogue-engineer",
@@ -407,7 +407,7 @@ local follower_robot_count_recipe = {
         { type = "item", name = "coin", amount = 100 },
     },
     results = {
-        { type = "item", name = "coin", amount_min = 10, amount_max = 50 }
+        { type = "item", name = "coin", amount_min = 1, amount_max = 10 }
     },
     localised_name = { "technology-name.rogue-follower-robot-count"},
     localised_description = { "technology-description.rogue-follower-robot-count"},
@@ -420,7 +420,7 @@ local follower_robot_count_recipe = {
     allow_decomposition = false,
     allow_as_intermediate = false,
     show_amount_in_title = false,
-    energy_required = 10,
+    energy_required = 5,
 }
 for _, icon_data in pairs(follower_robot_count_recipe.icons) do
     if icon_data.shift then
@@ -467,7 +467,7 @@ local physical_projectile_damage_recipe = {
         { type = "item", name = "coin", amount = 100 },
     },
     results = {
-        { type = "item", name = "coin", amount_min = 10, amount_max = 50 }
+        { type = "item", name = "coin", amount_min = 1, amount_max = 10 }
     },
     localised_name = { "technology-name.rogue-physical-projectile-damage"},
     localised_description = { "technology-description.rogue-physical-projectile-damage"},
@@ -480,7 +480,7 @@ local physical_projectile_damage_recipe = {
     allow_decomposition = false,
     allow_as_intermediate = false,
     show_amount_in_title = false,
-    energy_required = 10,
+    energy_required = 5,
 }
 for _, icon_data in pairs(physical_projectile_damage_recipe.icons) do
     if icon_data.shift then
@@ -522,7 +522,7 @@ local energy_weapons_damage_recipe = {
         { type = "item", name = "coin", amount = 100 },
     },
     results = {
-        { type = "item", name = "coin", amount_min = 10, amount_max = 50 }
+        { type = "item", name = "coin", amount_min = 1, amount_max = 10 }
     },
     localised_name = { "technology-name.rogue-energy-weapons-damage"},
     localised_description = { "technology-description.rogue-energy-weapons-damage"},
@@ -535,7 +535,7 @@ local energy_weapons_damage_recipe = {
     allow_decomposition = false,
     allow_as_intermediate = false,
     show_amount_in_title = false,
-    energy_required = 10,
+    energy_required = 5,
 }
 for _, icon_data in pairs(energy_weapons_damage_recipe.icons) do
     if icon_data.shift then
@@ -577,7 +577,7 @@ local stronger_explosives_recipe = {
         { type = "item", name = "coin", amount = 100 },
     },
     results = {
-        { type = "item", name = "coin", amount_min = 10, amount_max = 50 }
+        { type = "item", name = "coin", amount_min = 1, amount_max = 10 }
     },
     localised_name = { "technology-name.rogue-stronger-explosives"},
     localised_description = { "technology-description.rogue-stronger-explosives"},
@@ -590,7 +590,7 @@ local stronger_explosives_recipe = {
     allow_decomposition = false,
     allow_as_intermediate = false,
     show_amount_in_title = false,
-    energy_required = 10,
+    energy_required = 5,
 }
 for _, icon_data in pairs(stronger_explosives_recipe.icons) do
     if icon_data.shift then
@@ -627,7 +627,7 @@ local refined_flammables_recipe = {
         { type = "item", name = "coin", amount = 100 },
     },
     results = {
-        { type = "item", name = "coin", amount_min = 10, amount_max = 50 }
+        { type = "item", name = "coin", amount_min = 1, amount_max = 10 }
     },
     localised_name = { "technology-name.rogue-refined-flammables"},
     localised_description = { "technology-description.rogue-refined-flammables"},
@@ -640,7 +640,7 @@ local refined_flammables_recipe = {
     allow_decomposition = false,
     allow_as_intermediate = false,
     show_amount_in_title = false,
-    energy_required = 10,
+    energy_required = 5,
 }
 for _, icon_data in pairs(refined_flammables_recipe.icons) do
     if icon_data.shift then
@@ -687,7 +687,7 @@ local weapon_shooting_speed_recipe = {
         { type = "item", name = "coin", amount = 100 },
     },
     results = {
-        { type = "item", name = "coin", amount_min = 10, amount_max = 50 }
+        { type = "item", name = "coin", amount_min = 1, amount_max = 10 }
     },
     localised_name = { "technology-name.rogue-weapon-shooting-speed"},
     localised_description = { "technology-description.rogue-weapon-shooting-speed"},
@@ -700,7 +700,7 @@ local weapon_shooting_speed_recipe = {
     allow_decomposition = false,
     allow_as_intermediate = false,
     show_amount_in_title = false,
-    energy_required = 10,
+    energy_required = 5,
 }
 for _, icon_data in pairs(weapon_shooting_speed_recipe.icons) do
     if icon_data.shift then
@@ -732,7 +732,7 @@ local laser_shooting_speed_recipe = {
         { type = "item", name = "coin", amount = 100 },
     },
     results = {
-        { type = "item", name = "coin", amount_min = 10, amount_max = 50 }
+        { type = "item", name = "coin", amount_min = 1, amount_max = 10 }
     },
     localised_name = { "technology-name.rogue-laser-shooting-speed"},
     localised_description = { "technology-description.rogue-laser-shooting-speed"},
@@ -745,7 +745,7 @@ local laser_shooting_speed_recipe = {
     allow_decomposition = false,
     allow_as_intermediate = false,
     show_amount_in_title = false,
-    energy_required = 10,
+    energy_required = 5,
 }
 for _, icon_data in pairs(laser_shooting_speed_recipe.icons) do
     if icon_data.shift then
