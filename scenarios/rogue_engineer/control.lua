@@ -645,6 +645,7 @@ local function enter_arena()
                 player.teleport(position, "arena")
                 local player_index = player.index
                 reset_player_ability_data(player)
+                new_attempt_stats_reset(player_index)
                 increase_arena_attempts_statistics_data(player_index)
                 create_arena_gui(player)
                 local player_abilities = global.player_data[player_index].abilities
