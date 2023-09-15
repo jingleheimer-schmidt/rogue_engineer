@@ -443,15 +443,15 @@ local function on_entity_died(event)
             local level = player_data.level
             upgrade_random_ability(player)
             draw_animation("shimmer", character, surface, 0, 2)
-            if level % 8 == 0 then
-                unlock_random_ability(player)
-            end
-            global.remaining_lives = global.remaining_lives or {}
-            global.remaining_lives[player_index] = global.remaining_lives[player_index] or 0
-            if level % 33 == 0 then
-                global.remaining_lives[player_index] = global.remaining_lives[player_index] + 1
-                draw_upgrade_text({"", {"message_locale.level_up"}, "! ", global.remaining_lives[player_index], " ", {"message_locale.lives_remaining"}}, player, { x = 0, y = 3 })
-            end
+            -- if level % 8 == 0 then
+            --     unlock_random_ability(player)
+            -- end
+            -- global.remaining_lives = global.remaining_lives or {}
+            -- global.remaining_lives[player_index] = global.remaining_lives[player_index] or 0
+            -- if level % 33 == 0 then
+            --     global.remaining_lives[player_index] = global.remaining_lives[player_index] + 1
+            --     draw_upgrade_text({"", {"message_locale.level_up"}, "! ", global.remaining_lives[player_index], " ", {"message_locale.lives_remaining"}}, player, { x = 0, y = 3 })
+            -- end
             if level % 2 == 0 then
                 upgrade_damage_bonuses(level)
             end
