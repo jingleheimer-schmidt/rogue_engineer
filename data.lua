@@ -239,6 +239,28 @@ local ability_subgroup = {
 }
 data:extend{ability_subgroup}
 
+local unlock_ability_recipe = {
+    type = "recipe",
+    name = "unlock-ability",
+    enabled = true,
+    ingredients = {
+        { type = "item", name = "coin", amount = 250 },
+    },
+    results = {
+        { type = "item", name = "coin", amount_min = 50, amount_max = 200 }
+    },
+    localised_name = { "recipe-name.unlock-ability" },
+    subgroup = "abilities",
+    order = "abilities-[a]-[1]",
+    icon = data.raw["capsule"]["artillery-targeting-remote"].icon,
+    icon_size = data.raw["capsule"]["artillery-targeting-remote"].icon_size,
+    allow_intermediates = false,
+    allow_decomposition = false,
+    allow_as_intermediate = false,
+    show_amount_in_title = false,
+    energy_required = 10,
+}
+data:extend{unlock_ability_recipe}
 local raw_fish = data.raw["capsule"]["raw-fish"]
 local cluster_grenade = data.raw["capsule"]["cluster-grenade"]
 raw_fish.stack_size = 1
