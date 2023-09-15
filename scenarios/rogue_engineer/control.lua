@@ -1045,6 +1045,15 @@ local function on_player_crafted_item(event)
         player.character_health_bonus = player.character_health_bonus + 5
         local text = { "", { "message_locale.health_upgraded" }, " [", 350 + player.character_health_bonus, "]" }
         draw_upgrade_text(text, player, {x = 0, y = 3})
+    elseif name == "restore-health" then
+        global.healing_players = global.healing_players or {}
+        global.healing_players[player.index] = {
+            player = player,
+            damage = - player.character.prototype.max_health / (60 * 30),
+            final_tick = game.tick + (60 * 10),
+        }
+        local text = {"", { "message_locale.heal_thirty" } }
+        draw_upgrade_text(text, player, { x = 0, y = 3 })
     elseif name == "repair-armor" then
         global.repairing_armors = global.repairing_armors or {}
         global.repairing_armors[player.index] = {
