@@ -1033,15 +1033,16 @@ local function on_player_crafted_item(event)
     local character = valid_player_character(player)
     if not character then return end
     local recipe = event.recipe
-    if recipe.name == "loot-distance" then
+    local name = recipe.name
+    if name == "loot-distance" then
         player.character_loot_pickup_distance_bonus = player.character_loot_pickup_distance_bonus + 1
         local text = { "", { "message_locale.loot_distance_upgraded" }, " [", player.character_loot_pickup_distance_bonus, "]" }
         draw_upgrade_text(text, player, {x = 0, y = 3})
-    elseif recipe.name == "running-speed" then
+    elseif name == "running-speed" then
         player.character_running_speed_modifier = player.character_running_speed_modifier + 0.03
         local text = { "", { "message_locale.running_speed_upgraded" }, "[ ", player.character_running_speed_modifier * 100, "%]" }
         draw_upgrade_text(text, player, {x = 0, y = 3})
-    elseif recipe.name == "health-bonus" then
+    elseif name == "health-bonus" then
         player.character_health_bonus = player.character_health_bonus + 5
         local text = { "", { "message_locale.health_upgraded" }, " [", 350 + player.character_health_bonus, "]" }
         draw_upgrade_text(text, player, {x = 0, y = 3})
