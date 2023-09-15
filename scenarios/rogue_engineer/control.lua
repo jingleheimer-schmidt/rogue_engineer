@@ -838,12 +838,23 @@ local function on_tick(event)
         end
         local character = valid_player_character(player)
         if character then
+            local color = player.chat_color
+            local multiplier = 0.125
+            color.r = color.r * multiplier
+            color.g = color.g * multiplier
+            color.b = color.b * multiplier
+            color.a = multiplier
+            local surface = character.surface
+            local position = character.position
+            local loot_pickup_distance = character.loot_pickup_distance
+            local lines = math.ceil(1.25 * loot_pickup_distance)
+            local speed = 60 * 2 * lines
             rendering.draw_circle{
-                surface = character.surface,
-                target = character.position,
-                color = player.chat_color,
+                surface = surface,
+                target = position,
+                color = color,
                 filled = true,
-                radius = 0.5,
+                radius = loot_pickup_distance,
                 time_to_live = 2,
                 draw_on_ground = true,
                 only_in_alt_mode = true,
