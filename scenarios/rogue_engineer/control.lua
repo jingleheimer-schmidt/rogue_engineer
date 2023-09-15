@@ -913,8 +913,8 @@ local function on_tick(event)
 
     if game_state == "arena" then
         local difficulties = {
-            easy = 40,
-            normal = 25,
+            easy = 25,
+            normal = 15,
             hard = 10,
         }
         for _, player in pairs(connected_players) do
