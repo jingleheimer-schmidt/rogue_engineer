@@ -126,6 +126,7 @@ local function on_init()
     global.player_data = {}
     global.damage_zones = {}
     global.healing_players = {}
+    global.repairing_armors = {}
     ---@enum available_abilities
     global.available_abilities = {
         burst = true,
@@ -857,6 +858,27 @@ local function on_tick(event)
             global.healing_players[id] = nil
         end
     end
+    for id, repairing_armor in pairs(global.repairing_armors) do
+        local player = repairing_armor.player
+        if player.valid then
+            local character = player.character
+            if character then
+                global.player_armor = global.player_armor or {}
+                local data = global.player_armor[player.index]
+                if data then
+                    local armor = data.armor
+                    if armor and armor.valid and armor.valid_for_read then
+                        local repair_amount = data.max_durability / 3
+                        local repair_per_tick = repair_amount / (60 * 10)
+                        armor.durability = armor.durability + repair_per_tick
+                    end
+                end
+            end
+        end
+        if repairing_armor.final_tick <= event.tick then
+            global.repairing_armors[id] = nil
+        end
+    end
     for id, flamethrower_target in pairs(global.flamethrower_targets) do
         local player = flamethrower_target.player
         if player.valid then
@@ -1023,6 +1045,14 @@ local function on_player_crafted_item(event)
         player.character_health_bonus = player.character_health_bonus + 5
         local text = { "", { "message_locale.health_upgraded" }, " [", 350 + player.character_health_bonus, "]" }
         draw_upgrade_text(text, player, {x = 0, y = 3})
+    elseif name == "repair-armor" then
+        global.repairing_armors = global.repairing_armors or {}
+        global.repairing_armors[player.index] = {
+            player = player,
+            final_tick = game.tick + (60 * 10),
+        }
+        local text = {"", { "message_locale.repair_thirty" } }
+        draw_upgrade_text(text, player, { x = 0, y = 3 })
     end
 end
 script.on_event(defines.events.on_player_crafted_item, on_player_crafted_item)
