@@ -432,9 +432,9 @@ local function on_entity_died(event)
             player_stats.total.kills = player_stats.total.kills + 1
             player_stats.last_attempt.kills = player_stats.last_attempt.kills + 1
         end
-        if player_stats.last_attempt.kills % 750 == 0 then
-            upgrade_character_armor(character)
-        end
+        -- if player_stats.last_attempt.kills % 750 == 0 then
+        --     upgrade_character_armor(character)
+        -- end
         local player_data = global.player_data[player_index]
         player_data.exp = player_data.exp + 1
         if player_data.exp >= 3 * player_data.level then
