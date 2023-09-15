@@ -791,7 +791,7 @@ local function on_tick(event)
                     end
                 elseif y < 3 and y > -3 then
                     if x < 24 and x > 18 then
-                        reset_player_ability_data(player)
+                        -- reset_player_ability_data(player)
                         enter_arena()
                     else
                         reset_character_health(character)
