@@ -1045,6 +1045,8 @@ local function on_player_crafted_item(event)
         player.character_health_bonus = player.character_health_bonus + 5
         local text = { "", { "message_locale.health_upgraded" }, " [", 350 + player.character_health_bonus, "]" }
         draw_upgrade_text(text, player, {x = 0, y = 3})
+    elseif name == "unlock-ability" then
+        unlock_random_ability(player)
     elseif name == "restore-health" then
         global.healing_players = global.healing_players or {}
         global.healing_players[player.index] = {
