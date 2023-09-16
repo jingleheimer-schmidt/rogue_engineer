@@ -867,7 +867,7 @@ local function on_tick(event)
     for id, damage_zone in pairs(global.damage_zones) do
         local player = damage_zone.player
         if player.valid then
-            damage_enemies_in_radius(damage_zone.radius, damage_zone.damage_per_tick, damage_zone.position, damage_zone.surface, player)
+            damage_enemies_in_radius(damage_zone.radius, damage_zone.damage_per_tick, damage_zone.position, damage_zone.surface, player, damage_zone.damage_type)
         end
         if damage_zone.final_tick <= event.tick then
             global.damage_zones[id] = nil
@@ -878,7 +878,7 @@ local function on_tick(event)
         if player.valid then
             local character = player.character
             if character then
-                character.damage(healing_player.damage, "enemy", "impact")
+                character.damage(healing_player.damage, "enemy", "physical")
             end
         end
         if healing_player.final_tick <= event.tick then

@@ -45,7 +45,7 @@ local function activate_burst_ability(ability_data, player, character)
     local frame_count = raw_abilities_data[animation_name].frame_count
     local final_tick = game.tick + frame_count
     draw_animation(animation_name, position, surface, orientation, radius, frame_count)
-    register_damage_zone(animation_name, radius, damage_per_tick, player, position, surface, final_tick)
+    register_damage_zone(animation_name, radius, damage_per_tick, player, position, surface, final_tick, "electric")
 end
 
 ---@param ability_data active_ability_data
@@ -62,8 +62,8 @@ local function activate_punch_ability(ability_data, player, character)
     local frame_count = raw_abilities_data[animation_name].frame_count
     local final_tick = game.tick + 25
     draw_animation(animation_name, position, surface, orientation, radius, frame_count)
-    damage_enemies_in_radius(radius, damage, position, surface, player)
-    register_damage_zone(animation_name, radius, damage_per_tick, player, position, surface, final_tick)
+    damage_enemies_in_radius(radius, damage, position, surface, player, "physical")
+    register_damage_zone(animation_name, radius, damage_per_tick, player, position, surface, final_tick, "physical")
 end
 
 ---@param ability_data active_ability_data
@@ -101,7 +101,7 @@ local function activate_slash_ability(ability_data, player, character)
     local frame_count = raw_abilities_data[animation_name].frame_count
     local final_tick = game.tick + frame_count
     draw_animation(animation_name, position, surface, orientation, radius, frame_count)
-    damage_enemies_in_radius(radius, damage, position, surface, player)
+    damage_enemies_in_radius(radius, damage, position, surface, player, "physical")
 end
 
 ---@param ability_data active_ability_data
@@ -513,7 +513,7 @@ local function activate_crystal_blossom_ability(ability_data, player, character)
         local random_radius = math.random(0, ability_radius)
         local random_position = get_position_on_circumference(position, random_radius, random_angle)
         draw_animation(animation_name, random_position, surface, 0, animation_radius, frame_count)
-        register_damage_zone(animation_name, animation_radius, damage_per_tick, player, random_position, surface, final_tick)
+        register_damage_zone(animation_name, animation_radius, damage_per_tick, player, random_position, surface, final_tick, "physical")
     end
 end
 

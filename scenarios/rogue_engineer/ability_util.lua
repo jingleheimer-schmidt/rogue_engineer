@@ -47,7 +47,8 @@ end
 ---@param position MapPosition
 ---@param surface LuaSurface
 ---@param final_tick uint
-local function register_damage_zone(name, radius, damage_per_tick, player, position, surface, final_tick)
+---@param damage_type string?
+local function register_damage_zone(name, radius, damage_per_tick, player, position, surface, final_tick, damage_type)
     local damage_zone = {
         radius = radius,
         damage_per_tick = damage_per_tick,
@@ -55,6 +56,7 @@ local function register_damage_zone(name, radius, damage_per_tick, player, posit
         position = position,
         surface = surface,
         final_tick = final_tick,
+        damage_type = damage_type,
     }
     local unique_id = name .. "-" .. player.index .. "-" .. game.tick .. "-" .. position.x .. "-" .. position.y
     global.damage_zones = global.damage_zones or {}

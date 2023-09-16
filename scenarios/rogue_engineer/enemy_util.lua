@@ -41,13 +41,15 @@ end
 ---@param position MapPosition
 ---@param surface LuaSurface
 ---@param player LuaPlayer
-local function damage_enemies_in_radius(radius, damage, position, surface, player)
+---@param type string?
+local function damage_enemies_in_radius(radius, damage, position, surface, player, type)
     local character = player.character
     if not character then return end
     local enemies = get_enemies_in_radius(surface, position, radius)
     for _, enemy in pairs(enemies) do
         if enemy.valid then
-            enemy.damage(damage, player.force, "impact", character)
+            type = type or "physical"
+            enemy.damage(damage, player.force, type, character)
         end
     end
 end
