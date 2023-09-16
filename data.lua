@@ -764,14 +764,10 @@ for _, technology in pairs(data.raw["technology"]) do
     end
 end
 
-local raw_fish = data.raw["capsule"]["raw-fish"]
 local cluster_grenade = data.raw["capsule"]["cluster-grenade"]
-raw_fish.stack_size = 1
-raw_fish.capsule_action = cluster_grenade.capsule_action
-raw_fish.subgroup = "rogue-engineer"
-raw_fish.order = "rogue-[b]-[1]"
-
 for _, fish in pairs(data.raw["fish"]) do
+    fish.stack_size = 1
+    fish.capsule_action = cluster_grenade.capsule_action
     if fish.mineable then
         if fish.mineable.results then
             for _, result in pairs(fish.mineable.results) do
