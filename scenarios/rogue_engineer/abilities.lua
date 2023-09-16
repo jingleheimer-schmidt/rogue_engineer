@@ -590,6 +590,49 @@ local function activate_circle_of_life_ability(ability_data, player, character)
     end
 end
 
+---@param ability_data active_ability_data
+---@param player LuaPlayer
+---@param character LuaEntity
+local function activate_circle_of_death_ability(ability_data, player, character)
+    local animation_name = ability_data.name
+    local surface = character.surface
+    local ability_radius = ability_data.radius
+    local animation_radius = 1
+    local position = character.position
+    local damage = ability_data.damage
+    local damage_per_tick = damage / aoe_damage_modifier
+    local max_count = math.ceil(ability_radius / 3)
+    local frame_count = raw_abilities_data[animation_name].frame_count
+    local final_tick = game.tick + frame_count
+    local trees = surface.find_entities_filtered{
+        position = position,
+        radius = ability_radius,
+        type = "tree",
+    }
+    local counter = 0
+    for _, tree in pairs(trees) do
+        if counter >= ability_radius then break end
+        if distance(tree.position, position) >= ability_radius * (1/3) then
+            if math.random() < 1/25 then
+                draw_animation(animation_name, tree.position, surface, 0, animation_radius, frame_count, "corpse")
+                ---@diagnostic disable: missing-fields
+                tree.surface.create_entity{
+                    name = "grenade",
+                    position = position,
+                    force = player.force,
+                    target = tree.position,
+                    source = character,
+                    character = character,
+                    player = player,
+                    speed = 1/50,
+                }
+                ---@diagnostic enable: missing-fields
+                counter = counter + 1
+            end
+        end
+    end
+end
+
 local ability_functions = {
     burst = activate_burst_ability,
     punch = activate_punch_ability,
@@ -611,6 +654,7 @@ local ability_functions = {
     purifying_light = activate_acid_sponge_ability,
     crystal_blossom = activate_crystal_blossom_ability,
     circle_of_life = activate_circle_of_life_ability,
+    circle_of_death = activate_circle_of_death_ability,
 }
 
 return {
