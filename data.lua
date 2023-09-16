@@ -156,6 +156,15 @@ for _, recipe in pairs(data.raw["recipe"]) do
     end
 end
 
+local function shift_bonus_icon_from_tech_to_recipe(recipe)
+    for _, icon_data in pairs(recipe.icons) do
+        if icon_data.shift then
+            icon_data.shift[1] = icon_data.shift[1] / -15
+            icon_data.shift[2] = icon_data.shift[2] / 8
+        end
+    end
+end
+
 local rogue_subgroup = {
     type = "item-subgroup",
     name = "rogue-engineer",
