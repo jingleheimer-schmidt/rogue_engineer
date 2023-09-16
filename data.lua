@@ -135,27 +135,6 @@ for name, cost in pairs(armor_costs) do
     recipe.allow_as_intermediate = false
 end
 
-for _, recipe in pairs(data.raw["recipe"]) do
-    if not armor_costs[recipe.name] then
-        recipe.hide_from_player_crafting = true
-        recipe.allow_intermediates = false
-        recipe.allow_decomposition = false
-        recipe.allow_as_intermediate = false
-        if recipe.normal then
-            recipe.normal.hide_from_player_crafting = true
-            recipe.normal.allow_intermediates = false
-            recipe.normal.allow_decomposition = false
-            recipe.normal.allow_as_intermediate = false
-        end
-        if recipe.expensive then
-            recipe.expensive.hide_from_player_crafting = true
-            recipe.expensive.allow_intermediates = false
-            recipe.expensive.allow_decomposition = false
-            recipe.expensive.allow_as_intermediate = false
-        end
-    end
-end
-
 local function shift_bonus_icon_from_tech_to_recipe(recipe)
     for _, icon_data in pairs(recipe.icons) do
         if icon_data.shift then
@@ -748,44 +727,7 @@ local laser_shooting_speed_recipe = {
 shift_bonus_icon_from_tech_to_recipe(laser_shooting_speed_recipe)
 data:extend{laser_shooting_speed_recipe}
 
-local visible_technologies = {
-    ["rogue-follower-robot-count"] = true,
-    ["rogue-physical-projectile-damage"] = true,
-    ["rogue-energy-weapons-damage"] = true,
-    ["rogue-stronger-explosives"] = true,
-    ["rogue-refined-flammables"] = true,
-    ["rogue-weapon-shooting-speed"] = true,
-    ["rogue-laser-shooting-speed"] = true,
-}
-
-for _, technology in pairs(data.raw["technology"]) do
-    if not visible_technologies[technology.name] then
-        technology.hidden = true
-    end
-end
-
-local cluster_grenade = data.raw["capsule"]["cluster-grenade"]
-for _, fish in pairs(data.raw["fish"]) do
-    fish.stack_size = 1
-    fish.capsule_action = cluster_grenade.capsule_action
-    if fish.mineable then
-        if fish.mineable.results then
-            for _, result in pairs(fish.mineable.results) do
-                result.amount = 1
-            end
-        end
-        if fish.mineable.result then
-            fish.mineable.count = 1
-        end
-    end
-end
-
 data.raw["item"]["coin"].stack_size = 250
-
-for _, tree in pairs(data.raw["tree"]) do
-    tree.loot = tree.loot or {}
-    table.insert(tree.loot, { item = "coin", count_min = 0, count_max = 4 })
-end
 
 local function validate_abilities()
     local to_log = {}
