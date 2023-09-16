@@ -975,7 +975,7 @@ local function on_tick(event)
                     }
                     ---@diagnostic enable: missing-fields
                     local color = player.chat_color
-                    local multiplier = 0.75
+                    local multiplier = 0.9
                     color.r = color.r * multiplier
                     color.g = color.g * multiplier
                     color.b = color.b * multiplier
