@@ -444,12 +444,7 @@ local follower_robot_count_recipe = {
     show_amount_in_title = false,
     energy_required = 5,
 }
-for _, icon_data in pairs(follower_robot_count_recipe.icons) do
-    if icon_data.shift then
-        icon_data.shift[1] = icon_data.shift[1] / -15
-        icon_data.shift[2] = icon_data.shift[2] / 8
-    end
-end
+shift_bonus_icon_from_tech_to_recipe(follower_robot_count_recipe)
 data:extend{follower_robot_count_recipe}
 
 local physical_projectile_damage_technology = deepcopy(data.raw["technology"]["physical-projectile-damage-7"])
@@ -504,12 +499,7 @@ local physical_projectile_damage_recipe = {
     show_amount_in_title = false,
     energy_required = 5,
 }
-for _, icon_data in pairs(physical_projectile_damage_recipe.icons) do
-    if icon_data.shift then
-        icon_data.shift[1] = icon_data.shift[1] / -15
-        icon_data.shift[2] = icon_data.shift[2] / 8
-    end
-end
+shift_bonus_icon_from_tech_to_recipe(physical_projectile_damage_recipe)
 data:extend{physical_projectile_damage_recipe}
 
 local energy_weapons_damage_technology = deepcopy(data.raw["technology"]["energy-weapons-damage-7"])
@@ -559,12 +549,7 @@ local energy_weapons_damage_recipe = {
     show_amount_in_title = false,
     energy_required = 5,
 }
-for _, icon_data in pairs(energy_weapons_damage_recipe.icons) do
-    if icon_data.shift then
-        icon_data.shift[1] = icon_data.shift[1] / -15
-        icon_data.shift[2] = icon_data.shift[2] / 8
-    end
-end
+shift_bonus_icon_from_tech_to_recipe(energy_weapons_damage_recipe)
 data:extend{energy_weapons_damage_recipe}
 
 local stronger_explosives_technology = deepcopy(data.raw["technology"]["stronger-explosives-7"])
@@ -614,12 +599,7 @@ local stronger_explosives_recipe = {
     show_amount_in_title = false,
     energy_required = 5,
 }
-for _, icon_data in pairs(stronger_explosives_recipe.icons) do
-    if icon_data.shift then
-        icon_data.shift[1] = icon_data.shift[1] / -15
-        icon_data.shift[2] = icon_data.shift[2] / 8
-    end
-end
+shift_bonus_icon_from_tech_to_recipe(stronger_explosives_recipe)
 data:extend{stronger_explosives_recipe}
 
 local refined_flammables_technology = deepcopy(data.raw["technology"]["refined-flammables-7"])
@@ -664,12 +644,7 @@ local refined_flammables_recipe = {
     show_amount_in_title = false,
     energy_required = 5,
 }
-for _, icon_data in pairs(refined_flammables_recipe.icons) do
-    if icon_data.shift then
-        icon_data.shift[1] = icon_data.shift[1] / -15
-        icon_data.shift[2] = icon_data.shift[2] / 8
-    end
-end
+shift_bonus_icon_from_tech_to_recipe(refined_flammables_recipe)
 data:extend{refined_flammables_recipe}
 
 local weapon_shooting_speed_technology = deepcopy(data.raw["technology"]["weapon-shooting-speed-6"])
@@ -724,12 +699,7 @@ local weapon_shooting_speed_recipe = {
     show_amount_in_title = false,
     energy_required = 5,
 }
-for _, icon_data in pairs(weapon_shooting_speed_recipe.icons) do
-    if icon_data.shift then
-        icon_data.shift[1] = icon_data.shift[1] / -15
-        icon_data.shift[2] = icon_data.shift[2] / 8
-    end
-end
+shift_bonus_icon_from_tech_to_recipe(weapon_shooting_speed_recipe)
 data:extend{weapon_shooting_speed_recipe}
 
 local laser_shooting_speed_technology = deepcopy(data.raw["technology"]["laser-shooting-speed-6"])
@@ -769,12 +739,7 @@ local laser_shooting_speed_recipe = {
     show_amount_in_title = false,
     energy_required = 5,
 }
-for _, icon_data in pairs(laser_shooting_speed_recipe.icons) do
-    if icon_data.shift then
-        icon_data.shift[1] = icon_data.shift[1] / -15
-        icon_data.shift[2] = icon_data.shift[2] / 8
-    end
-end
+shift_bonus_icon_from_tech_to_recipe(laser_shooting_speed_recipe)
 data:extend{laser_shooting_speed_recipe}
 
 local visible_technologies = {
