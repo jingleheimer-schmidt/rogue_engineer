@@ -786,6 +786,11 @@ end
 
 data.raw["item"]["coin"].stack_size = 250
 
+for _, tree in pairs(data.raw["tree"]) do
+    tree.loot = tree.loot or {}
+    table.insert(tree.loot, { item = "coin", count_min = 0, count_max = 4 })
+end
+
 local function validate_abilities()
     local to_log = {}
     for name, ability_data in pairs(constants.ability_data) do
