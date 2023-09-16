@@ -207,10 +207,80 @@ local function upgrade_cooldown(ability_name, ability_data, player)
     -- activate_ability(ability_name, ability_data, player)
 end
 
+---@param ability_name string
+---@param ability_data active_ability_data
+---@param player LuaPlayer
+local function upgrade_follower_robot_count(ability_name, ability_data, player)
+    player.force.technologies["rogue-follower-robot-count"].researched = true
+    local text = {"", { "ability_name." .. ability_name }, " [", {"upgrade_locale.lvl"}, " ", ability_data.level, "] ", {"technology-name.follower-robot-count"}, " [", player.force.maximum_following_robot_count, "]"}
+    draw_upgrade_text(text, player)
+end
+
+---@param ability_name string
+---@param ability_data active_ability_data
+---@param player LuaPlayer
+local function upgrade_physical_projectile_damage(ability_name, ability_data, player)
+    player.force.technologies["rogue-physical-projectile-damage"].researched = true
+    local text = {"", { "ability_name." .. ability_name }, " [", {"upgrade_locale.lvl"}, " ", ability_data.level, "] ", {"technology-name.physical-projectile-damage"}, " [", player.force.character_running_speed_modifier, "]"}
+    draw_upgrade_text(text, player)
+end
+
+---@param ability_name string
+---@param ability_data active_ability_data
+---@param player LuaPlayer
+local function upgrade_energy_weapons_damage(ability_name, ability_data, player)
+    player.force.technologies["rogue-energy-weapons-damage"].researched = true
+    local text = { "", { "ability_name." .. ability_name }, " [", { "upgrade_locale.lvl" }, " ", ability_data.level, "] ", { "technology-name.energy-weapons-damage" } }
+    draw_upgrade_text(text, player)
+end
+
+---@param ability_name string
+---@param ability_data active_ability_data
+---@param player LuaPlayer
+local function upgrade_stronger_explosives(ability_name, ability_data, player)
+    player.force.technologies["rogue-stronger-explosives"].researched = true
+    local text = {"", { "ability_name." .. ability_name }, " [", {"upgrade_locale.lvl"}, " ", ability_data.level, "] ", {"technology-name.stronger-explosives"} }
+    draw_upgrade_text(text, player)
+end
+
+---@param ability_name string
+---@param ability_data active_ability_data
+---@param player LuaPlayer
+local function upgrade_refined_flammables(ability_name, ability_data, player)
+    player.force.technologies["rogue-refined-flammables"].researched = true
+    local text = {"", { "ability_name." .. ability_name }, " [", {"upgrade_locale.lvl"}, " ", ability_data.level, "] ", {"technology-name.refined-flammables"} }
+    draw_upgrade_text(text, player)
+end
+
+---@param ability_name string
+---@param ability_data active_ability_data
+---@param player LuaPlayer
+local function upgrade_weapon_shooting_speed(ability_name, ability_data, player)
+    player.force.technologies["rogue-weapon-shooting-speed"].researched = true
+    local text = {"", { "ability_name." .. ability_name }, " [", {"upgrade_locale.lvl"}, " ", ability_data.level, "] ", {"technology-name.weapon-shooting-speed"} }
+    draw_upgrade_text(text, player)
+end
+
+---@param ability_name string
+---@param ability_data active_ability_data
+---@param player LuaPlayer
+local function upgrade_laser_shooting_speed(ability_name, ability_data, player)
+    player.force.technologies["rogue-laser-shooting-speed"].researched = true
+    local text = {"", { "ability_name." .. ability_name }, " [", {"upgrade_locale.lvl"}, " ", ability_data.level, "] ", {"technology-name.laser-shooting-speed"} }
+    draw_upgrade_text(text, player)
+end
+
 local ability_upgrade_functions = {
-    damage = upgrade_damage,
-    radius = upgrade_radius,
-    cooldown = upgrade_cooldown,
+    ["damage"] = upgrade_damage,
+    ["radius"] = upgrade_radius,
+    ["cooldown"] = upgrade_cooldown,
+    ["follower-robot-count"] = upgrade_follower_robot_count,
+    ["physical-projectile-damage"] = upgrade_physical_projectile_damage,
+    ["energy-weapons-damage"] = upgrade_energy_weapons_damage,
+    ["stronger-explosives"] = upgrade_stronger_explosives,
+    ["refined-flammables"] = upgrade_refined_flammables,
+    ["weapon-shooting-speed"] = upgrade_weapon_shooting_speed,
+    ["laser-shooting-speed"] = upgrade_laser_shooting_speed,
 }
 
 ---@param ability_data active_ability_data
