@@ -22,31 +22,31 @@ for _, character_prototype in pairs(data.raw.character) do
     character_prototype.healing_per_tick = 0
 end
 
-local discharge_defender = table.deepcopy(data.raw["combat-robot"]["defender"])
+local discharge_defender = deepcopy(data.raw["combat-robot"]["defender"])
 discharge_defender.name = "discharge-defender"
-discharge_defender.attack_parameters = table.deepcopy(data.raw["active-defense-equipment"]["discharge-defense-equipment"].attack_parameters)
+discharge_defender.attack_parameters = deepcopy(data.raw["active-defense-equipment"]["discharge-defense-equipment"].attack_parameters)
 discharge_defender.attack_parameters.cooldown = 60 * 33
 discharge_defender.time_to_live = 60 * 60 * 1.125
 data:extend{discharge_defender}
 
-local no_damage_laser_beam = table.deepcopy(data.raw["beam"]["laser-beam"])
+local no_damage_laser_beam = deepcopy(data.raw["beam"]["laser-beam"])
 no_damage_laser_beam.name = "no-damage-laser-beam"
 no_damage_laser_beam.action = nil
 data:extend{no_damage_laser_beam}
 
 local font_size = 25
 
-local arena_gui_font_default = table.deepcopy(data.raw["font"]["default"])
+local arena_gui_font_default = deepcopy(data.raw["font"]["default"])
 arena_gui_font_default.name = "arena-gui-default"
 arena_gui_font_default.size = font_size
 data:extend{arena_gui_font_default}
 
-local arena_gui_font_default_semibold = table.deepcopy(data.raw["font"]["default-semibold"])
+local arena_gui_font_default_semibold = deepcopy(data.raw["font"]["default-semibold"])
 arena_gui_font_default_semibold.name = "arena-gui-default-semibold"
 arena_gui_font_default_semibold.size = font_size
 data:extend{arena_gui_font_default_semibold}
 
-local arena_gui_font_default_bold = table.deepcopy(data.raw["font"]["default-bold"])
+local arena_gui_font_default_bold = deepcopy(data.raw["font"]["default-bold"])
 arena_gui_font_default_bold.name = "arena-gui-default-bold"
 arena_gui_font_default_bold.size = font_size
 data:extend{arena_gui_font_default_bold}
