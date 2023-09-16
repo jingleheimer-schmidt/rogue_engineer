@@ -148,6 +148,7 @@ local function on_init()
         barrier = true,
         purifying_light = true,
         crystal_blossom = true,
+        circle_of_life = true,
     }
     global.available_starting_abilities = {
         burst = true,
@@ -169,6 +170,7 @@ local function on_init()
         barrier = true,
         -- purifying_light = true,
         crystal_blossom = true,
+        -- circle_of_life = true,
     }
     global.default_abilities = {
         ability_1 = "beam_blast",

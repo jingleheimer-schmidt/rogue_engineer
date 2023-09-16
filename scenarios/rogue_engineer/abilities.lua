@@ -517,6 +517,79 @@ local function activate_crystal_blossom_ability(ability_data, player, character)
     end
 end
 
+---@param a MapPosition
+---@param b MapPosition
+---@return number
+local function distance(a, b)
+    return math.sqrt((a.x - b.x)^2 + (a.y - b.y)^2)
+end
+
+local function random_tree_name()
+    local tree_prototypes = game.get_filtered_entity_prototypes{
+        { filter = "type", type = "tree" },
+    }
+    local tree_names = {}
+    for name in pairs(tree_prototypes) do
+        table.insert(tree_names, name)
+    end
+    return tree_names[math.random(#tree_names)]
+end
+
+---@param ability_data active_ability_data
+---@param player LuaPlayer
+---@param character LuaEntity
+local function activate_circle_of_life_ability(ability_data, player, character)
+    local animation_name = ability_data.name
+    local surface = character.surface
+    local ability_radius = ability_data.radius
+    local animation_radius = 1
+    local position = character.position
+    local damage = ability_data.damage
+    local damage_per_tick = damage / aoe_damage_modifier
+    local max_count = math.ceil(ability_radius / 3)
+    local frame_count = raw_abilities_data[animation_name].frame_count
+    local final_tick = game.tick + frame_count
+    local corpses = surface.find_entities_filtered{
+        position = position,
+        radius = ability_radius,
+        type = "corpse",
+        name = {
+            "small-biter-corpse",
+            "medium-biter-corpse",
+            "big-biter-corpse",
+            "behemoth-biter-corpse",
+            "small-spitter-corpse",
+            "medium-spitter-corpse",
+            "big-spitter-corpse",
+            "behemoth-spitter-corpse",
+            "small-worm-corpse",
+            "medium-worm-corpse",
+            "big-worm-corpse",
+            "behemoth-worm-corpse",
+            "spitter-spawner",
+            "biter-spawner",
+        }
+    }
+    local counter = 0
+    for _, corpse in pairs(corpses) do
+        if counter >= ability_radius then break end
+        if distance(corpse.position, position) >= ability_radius * (1/3) then
+            if math.random() < 1/25 then
+                draw_animation(animation_name, corpse.position, surface, 0, animation_radius, frame_count, "corpse")
+                ---@diagnostic disable: missing-fields
+                corpse.surface.create_entity{
+                    name = random_tree_name(),
+                    position = corpse.position,
+                    force = "neutral",
+                }
+                ---@diagnostic enable: missing-fields
+                corpse.destroy()
+                counter = counter + 1
+            end
+        end
+    end
+end
+
 local ability_functions = {
     burst = activate_burst_ability,
     punch = activate_punch_ability,
@@ -537,6 +610,7 @@ local ability_functions = {
     barrier = activate_flamethrower_ability,
     purifying_light = activate_acid_sponge_ability,
     crystal_blossom = activate_crystal_blossom_ability,
+    circle_of_life = activate_circle_of_life_ability,
 }
 
 return {
