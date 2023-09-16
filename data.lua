@@ -173,6 +173,10 @@ local rogue_subgroup = {
 }
 data:extend{rogue_subgroup}
 
+local loot_distance_icon = util.technology_icon_constant_range()[2]
+local movement_speed_icon = util.technology_icon_constant_movement_speed()[2]
+local productivity_icon = util.technology_icon_constant_productivity()[2]
+
 local loot_distance_recipe = {
     type = "recipe",
     name = "loot-distance",
@@ -219,9 +223,6 @@ local running_speed_recipe = {
     show_amount_in_title = false,
     energy_required = 2.5,
 }
-local movement_speed_icon = util.technology_icon_constant_movement_speed()[2]
-local productivity_icon = util.technology_icon_constant_productivity()[2]
-
 running_speed_recipe.icons = running_speed_recipe.icons or {
     { icon = running_speed_recipe.icon, icon_size = running_speed_recipe.icon_size },
 }
