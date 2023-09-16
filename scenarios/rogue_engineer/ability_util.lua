@@ -181,7 +181,7 @@ end
 ---@param ability_data active_ability_data
 ---@param player LuaPlayer
 local function upgrade_damage(ability_name, ability_data, player)
-    ability_data.damage = ability_data.damage * ability_data.damage_multiplier
+    ability_data.damage = ability_data.damage + ability_data.damage_multiplier
     local text = {"", { "ability_name." .. ability_name }, " [", {"upgrade_locale.lvl"}, " ", ability_data.level, "] ", {"upgrade_locale.damage"}, " ", ability_data.damage}
     draw_upgrade_text(text, player)
     -- activate_ability(ability_name, ability_data, player)
