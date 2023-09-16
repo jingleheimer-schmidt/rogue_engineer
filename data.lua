@@ -199,6 +199,11 @@ local loot_distance_recipe = {
     show_amount_in_title = false,
     energy_required = 2.5,
 }
+-- loot_distance_recipe.icons = loot_distance_recipe.icons or {
+--     { icon = loot_distance_recipe.icon, icon_size = loot_distance_recipe.icon_size },
+-- }
+-- table.insert(loot_distance_recipe.icons, loot_distance_icon)
+-- shift_bonus_icon_from_tech_to_recipe(loot_distance_recipe)
 data:extend{loot_distance_recipe}
 
 local running_speed_recipe = {
