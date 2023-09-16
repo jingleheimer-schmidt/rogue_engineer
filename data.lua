@@ -792,3 +792,43 @@ for _, fish in pairs(data.raw["fish"]) do
 end
 
 data.raw["item"]["coin"].stack_size = 250
+
+local function validate_abilities()
+    local to_log = {}
+    for name, ability_data in pairs(constants.ability_data) do
+        local cooldown_upgrade_count = 0
+        local damage_upgrade_count = 0
+        local radius_upgrade_count = 0
+        local total_upgrade_count = 0
+        if ability_data.upgrade_order then
+            for _, upgrade in pairs(ability_data.upgrade_order) do
+                if upgrade == "cooldown" then
+                    cooldown_upgrade_count = cooldown_upgrade_count + 1
+                end
+                if upgrade == "damage" then
+                    damage_upgrade_count = damage_upgrade_count + 1
+                end
+                if upgrade == "radius" then
+                    radius_upgrade_count = radius_upgrade_count + 1
+                end
+                total_upgrade_count = total_upgrade_count + 1
+            end
+        end
+        if cooldown_upgrade_count + damage_upgrade_count + radius_upgrade_count > 0 then
+            to_log[name] = {
+                -- cooldown_default = ability_data.default_cooldown,
+                -- cooldown_upgrade_count = cooldown_upgrade_count,
+                cooldown_at_max_upgrade = ability_data.default_cooldown - (cooldown_upgrade_count * ability_data.cooldown_multiplier),
+                -- damage_default = ability_data.default_damage,
+                -- damage_upgrade_count = damage_upgrade_count,
+                damage_at_max_upgrade = ability_data.default_damage + (damage_upgrade_count * ability_data.damage_multiplier),
+                -- radius_default = ability_data.default_radius,
+                -- radius_upgrade_count = radius_upgrade_count,
+                radius_at_max_upgrade = ability_data.default_radius + (radius_upgrade_count * ability_data.radius_multiplier),
+                total_upgrade_count = total_upgrade_count,
+            }
+        end
+    end
+    log(serpent.block(to_log))
+end
+validate_abilities()
