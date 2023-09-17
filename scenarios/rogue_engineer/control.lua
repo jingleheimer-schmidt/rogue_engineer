@@ -56,6 +56,7 @@ local arena_ticks_remaining = general_util.arena_ticks_remaining
 local arena_ticks_elapsed = general_util.arena_ticks_elapsed
 local distance = general_util.distance
 local filter_valid_entities = general_util.filter_valid_entities
+local format_color_for_rich_text = general_util.format_color_for_rich_text
 
 local gooey_util = require("gooey_util")
 local create_arena_gui = gooey_util.create_arena_gui
@@ -1207,6 +1208,8 @@ local function on_player_crafted_item(event)
         end
     elseif endless_techs[name] then
         player.force.technologies["rogue-" .. name].researched = true
+        local text = {"", "[color=", format_color_for_rich_text(player.chat_color), "]", player.name, "[/color] ", {"message_locale.upgraded"}, " [technology=", name, "]"}
+        game.print(text)
     elseif name == "vampire-strength" then
         global.active_vampires = global.active_vampires or {}
         global.active_vampires[player.index] = global.active_vampires[player.index] or {

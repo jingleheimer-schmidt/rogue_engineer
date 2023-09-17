@@ -4,6 +4,7 @@ local raw_abilities_data = constants.ability_data
 
 local general_util = require("general_util")
 local filter_valid_entities = general_util.filter_valid_entities
+local format_color_for_rich_text = general_util.format_color_for_rich_text
 
 local luarendering_util = require("luarendering_util")
 local draw_animation = luarendering_util.draw_animation
