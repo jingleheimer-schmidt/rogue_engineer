@@ -429,7 +429,7 @@ local function activate_shotgun_ability(ability_data, player, character)
     local surface = player.surface
     local radius = ability_data.radius
     local angle = direction_to_angle(player.character.direction)
-    for _ = 1, 2 do
+    -- for _ = 1, 2 do
         for i = -radius * 2, radius * 2 do
             local offest_angle = angle + degrees_to_radians(i)
             local target_position = get_position_on_circumference(player.position, radius, offest_angle)
@@ -448,7 +448,7 @@ local function activate_shotgun_ability(ability_data, player, character)
             }
             ---@diagnostic enable: missing-fields
         end
-    end
+    -- end
 end
 
 ---@param ability_data active_ability_data
