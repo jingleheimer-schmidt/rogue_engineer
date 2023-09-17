@@ -1271,7 +1271,7 @@ local function on_research_finished(event)
     local force = event.research.force
     force.print({"", {"message_locale.research_finished"}, "[technology=", event.research.name, "]"})
 end
-script.on_event(defines.events.on_research_finished, on_research_finished)
+-- script.on_event(defines.events.on_research_finished, on_research_finished)
 
 -- [[ event registration ]] -- 
 
