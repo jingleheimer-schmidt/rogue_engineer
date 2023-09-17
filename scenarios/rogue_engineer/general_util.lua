@@ -135,6 +135,19 @@ local function filter_valid_entities(entities)
     return entities
 end
 
+---@param color Color
+---@return string
+local function format_color_for_rich_text(color)
+    if type(color) == "table" then
+        local r = math.floor((color.r or 0) * 255)
+        local g = math.floor((color.g or 0) * 255)
+        local b = math.floor((color.b or 0) * 255)
+        return string.format("#%02x%02x%02x", r, g, b)
+    else
+        return ""
+    end
+end
+
 return {
     rotate_orientation = rotate_orientation,
     normalize_degrees = normalize_degrees,
@@ -152,4 +165,5 @@ return {
     arena_ticks_elapsed = arena_ticks_elapsed,
     distance = distance,
     filter_valid_entities = filter_valid_entities,
+    format_color_for_rich_text = format_color_for_rich_text,
 }
