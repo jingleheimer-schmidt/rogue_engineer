@@ -1044,6 +1044,18 @@ local function on_tick(event)
             if game_tick % 5 == 0 then
                 update_arena_gui_kills(player, arena_gui, player_stats)
             end
+            -- if player.controller_type == defines.controllers.spectator and (game_tick % 60 == 0) then
+            --     local ghost_revivals = global.ghost_revivals
+            --     if ghost_revivals and ghost_revivals > 0 then
+            --         local text = {"", {"message_locale.ghost_revival"}, " ", tostring(ghost_revivals), " ", {"message_locale.ghost_revival_2"}}
+            --         draw_announcement_text(text, player)
+            --         global.ghost_revivals = ghost_revivals - 1
+            --         player.ticks_to_respawn = 60 * 8
+            --         global.remaining_lives = global.remaining_lives or {}
+            --         global.remaining_lives[player_index] = 1
+            --         -- or maybe the extra life unlock just also has a global effect of reviving any dead players
+            --     end
+            -- end
             local character = valid_player_character(player)
             if character then
                 local balance = difficulties[global.lobby_options.difficulty]
