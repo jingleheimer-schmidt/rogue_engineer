@@ -323,6 +323,30 @@ local vampire_workout_recipe = {
 }
 data:extend{vampire_workout_recipe}
 
+-- local revive_friend_recipe = {
+--     type = "recipe",
+--     name = "revive-friend",
+--     enabled = true,
+--     ingredients = {
+--         { type = "item", name = "coin", amount = 500 },
+--     },
+--     results = {
+--         { type = "item", name = "coin", amount_min = 1, amount_max = 50 }
+--     },
+--     localised_name = { "recipe-name.revive-friend" },
+--     subgroup = "abilities",
+--     order = "abilities-[a]-[4]",
+--     icon = deepcopy(data.raw["unit"]["compilatron"].icon),
+--     icon_size = deepcopy(data.raw["unit"]["compilatron"].icon_size),
+--     icons = deepcopy(data.raw["unit"]["compilatron"].icons),
+--     allow_intermediates = false,
+--     allow_decomposition = false,
+--     allow_as_intermediate = false,
+--     show_amount_in_title = false,
+--     energy_required = 10,
+-- }
+-- data:extend{revive_friend_recipe}
+
 local restore_health_recipe = {
     type = "recipe",
     name = "restore-health",

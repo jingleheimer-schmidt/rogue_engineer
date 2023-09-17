@@ -1198,6 +1198,13 @@ local function on_player_crafted_item(event)
         global.remaining_lives[player.index] = global.remaining_lives[player.index] + 1
         local text = { "", { "message_locale.level_up" }, "! ", global.remaining_lives[player.index], " ", { "message_locale.lives_remaining" } }
         draw_upgrade_text(text, player, { x = 0, y = 3 })
+        for _, connected_player in pairs(game.connected_players) do
+            if connected_player.controller_type == defines.controllers.spectator then
+                connected_player.ticks_to_respawn = 60 * 8
+                global.remaining_lives = global.remaining_lives or {}
+                global.remaining_lives[connected_player.index] = 1
+            end
+        end
     elseif endless_techs[name] then
         player.force.technologies["rogue-" .. name].researched = true
     elseif name == "vampire-strength" then
@@ -1209,6 +1216,10 @@ local function on_player_crafted_item(event)
         global.active_vampires[player.index].strength = global.active_vampires[player.index].strength + 1
         local text = {"", { "message_locale.vampire_workout" }, " [", global.active_vampires[player.index].strength, "]" }
         draw_upgrade_text(text, player, { x = 0, y = 3 })
+    -- elseif name == "revive-friend" then
+    --     global.ghost_revivals = global.ghost_revivals and global.ghost_revivals + 1 or 0
+    --     local text = {"", { "message_locale.revive_friend" }, " [", global.ghost_revivals, "]" }
+    --     draw_upgrade_text(text, player, { x = 0, y = 3 })
     end
 end
 script.on_event(defines.events.on_player_crafted_item, on_player_crafted_item)

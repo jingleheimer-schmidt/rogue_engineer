@@ -45,6 +45,7 @@ local visible_recipes = {
     ["unlock-ability"] = true,
     ["extra-life"] = true,
     ["vampire-strength"] = true,
+    -- ["revive-friend"] = true,
 
     ["running-speed"] = true,
     ["health-bonus"] = true,
