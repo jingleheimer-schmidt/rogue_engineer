@@ -1165,12 +1165,12 @@ local function on_player_crafted_item(event)
         draw_upgrade_text(text, player, {x = 0, y = 3})
     elseif name == "running-speed" then
         player.character_running_speed_modifier = player.character_running_speed_modifier + 0.005
-        player.force.character_running_speed_modifier = player.force.character_running_speed_modifier + 0.01
+        player.force.character_running_speed_modifier = player.force.character_running_speed_modifier + 0.005
         local text = { "", { "message_locale.running_speed_upgraded" }, "[ ", (player.force.character_running_speed_modifier - 0.4 + player.character_running_speed_modifier) * 100, "%]" }
         draw_upgrade_text(text, player, {x = 0, y = 3})
     elseif name == "health-bonus" then
         player.character_health_bonus = player.character_health_bonus + 0.5
-        player.force.character_health_bonus = player.force.character_health_bonus + 1
+        player.force.character_health_bonus = player.force.character_health_bonus + 0.5
         local text = { "", { "message_locale.health_upgraded" }, " [", 350 + (player.force.character_health_bonus + player.character_health_bonus), "]" }
         draw_upgrade_text(text, player, {x = 0, y = 3})
     elseif name == "unlock-ability" then
