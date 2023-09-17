@@ -828,6 +828,25 @@ local function on_tick(event)
         end
         local character = valid_player_character(player)
         if character then
+            if game_tick % 20 == 0 then
+                local inventory = character.get_main_inventory()
+                if inventory and inventory.valid then
+                    local garbage_disposal_items = {
+                        "stone",
+                        "coal",
+                        "wood"
+                    }
+                    for _, item in pairs(garbage_disposal_items) do
+                        if math.random() < 0.25 then
+                            if inventory.get_item_count(item) > 0 then
+                                local item_stack = { name = item, count = 1 }
+                                inventory.remove(item_stack)
+                                character.surface.spill_item_stack(character.position, item_stack, false)
+                            end
+                        end
+                    end
+                end
+            end
             local color = player.chat_color
             local multiplier = 0.125
             color.r = color.r * multiplier
