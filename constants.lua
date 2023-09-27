@@ -129,6 +129,12 @@ local walkway_tiles = {
     },
 }
 
+local base_ammo_damage = {
+    ["firearm-magazine"] = 5,
+    ["piercing-rounds-magazine"] = 8,
+    ["uranium-rounds-magazine"] = 24
+}
+
 ---@enum ability_data
 local ability_data = {
     slash = {
@@ -1333,5 +1339,6 @@ return {
     top_left_offset = top_left_offset,
     difficulty_tile_names = difficulty_tile_names,
     walkway_tiles = walkway_tiles,
+    base_ammo_damage = base_ammo_damage,
     aoe_damage_modifier = aoe_damage_modifier,
 }
