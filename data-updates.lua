@@ -17,9 +17,17 @@ end
 
 for _, tree in pairs(data.raw["tree"]) do
     tree.loot = tree.loot or {}
-    table.insert(tree.loot, { item = "coin", count_min = 0, count_max = 4 })
+    table.insert(tree.loot, { item = "coin", count_min = 0, count_max = 4  })
+    tree.max_health = tree.max_health * 10
 end
 
+for _, entity in pairs(data.raw["simple-entity"]) do
+    if entity.name:find("rock") then
+        entity.loot = entity.loot or {}
+        table.insert(entity.loot, { item = "coin", count_min = 0, count_max = 8  })
+        entity.max_health = entity.max_health * 10
+    end
+end
 
 local visible_technologies = {
     ["rogue-follower-robot-count"] = true,
