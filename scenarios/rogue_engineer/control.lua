@@ -966,7 +966,7 @@ local function on_tick(event)
                         width = 5,
                         from = character,
                         to = corpse.position,
-                        time_to_live = 2,
+                        time_to_live = 15,
                         draw_on_ground = true,
                         only_in_alt_mode = true,
                     }
