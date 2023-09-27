@@ -213,7 +213,7 @@ end
 ---@param player LuaPlayer
 local function upgrade_follower_robot_count(ability_name, ability_data, player)
     player.force.technologies["rogue-follower-robot-count"].researched = true
-    local text = { "", { "ability_name." .. ability_name }, " [", { "upgrade_locale.lvl" }, " ", ability_data.level, "] ", { "technology-name.follower-robot-count" }, " [", player.force.maximum_following_robot_count, "]" }
+    local text = { "", { "ability_name." .. ability_name }, " [", { "upgrade_locale.lvl" }, " ", ability_data.level, "] ", { "technology-name.rogue-follower-robot-count" }, " [", player.force.maximum_following_robot_count, "]" }
     draw_upgrade_text(text, player)
     local global_text = { "", "[color=", format_color_for_rich_text(player.chat_color), "]", player.name, ":[/color] ", { "ability_name." .. ability_name }, " ", { "message_locale.upgraded" }, " [technology=rogue-follower-robot-count]" }
     game.print(global_text)
@@ -224,7 +224,7 @@ end
 ---@param player LuaPlayer
 local function upgrade_physical_projectile_damage(ability_name, ability_data, player)
     player.force.technologies["rogue-physical-projectile-damage"].researched = true
-    local text = {"", { "ability_name." .. ability_name }, " [", {"upgrade_locale.lvl"}, " ", ability_data.level, "] ", {"technology-name.physical-projectile-damage"}, " [", player.force.character_running_speed_modifier, "]"}
+    local text = {"", { "ability_name." .. ability_name }, " [", {"upgrade_locale.lvl"}, " ", ability_data.level, "] ", {"technology-name.rogue-physical-projectile-damage"}, " [", player.force.character_running_speed_modifier, "]"}
     draw_upgrade_text(text, player)
     local global_text = { "", "[color=", format_color_for_rich_text(player.chat_color), "]", player.name, ":[/color] ", { "ability_name." .. ability_name }, " ", { "message_locale.upgraded" }, " [technology=rogue-physical-projectile-damage]" }
     game.print(global_text)
@@ -235,7 +235,7 @@ end
 ---@param player LuaPlayer
 local function upgrade_energy_weapons_damage(ability_name, ability_data, player)
     player.force.technologies["rogue-energy-weapons-damage"].researched = true
-    local text = { "", { "ability_name." .. ability_name }, " [", { "upgrade_locale.lvl" }, " ", ability_data.level, "] ", { "technology-name.energy-weapons-damage" } }
+    local text = { "", { "ability_name." .. ability_name }, " [", { "upgrade_locale.lvl" }, " ", ability_data.level, "] ", { "technology-name.rogue-energy-weapons-damage" } }
     draw_upgrade_text(text, player)
     local global_text = { "", "[color=", format_color_for_rich_text(player.chat_color), "]", player.name, ":[/color] ", { "ability_name." .. ability_name }, " ", { "message_locale.upgraded" }, " [technology=rogue-energy-weapons-damage]" }
     game.print(global_text)
@@ -246,7 +246,7 @@ end
 ---@param player LuaPlayer
 local function upgrade_stronger_explosives(ability_name, ability_data, player)
     player.force.technologies["rogue-stronger-explosives"].researched = true
-    local text = {"", { "ability_name." .. ability_name }, " [", {"upgrade_locale.lvl"}, " ", ability_data.level, "] ", {"technology-name.stronger-explosives"} }
+    local text = {"", { "ability_name." .. ability_name }, " [", {"upgrade_locale.lvl"}, " ", ability_data.level, "] ", {"technology-name.rogue-stronger-explosives"} }
     draw_upgrade_text(text, player)
     local global_text = { "", "[color=", format_color_for_rich_text(player.chat_color), "]", player.name, ":[/color] ", { "ability_name." .. ability_name }, " ", { "message_locale.upgraded" }, " [technology=rogue-stronger-explosives]" }
     game.print(global_text)
@@ -257,7 +257,7 @@ end
 ---@param player LuaPlayer
 local function upgrade_refined_flammables(ability_name, ability_data, player)
     player.force.technologies["rogue-refined-flammables"].researched = true
-    local text = {"", { "ability_name." .. ability_name }, " [", {"upgrade_locale.lvl"}, " ", ability_data.level, "] ", {"technology-name.refined-flammables"} }
+    local text = {"", { "ability_name." .. ability_name }, " [", {"upgrade_locale.lvl"}, " ", ability_data.level, "] ", {"technology-name.rogue-refined-flammables"} }
     draw_upgrade_text(text, player)
     local global_text = { "", "[color=", format_color_for_rich_text(player.chat_color), "]", player.name, ":[/color] ", { "ability_name." .. ability_name }, " ", { "message_locale.upgraded" }, " [technology=rogue-refined-flammables]" }
     game.print(global_text)
@@ -268,7 +268,7 @@ end
 ---@param player LuaPlayer
 local function upgrade_weapon_shooting_speed(ability_name, ability_data, player)
     player.force.technologies["rogue-weapon-shooting-speed"].researched = true
-    local text = {"", { "ability_name." .. ability_name }, " [", {"upgrade_locale.lvl"}, " ", ability_data.level, "] ", {"technology-name.weapon-shooting-speed"} }
+    local text = {"", { "ability_name." .. ability_name }, " [", {"upgrade_locale.lvl"}, " ", ability_data.level, "] ", {"technology-name.rogue-weapon-shooting-speed"} }
     draw_upgrade_text(text, player)
     local global_text = { "", "[color=", format_color_for_rich_text(player.chat_color), "]", player.name, ":[/color] ", { "ability_name." .. ability_name }, " ", { "message_locale.upgraded" }, " [technology=rogue-weapon-shooting-speed]" }
     game.print(global_text)
@@ -279,7 +279,7 @@ end
 ---@param player LuaPlayer
 local function upgrade_laser_shooting_speed(ability_name, ability_data, player)
     player.force.technologies["rogue-laser-shooting-speed"].researched = true
-    local text = {"", { "ability_name." .. ability_name }, " [", {"upgrade_locale.lvl"}, " ", ability_data.level, "] ", {"technology-name.laser-shooting-speed"} }
+    local text = {"", { "ability_name." .. ability_name }, " [", {"upgrade_locale.lvl"}, " ", ability_data.level, "] ", {"technology-name.rogue-laser-shooting-speed"} }
     draw_upgrade_text(text, player)
     local global_text = { "", "[color=", format_color_for_rich_text(player.chat_color), "]", player.name, ":[/color] ", { "ability_name." .. ability_name }, " ", { "message_locale.upgraded" }, " [technology=rogue-laser-shooting-speed]" }
     game.print(global_text)
