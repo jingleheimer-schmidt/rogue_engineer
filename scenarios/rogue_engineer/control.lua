@@ -964,7 +964,7 @@ local function on_tick(event)
                         surface = character.surface,
                         color = color,
                         width = 5,
-                        from = character.position,
+                        from = character,
                         to = corpse.position,
                         time_to_live = 2,
                         draw_on_ground = true,
