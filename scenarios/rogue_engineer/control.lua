@@ -1176,7 +1176,7 @@ local function on_player_crafted_item(event)
         end
     elseif endless_techs[name] then
         player.force.technologies["rogue-" .. name].researched = true
-        local text = {"", "[color=", format_color_for_rich_text(player.chat_color), "]", player.name, "[/color] ", {"message_locale.upgraded"}, " [technology=", name, "]"}
+        local text = {"", "[color=", format_color_for_rich_text(player.chat_color), "]", player.name, "[/color] ", {"message_locale.upgraded"}, " [technology=rogue-", name, "]"}
         game.print(text)
     elseif name == "vampire-strength" then
         global.active_vampires = global.active_vampires or {}
