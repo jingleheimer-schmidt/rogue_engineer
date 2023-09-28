@@ -81,6 +81,7 @@ local get_enemies_in_radius = enemy_util.get_enemies_in_radius
 local damage_enemies_in_radius = enemy_util.damage_enemies_in_radius
 local spawn_new_enemy = enemy_util.spawn_new_enemy
 local spawn_level_appropriate_enemy = enemy_util.spawn_level_appropriate_enemy
+local get_bonus_damage = enemy_util.get_bonus_damage
 
 local ability_util = require("ability_util")
 local register_burn_zone = ability_util.register_burn_zone
@@ -905,6 +906,7 @@ local function on_tick(event)
             if target.valid then
                 local ability_data = laser_beam_target.ability_data --[[@type active_ability_data]]
                 local damage = ability_data.damage / aoe_damage_modifier --[[@as float]]
+                damage = damage + get_bonus_damage(damage, "laser")
                 target.damage(damage, player.force, "laser", character)
             end
         end

@@ -36,6 +36,27 @@ local function get_enemies_in_radius(surface, position, radius)
     return enemies
 end
 
+local damage_type_default_ammo_category = {
+    ["physical"] = "bullet",
+    ["impact"] = "bullet",
+    ["fire"] = "flamethrower",
+    ["acid"] = "flamethrower",
+    ["poison"] = "flamethrower",
+    ["explosion"] = "grenade",
+    ["laser"] = "laser",
+    ["electric"] = "laser",
+}
+
+---@param damage float
+---@param damage_type string
+---@return float
+local function get_bonus_damage(damage, damage_type)
+    local ammo_category = damage_type_default_ammo_category[damage_type]
+    local bonus = game.forces.player.get_ammo_damage_modifier(ammo_category)
+    local damage_bonus = damage * bonus
+    return damage_bonus
+end
+
 ---@param radius integer
 ---@param damage float
 ---@param position MapPosition
@@ -49,6 +70,7 @@ local function damage_enemies_in_radius(radius, damage, position, surface, playe
     for _, enemy in pairs(enemies) do
         if enemy.valid then
             type = type or "physical"
+            damage = damage + get_bonus_damage(damage, type)
             enemy.damage(damage, player.force, type, character)
         end
     end
@@ -113,6 +135,7 @@ end
 return {
     find_nearest_enemy = find_nearest_enemy,
     get_enemies_in_radius = get_enemies_in_radius,
+    get_bonus_damage = get_bonus_damage,
     damage_enemies_in_radius = damage_enemies_in_radius,
     spawn_new_enemy = spawn_new_enemy,
     spawn_level_appropriate_enemy = spawn_level_appropriate_enemy,
