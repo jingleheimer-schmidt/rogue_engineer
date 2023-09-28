@@ -429,26 +429,24 @@ local function activate_shotgun_ability(ability_data, player, character)
     local surface = player.surface
     local radius = ability_data.radius
     local angle = direction_to_angle(player.character.direction)
-    -- for _ = 1, 2 do
-        for i = -radius, radius, 0.25 do
-            local offest_angle = angle + degrees_to_radians(i)
-            local target_position = get_position_on_circumference(player.position, radius, offest_angle)
-            local source_position = get_position_on_circumference(player.position, 2, angle)
-                ---@diagnostic disable: missing-fields
-            local bullet = surface.create_entity{
-                name = "shotgun-pellet",
-                position = source_position,
-                force = player.force,
-                target = target_position,
-                source = player.character,
-                character = player.character,
-                player = player,
-                speed = 1.5,
-                max_range = ability_data.radius * 2,
-            }
-            ---@diagnostic enable: missing-fields
-        end
-    -- end
+    for i = -radius, radius, 0.25 do
+        local offest_angle = angle + degrees_to_radians(i)
+        local target_position = get_position_on_circumference(player.position, radius, offest_angle)
+        local source_position = get_position_on_circumference(player.position, 2, angle)
+            ---@diagnostic disable: missing-fields
+        local bullet = surface.create_entity{
+            name = "shotgun-pellet",
+            position = source_position,
+            force = player.force,
+            target = target_position,
+            source = player.character,
+            character = player.character,
+            player = player,
+            speed = 1.5,
+            max_range = ability_data.radius * 2,
+        }
+        ---@diagnostic enable: missing-fields
+    end
 end
 
 ---@param ability_data active_ability_data
