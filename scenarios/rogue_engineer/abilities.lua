@@ -173,7 +173,7 @@ local function activate_beam_blast_ability(ability_data, player, character)
     if not primary_target then return end
     local primary_target_id = primary_target.unit_number
     local primary_target_position = primary_target.position
-    local nearby_enemies = get_enemies_in_radius(surface, primary_target.position, radius / 1.5)
+    local nearby_enemies = get_enemies_in_radius(surface, primary_target.position, radius / 3)
     create_laser_beam(surface, player_position, character, primary_target, player_force)
     register_laser_beam_target(ability_data, primary_target, player, game.tick + 33, primary_target)
     for _, secondary_target in pairs(nearby_enemies) do
