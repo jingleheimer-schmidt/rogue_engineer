@@ -631,6 +631,12 @@ local function activate_circle_of_death_ability(ability_data, player, character)
     end
 end
 
+---@param ability_data active_ability_data
+---@param player LuaPlayer
+---@param character LuaEntity
+local function activate_smg_ability(ability_data, player, character)
+end
+
 local ability_functions = {
     burst = activate_burst_ability,
     punch = activate_punch_ability,
