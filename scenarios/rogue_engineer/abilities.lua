@@ -62,8 +62,8 @@ local function activate_punch_ability(ability_data, player, character)
     local frame_count = raw_abilities_data[animation_name].frame_count
     local final_tick = game.tick + 25
     draw_animation(animation_name, position, surface, orientation, radius, frame_count)
-    damage_enemies_in_radius(radius, damage, position, surface, player, "physical")
-    register_damage_zone(animation_name, radius, damage_per_tick, player, position, surface, final_tick, "physical")
+    damage_enemies_in_radius(radius, damage, position, surface, player, "impact")
+    register_damage_zone(animation_name, radius, damage_per_tick, player, position, surface, final_tick, "impact")
 end
 
 ---@param ability_data active_ability_data
