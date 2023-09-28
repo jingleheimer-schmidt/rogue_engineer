@@ -336,52 +336,52 @@ local function on_entity_damaged(event)
     end
 end
 
----@param level_threshold uint
-local function upgrade_damage_bonuses(level_threshold)
-    local all_players_meet_requirement = true
-    for _, player in pairs(game.connected_players) do
-        local player_data = global.player_data[player.index]
-        if player_data.level < level_threshold then
-            all_players_meet_requirement = false
-            break
-        end
-    end
-    if all_players_meet_requirement then
-        local technology_upgrades_by_modifier = {
-            [3] = {
-                ["follower-robot-count-"] = true,
-            },
-            [5] = {
-                ["physical-projectile-damage-"] = true,
-                ["energy-weapons-damage-"] = true,
-                ["stronger-explosives-"] = true,
-                ["refined-flammables-"] = true,
-            },
-            [7] = {
-                ["weapon-shooting-speed-"] = true,
-                ["laser-shooting-speed-"] = true,
-            },
-        }
-        local arena_minutes = arena_ticks_elapsed() / 60 / 60
-        for modifier, technologies in pairs(technology_upgrades_by_modifier) do
-            local force = game.forces.player
-            for i = 1, math.ceil(arena_minutes / modifier) do
-                for name, _ in pairs(technologies) do
-                    local force_technologies = force.technologies
-                    local tech_name = name .. math.min(i, 7)
-                    local technology = force_technologies[tech_name]
-                    if not technology then break end
-                    -- local prerequisites = technology.prerequisites
-                    -- for _, prerequisite in pairs(prerequisites) do
-                    --     prerequisite.researched = true
-                    -- end
-                    technology.researched = true
-                end
-            end
-        end
-    end
-end
-
+-- ---@param level_threshold uint
+-- local function upgrade_damage_bonuses(level_threshold)
+--     local all_players_meet_requirement = true
+--     for _, player in pairs(game.connected_players) do
+--         local player_data = global.player_data[player.index]
+--         if player_data.level < level_threshold then
+--             all_players_meet_requirement = false
+--             break
+--         end
+--     end
+--     if all_players_meet_requirement then
+--         local technology_upgrades_by_modifier = {
+--             [3] = {
+--                 ["follower-robot-count-"] = true,
+--             },
+--             [5] = {
+--                 ["physical-projectile-damage-"] = true,
+--                 ["energy-weapons-damage-"] = true,
+--                 ["stronger-explosives-"] = true,
+--                 ["refined-flammables-"] = true,
+--             },
+--             [7] = {
+--                 ["weapon-shooting-speed-"] = true,
+--                 ["laser-shooting-speed-"] = true,
+--             },
+--         }
+--         local arena_minutes = arena_ticks_elapsed() / 60 / 60
+--         for modifier, technologies in pairs(technology_upgrades_by_modifier) do
+--             local force = game.forces.player
+--             for i = 1, math.ceil(arena_minutes / modifier) do
+--                 for name, _ in pairs(technologies) do
+--                     local force_technologies = force.technologies
+--                     local tech_name = name .. math.min(i, 7)
+--                     local technology = force_technologies[tech_name]
+--                     if not technology then break end
+--                     -- local prerequisites = technology.prerequisites
+--                     -- for _, prerequisite in pairs(prerequisites) do
+--                     --     prerequisite.researched = true
+--                     -- end
+--                     technology.researched = true
+--                 end
+--             end
+--         end
+--     end
+-- end
+-- 
 -- ---@param character LuaEntity
 -- local function upgrade_character_armor(character)
 --     local character_armor = character.get_inventory(defines.inventory.character_armor)
