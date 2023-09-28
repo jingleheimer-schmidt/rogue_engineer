@@ -148,6 +148,17 @@ local function format_color_for_rich_text(color)
     end
 end
 
+local function random_tree_name()
+    local tree_prototypes = game.get_filtered_entity_prototypes{
+        { filter = "type", type = "tree" },
+    }
+    local tree_names = {}
+    for name in pairs(tree_prototypes) do
+        table.insert(tree_names, name)
+    end
+    return tree_names[math.random(#tree_names)]
+end
+
 return {
     rotate_orientation = rotate_orientation,
     normalize_degrees = normalize_degrees,
@@ -166,4 +177,5 @@ return {
     distance = distance,
     filter_valid_entities = filter_valid_entities,
     format_color_for_rich_text = format_color_for_rich_text,
+    random_tree_name = random_tree_name,
 }

@@ -11,6 +11,8 @@ local get_position_on_circumference = general_util.get_position_on_circumference
 local direction_to_angle = general_util.direction_to_angle
 local opposite_direction = general_util.opposite_direction
 local degrees_to_radians = general_util.degrees_to_radians
+local distance = general_util.distance
+local random_tree_name = general_util.random_tree_name
 
 local luarendering_util = require("luarendering_util")
 local draw_animation = luarendering_util.draw_animation
@@ -513,24 +515,6 @@ local function activate_crystal_blossom_ability(ability_data, player, character)
         draw_animation(animation_name, random_position, surface, 0, animation_radius, frame_count)
         register_damage_zone(animation_name, animation_radius, damage_per_tick, player, random_position, surface, final_tick, "physical")
     end
-end
-
----@param a MapPosition
----@param b MapPosition
----@return number
-local function distance(a, b)
-    return math.sqrt((a.x - b.x)^2 + (a.y - b.y)^2)
-end
-
-local function random_tree_name()
-    local tree_prototypes = game.get_filtered_entity_prototypes{
-        { filter = "type", type = "tree" },
-    }
-    local tree_names = {}
-    for name in pairs(tree_prototypes) do
-        table.insert(tree_names, name)
-    end
-    return tree_names[math.random(#tree_names)]
 end
 
 ---@param ability_data active_ability_data
