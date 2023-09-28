@@ -183,7 +183,7 @@ local function on_init()
     }
     global.default_abilities = {
         ability_1 = "beam_blast",
-        ability_2 = "crystal_blossom",
+        ability_2 = "punch",
         ability_3 = "rocket_launcher",
     }
     global.statistics = {}
