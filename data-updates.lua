@@ -18,7 +18,7 @@ end
 for _, tree in pairs(data.raw["tree"]) do
     tree.loot = tree.loot or {}
     table.insert(tree.loot, { item = "coin", count_min = 1, count_max = 15  })
-    tree.max_health = tree.max_health * 10
+    tree.max_health = tree.max_health * 25
 end
 
 for _, entity in pairs(data.raw["simple-entity"]) do
