@@ -427,6 +427,39 @@ end
 ---@param ability_data active_ability_data
 ---@param player LuaPlayer
 ---@param character LuaEntity
+local function activate_laser_turret_ability(ability_data, player, character)
+    local animation_name = "buff"
+    local surface = character.surface
+    local force = character.force
+    local radius = ability_data.radius
+    local angle = direction_to_angle(player.character.direction)
+    for i = 1, 2 do
+        local degrees = i == 1 and -15 or 15
+        local offset_angle = angle + degrees_to_radians(degrees)
+        local position = get_position_on_circumference(character.position, radius, offset_angle)
+        local non_colliding_position = surface.find_non_colliding_position("rogue-laser-turret", position, radius, 1)
+        if non_colliding_position then
+        ---@diagnostic disable: missing-fields
+            local turret = surface.create_entity{
+                name = "rogue-laser-turret",
+                position = non_colliding_position,
+                force = force,
+                target = position,
+                source = character,
+                character = character,
+                player = player,
+            }
+            ---@diagnostic enable: missing-fields
+            if turret and turret.valid then
+                draw_animation(animation_name, turret, surface, 0, 2)
+            end
+        end
+    end
+end
+
+---@param ability_data active_ability_data
+---@param player LuaPlayer
+---@param character LuaEntity
 local function activate_shotgun_ability(ability_data, player, character)
     local surface = player.surface
     local radius = ability_data.radius
@@ -637,6 +670,7 @@ local ability_functions = {
     poison_capsule = activate_poison_capsule_ability,
     slowdown_capsule = activate_slowdown_capsule_ability,
     gun_turret = activate_gun_turret_ability,
+    laser_turret = activate_laser_turret_ability,
     shotgun = activate_shotgun_ability,
     barrier = activate_flamethrower_ability,
     purifying_light = activate_acid_sponge_ability,
@@ -661,6 +695,7 @@ return {
     poison_capsule = activate_poison_capsule_ability,
     slowdown_capsule = activate_slowdown_capsule_ability,
     gun_turret = activate_gun_turret_ability,
+    laser_turret = activate_laser_turret_ability,
     shotgun = activate_shotgun_ability,
     barrier = activate_flamethrower_ability,
     purifying_light = activate_acid_sponge_ability,

@@ -151,6 +151,7 @@ local function on_init()
         poison_capsule = true,
         slowdown_capsule = true,
         gun_turret = true,
+        laser_turret = true,
         shotgun = true,
         barrier = true,
         purifying_light = true,
@@ -266,6 +267,10 @@ local function get_damage_attribution(event)
                 player = cause.last_user --[[@as LuaPlayer]]
             end
         elseif cause_type == "ammo-turret" then
+            if cause.last_user then
+                player = cause.last_user --[[@as LuaPlayer]]
+            end
+        elseif cause_type == "electric-turret" then
             if cause.last_user then
                 player = cause.last_user --[[@as LuaPlayer]]
             end
