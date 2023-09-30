@@ -792,6 +792,22 @@ data:extend{laser_shooting_speed_recipe}
 
 data.raw["item"]["coin"].stack_size = 250
 
+local laser_turret = deepcopy(data.raw["electric-turret"]["laser-turret"])
+laser_turret.name = "rogue-laser-turret"
+laser_turret.minable.result = "rogue-laser-turret"
+laser_turret.energy_source = {type = "void"}
+laser_turret.max_health = laser_turret.max_health / 3
+laser_turret.localised_name = { "entity-name.laser-turret" }
+laser_turret.localised_description = { "entity-description.laser-turret" }
+data:extend{laser_turret}
+
+local laser_turret_item = deepcopy(data.raw["item"]["laser-turret"])
+laser_turret_item.name = "rogue-laser-turret"
+laser_turret_item.place_result = "rogue-laser-turret"
+laser_turret_item.localised_name = { "item-name.laser-turret" }
+laser_turret_item.localised_description = { "item-description.laser-turret" }
+data:extend{laser_turret_item}
+
 local function validate_abilities()
     local to_log = {}
     for name, ability_data in pairs(constants.ability_data) do
