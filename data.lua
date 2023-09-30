@@ -63,25 +63,50 @@ arena_gui_font_default_bold.name = "arena-gui-default-bold"
 arena_gui_font_default_bold.size = font_size
 data:extend{arena_gui_font_default_bold}
 
-local light_armor = data.raw["armor"]["light-armor"]
+local light_armor = deepcopy(data.raw["armor"]["light-armor"])
+light_armor.name = "rogue-light-armor"
+light_armor.localised_name = { "item-name.light-armor" }
+light_armor.localised_description = { "item-description.light-armor" }
 light_armor.infinite = false
 light_armor.durability = 100
+light_armor.equipment_grid = nil
+data:extend{light_armor}
 
-local heavy_armor = data.raw["armor"]["heavy-armor"]
+local heavy_armor = deepcopy(data.raw["armor"]["heavy-armor"])
+heavy_armor.name = "rogue-heavy-armor"
+heavy_armor.localised_name = { "item-name.heavy-armor" }
+heavy_armor.localised_description = { "item-description.heavy-armor" }
 heavy_armor.infinite = false
 heavy_armor.durability = 150
+heavy_armor.equipment_grid = nil
+data:extend{heavy_armor}
 
-local modular_armor = data.raw["armor"]["modular-armor"]
+local modular_armor = deepcopy(data.raw["armor"]["modular-armor"])
+modular_armor.name = "rogue-modular-armor"
+modular_armor.localised_name = { "item-name.modular-armor" }
+modular_armor.localised_description = { "item-description.modular-armor" }
 modular_armor.infinite = false
 modular_armor.durability = 200
+modular_armor.equipment_grid = nil
+data:extend{modular_armor}
 
-local power_armor = data.raw["armor"]["power-armor"]
+local power_armor = deepcopy(data.raw["armor"]["power-armor"])
+power_armor.name = "rogue-power-armor"
+power_armor.localised_name = { "item-name.power-armor" }
+power_armor.localised_description = { "item-description.power-armor" }
 power_armor.infinite = false
 power_armor.durability = 250
+power_armor.equipment_grid = nil
+data:extend{power_armor}
 
-local power_armor_mk2 = data.raw["armor"]["power-armor-mk2"]
+local power_armor_mk2 = deepcopy(data.raw["armor"]["power-armor-mk2"])
+power_armor_mk2.name = "rogue-power-armor-mk2"
+power_armor_mk2.localised_name = { "item-name.power-armor-mk2" }
+power_armor_mk2.localised_description = { "item-description.power-armor-mk2" }
 power_armor_mk2.infinite = false
 power_armor_mk2.durability = 300
+power_armor_mk2.equipment_grid = nil
+data:extend{power_armor_mk2}
 
 local enemy_loot = {
     ["unit"] = {
@@ -135,16 +160,18 @@ local armor_costs = {
     ["power-armor-mk2"] = 8000,
 }
 for name, cost in pairs(armor_costs) do
-    local recipe = data.raw["recipe"][name]
-    recipe.ingredients = {
-        { "coin", cost },
-    }
+    local recipe = deepcopy(data.raw["recipe"][name])
+    recipe.name = "rogue-" .. name
+    recipe.result = "rogue-" .. name
+    recipe.ingredients = { { "coin", cost } }
     recipe.normal = nil
     recipe.expensive = nil
+    recipe.results = nil
     recipe.enabled = true
     recipe.allow_intermediates = false
     recipe.allow_decomposition = false
     recipe.allow_as_intermediate = false
+    data:extend{recipe}
 end
 
 local function shift_bonus_icon_from_tech_to_recipe(recipe)
