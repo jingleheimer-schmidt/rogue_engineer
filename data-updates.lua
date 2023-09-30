@@ -61,11 +61,11 @@ local visible_recipes = {
     ["restore-health"] = true,
     ["repair-armor"] = true,
 
-    ["light-armor"] = true,
-    ["heavy-armor"] = true,
-    ["modular-armor"] = true,
-    ["power-armor"] = true,
-    ["power-armor-mk2"] = true,
+    ["rogue-light-armor"] = true,
+    ["rogue-heavy-armor"] = true,
+    ["rogue-modular-armor"] = true,
+    ["rogue-power-armor"] = true,
+    ["rogue-power-armor-mk2"] = true,
 
     ["follower-robot-count"] = true,
     ["physical-projectile-damage"] = true,
