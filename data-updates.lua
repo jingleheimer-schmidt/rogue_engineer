@@ -94,3 +94,63 @@ for _, recipe in pairs(data.raw["recipe"]) do
         recipe.expensive.allow_as_intermediate = false
     end
 end
+
+local rusty_locale = require '__rusty-locale__.locale'
+local constants = require 'constants'
+local ability_datas = constants.ability_data
+
+for ability_name, ability_data in pairs(ability_datas) do
+    local technologies = {
+        ["follower-robot-count"] = "follower_robot_count",
+        ["physical-projectile-damage"] = "physical_projectile_damage",
+        ["energy-weapons-damage"] = "energy_weapons_damage",
+        ["stronger-explosives"] = "stronger_explosives",
+        ["refined-flammables"] = "refined_flammables",
+        ["weapon-shooting-speed"] = "weapon_shooting_speed",
+        ["laser-shooting-speed"] = "laser_shooting_speed",
+    }
+    local affected_technologies = {
+        follower_robot_count = false,
+        physical_projectile_damage = false,
+        energy_weapons_damage = false,
+        stronger_explosives = false,
+        refined_flammables = false,
+        weapon_shooting_speed = false,
+        laser_shooting_speed = false,
+    }
+    for _, upgrade_type in pairs(ability_data.upgrade_order or {}) do
+        if technologies[upgrade_type] then
+            if upgrade_type == "follower-robot-count" then
+                affected_technologies.follower_robot_count = true
+            elseif upgrade_type == "physical-projectile-damage" then
+                affected_technologies.physical_projectile_damage = true
+            elseif upgrade_type == "energy-weapons-damage" then
+                affected_technologies.energy_weapons_damage = true
+            elseif upgrade_type == "stronger-explosives" then
+                affected_technologies.stronger_explosives = true
+            elseif upgrade_type == "refined-flammables" then
+                affected_technologies.refined_flammables = true
+            elseif upgrade_type == "weapon-shooting-speed" then
+                affected_technologies.weapon_shooting_speed = true
+            elseif upgrade_type == "laser-shooting-speed" then
+                affected_technologies.laser_shooting_speed = true
+            end
+        end
+    end
+    for technology_name, underscore_name in pairs(technologies) do
+        if affected_technologies[underscore_name] then
+            local technology = data.raw["technology"]["rogue-" .. technology_name]
+            if technology then
+                local locale = rusty_locale.of(technology)
+                local description = locale.description
+                technology.localised_description = {"", description, "\n", { "ability_name." .. ability_name }}
+            end
+            local recipe = data.raw["recipe"][technology_name]
+            if recipe then
+                local locale = rusty_locale.of(recipe)
+                local description = locale.description
+                recipe.localised_description = {"", description, "\n", { "ability_name." .. ability_name }}
+            end
+        end
+    end
+end

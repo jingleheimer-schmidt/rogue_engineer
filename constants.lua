@@ -135,6 +135,35 @@ local base_ammo_damage = {
     ["uranium-rounds-magazine"] = 24
 }
 
+local ability_icon_sprite_paths = {
+    burst = "burst_icon",
+    punch = "punch_icon",
+    cure = "cure_icon",
+    slash = "slash_icon",
+    rocket_launcher = "item.rocket-launcher",
+    pavement = "item.stone-brick",
+    beam_blast = "entity.heat-pipe",
+    discharge_defender = "entity.discharge-defender",
+    destroyer = "entity.destroyer",
+    defender = "entity.defender",
+    distractor = "entity.distractor",
+    landmine = "item.land-mine",
+    poison_capsule = "item.poison-capsule",
+    slowdown_capsule = "item.slowdown-capsule",
+    gun_turret = "item.gun-turret",
+    laser_turret = "item.rogue-laser-turret",
+    shotgun = "item.combat-shotgun",
+    barrier = "item.flamethrower",
+    purifying_light = "purifying_light_icon",
+    crystal_blossom = "crystal_blossom_icon",
+    circle_of_life = "circle_of_life_icon",
+    circle_of_death = "circle_of_death_icon",
+}
+
+local function icon_coords(x, y)
+    return { x = x * 192, y = (y - 1) * 192 }
+end
+
 ---@enum ability_data
 local ability_data = {
     slash = {
@@ -143,6 +172,7 @@ local ability_data = {
         line_length = 5,
         width = 192,
         height = 192,
+        icon_position = icon_coords(4, 2),
         target = "character",
         default_cooldown = 60 * 2,
         default_radius = 5,
@@ -201,6 +231,7 @@ local ability_data = {
         line_length = 5,
         width = 192,
         height = 192,
+        icon_position = icon_coords(2, 2),
         target = "position",
         default_cooldown = 60 * 1.6,
         default_radius = 1.5,
@@ -405,6 +436,7 @@ local ability_data = {
         line_length = 5,
         width = 192,
         height = 192,
+        icon_position = icon_coords(1, 12),
         target = "position",
         default_cooldown = 60 * 7,
         default_radius = 1.5,
@@ -1127,6 +1159,7 @@ local ability_data = {
         line_length = 5,
         width = 192,
         height = 192,
+        icon_position = icon_coords(2, 9),
         target = "position",
         default_cooldown = 60 * 1.75,
         default_radius = 1,
@@ -1243,6 +1276,7 @@ local ability_data = {
         line_length = 5,
         width = 192,
         height = 192,
+        icon_position = icon_coords(3, 8),
         target = "position",
         default_cooldown = 60 * 10,
         default_radius = 6,
@@ -1297,6 +1331,7 @@ local ability_data = {
         line_length = 5,
         width = 192,
         height = 192,
+        icon_position = icon_coords(3, 4),
         target = "position",
         default_cooldown = 60 * 10,
         default_radius = 15,
@@ -1337,6 +1372,7 @@ local ability_data = {
         line_length = 5,
         width = 192,
         height = 192,
+        icon_position = icon_coords(4, 4),
         target = "position",
         default_cooldown = 60 * 10,
         default_radius = 15,
@@ -1375,6 +1411,7 @@ local ability_data = {
 
 return {
     ability_data = ability_data,
+    ability_icon_sprite_paths = ability_icon_sprite_paths,
     tile_tiers_by_name = tile_tiers_by_name,
     tile_tiers_by_order = tile_tiers_by_order,
     difficulty_offsets = difficulty_offsets,

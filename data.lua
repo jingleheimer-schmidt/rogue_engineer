@@ -16,6 +16,18 @@ for animation_name, animation_data in pairs(constants.ability_data) do
         scale = 1,
     }
     data:extend{animation}
+    local icon_position = animation_data.icon_position
+    local icon = {
+        type = "sprite",
+        name = animation_name .. "_icon",
+        filename = "__rogue_engineer__/graphics/" .. animation_data.filename,
+        width = animation_data.width,
+        height = animation_data.height,
+        scale = 1,
+        x = icon_position and icon_position.x or (animation_data.width * 3),
+        y = icon_position and icon_position.y or (animation_data.height * ((animation_data.frame_count / animation_data.line_length) / 4)),
+    }
+    data:extend{icon}
 end
 
 for _, character_prototype in pairs(data.raw.character) do
