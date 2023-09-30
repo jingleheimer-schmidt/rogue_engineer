@@ -1,5 +1,5 @@
 
-local constants = require("__rogue_engineer__/constants")
+local constants = require("constants")
 require("util")
 local deepcopy = util.table.deepcopy
 
