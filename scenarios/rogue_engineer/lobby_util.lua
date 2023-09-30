@@ -237,7 +237,7 @@ local function create_lobby_text(lobby_surface)
         },
         starting_abilities = {
             ability_1 = rendering.draw_text {
-                text = { "ability_name." .. global.default_abilities.ability_1 },
+                text = { "basic_ability_name." .. global.default_abilities.ability_1 },
                 surface = lobby_surface,
                 target = { x = -7, y = 7 },
                 color = { r = 1, g = 1, b = 1 },
@@ -246,7 +246,7 @@ local function create_lobby_text(lobby_surface)
                 draw_on_ground = true,
             },
             ability_2 = rendering.draw_text {
-                text = { "ability_name." .. global.default_abilities.ability_2 },
+                text = { "basic_ability_name." .. global.default_abilities.ability_2 },
                 surface = lobby_surface,
                 target = { x = 0, y = 7 },
                 color = { r = 1, g = 1, b = 1 },
@@ -255,7 +255,7 @@ local function create_lobby_text(lobby_surface)
                 draw_on_ground = true,
             },
             ability_3 = rendering.draw_text {
-                text = { "ability_name." .. global.default_abilities.ability_3 },
+                text = { "basic_ability_name." .. global.default_abilities.ability_3 },
                 surface = lobby_surface,
                 target = { x = 7, y = 7 },
                 color = { r = 1, g = 1, b = 1 },
@@ -294,7 +294,7 @@ local function update_lobby_starting_ability_text()
     local starting_abilities = lobby_text.starting_abilities
     for ability_number, render_id in pairs(starting_abilities) do
         if rendering.is_valid(render_id) then
-            rendering.set_text(render_id, { "ability_name." .. global.default_abilities[ability_number] })
+            rendering.set_text(render_id, { "basic_ability_name." .. global.default_abilities[ability_number] })
         end
     end
 end
