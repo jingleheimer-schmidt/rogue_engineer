@@ -546,7 +546,7 @@ local function activate_crystal_blossom_ability(ability_data, player, character)
         local random_radius = math.random(0, ability_radius)
         local random_position = get_position_on_circumference(position, random_radius, random_angle)
         draw_animation(animation_name, random_position, surface, 0, animation_radius, frame_count)
-        register_damage_zone(animation_name, animation_radius, damage_per_tick, player, random_position, surface, final_tick, "physical")
+        register_damage_zone(animation_name, animation_radius, damage_per_tick, player, random_position, surface, final_tick, "electric")
     end
 end
 
@@ -557,7 +557,7 @@ local function activate_circle_of_life_ability(ability_data, player, character)
     local animation_name = ability_data.name
     local surface = character.surface
     local ability_radius = ability_data.radius
-    local animation_radius = 1
+    local animation_radius = 3
     local position = character.position
     local damage = ability_data.damage
     local damage_per_tick = damage / aoe_damage_modifier
@@ -612,7 +612,7 @@ local function activate_circle_of_death_ability(ability_data, player, character)
     local animation_name = ability_data.name
     local surface = character.surface
     local ability_radius = ability_data.radius
-    local animation_radius = 1
+    local animation_radius = 3
     local position = character.position
     local damage = ability_data.damage
     local damage_per_tick = damage / aoe_damage_modifier
