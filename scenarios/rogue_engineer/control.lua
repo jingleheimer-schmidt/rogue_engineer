@@ -184,7 +184,7 @@ local function on_init()
     }
     global.default_abilities = {
         ability_1 = "beam_blast",
-        ability_2 = "punch",
+        ability_2 = "laser_turret",
         ability_3 = "rocket_launcher",
     }
     global.statistics = {}
@@ -305,6 +305,7 @@ local function get_damage_attribution(event)
             end
         end
     end
+    -- if not player then game.print("no attribution for [" .. (event.damage_type and event.damage_type.name or "nil") .. "] damage to [" .. (event.entity and event.entity.name or "nil") .. "] by [" .. (event.cause and event.cause.name or "nil") .. "]") end
     return player
 end
 
