@@ -72,7 +72,7 @@ local function draw_upgrade_text(text, player, offset)
         position.x = position.x + offset.x
         position.y = position.y + offset.y
     end
-    draw_text(text, surface, position, color, time_to_live, scale, offset)
+    draw_text(text, surface, position, color, time_to_live, scale, offset, true, false)
 end
 
 ---@param text string|LocalisedString
@@ -83,7 +83,7 @@ local function draw_announcement_text(text, player)
     local color = player.chat_color
     local time_to_live = 60 * 15
     local scale = 5
-    draw_text(text, surface, position, color, time_to_live, scale)
+    draw_text(text, surface, position, color, time_to_live, scale, nil, true, false)
 end
 
 ---@param character LuaEntity
