@@ -158,6 +158,7 @@ local function on_init()
         crystal_blossom = true,
         circle_of_life = true,
         circle_of_death = true,
+        airstrike = true,
     }
     global.available_starting_abilities = {
         burst = true,
@@ -184,7 +185,7 @@ local function on_init()
     }
     global.default_abilities = {
         ability_1 = "beam_blast",
-        ability_2 = "laser_turret",
+        ability_2 = "airstrike",
         ability_3 = "rocket_launcher",
     }
     global.statistics = {}
@@ -542,7 +543,7 @@ end
 local function reset_forces()
     for _, force in pairs(game.forces) do
         force.reset()
-        force.character_running_speed_modifier = 0.4
+        -- force.character_running_speed_modifier = 0.4
         force.character_reach_distance_bonus = 10
     end
 end

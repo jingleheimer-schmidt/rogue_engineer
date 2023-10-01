@@ -651,8 +651,52 @@ end
 ---@param ability_data active_ability_data
 ---@param player LuaPlayer
 ---@param character LuaEntity
+local function activate_airstrike_ability(ability_data, player, character)
+    local animation_name = ability_data.name
+    local surface = character.surface
+    local ability_radius = ability_data.radius
+    local position = character.position
+    local damage = ability_data.damage
+    local damage_per_tick = damage / aoe_damage_modifier
+    local max_count = math.ceil(ability_radius / 3)
+    local frame_count = raw_abilities_data[animation_name].frame_count
+    local final_tick = game.tick + frame_count
+    local search_radius = ability_radius / 2
+    local angle = direction_to_angle(opposite_direction(character.direction))
+    local search_position = get_position_on_circumference(character.position, ability_radius, angle)
+    local enemies = get_enemies_in_radius(surface, search_position, search_radius)
+    for _, enemy in pairs(enemies) do
+        ---@diagnostic disable: missing-fields
+        surface.create_entity {
+            name = "stun-sticker",
+            position = enemy.position,
+            target = enemy,
+        }
+        ---@diagnostic enable: missing-fields
+    end
+    for i = 0, 360, 30 do
+        local circumference_position = get_position_on_circumference(search_position, search_radius / 3, degrees_to_radians(i))
+        ---@diagnostic disable: missing-fields
+        surface.create_entity {
+            name = "explosive-rocket",
+            position = position,
+            direction = character.direction,
+            force = player.force,
+            target = circumference_position,
+            source = character,
+            speed = 1/60, -- tiles per tick? idk
+        }
+        ---@diagnostic enable: missing-fields
+    end
+    draw_animation(animation_name, search_position, surface, character.orientation, search_radius, frame_count, "lower-radius-visualization")
+end
+
+---@param ability_data active_ability_data
+---@param player LuaPlayer
+---@param character LuaEntity
 local function activate_smg_ability(ability_data, player, character)
 end
+
 
 local ability_functions = {
     burst = activate_burst_ability,
@@ -677,6 +721,7 @@ local ability_functions = {
     crystal_blossom = activate_crystal_blossom_ability,
     circle_of_life = activate_circle_of_life_ability,
     circle_of_death = activate_circle_of_death_ability,
+    airstrike = activate_airstrike_ability,
 }
 
 return {
