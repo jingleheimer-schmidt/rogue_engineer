@@ -155,8 +155,8 @@ data.raw["character"]["character"].loot = {
     {
         item = "coin",
         probability = 1,
-        count_min = 555,
-        count_max = 999,
+        count_min = 25,
+        count_max = 55,
     }
 }
 
