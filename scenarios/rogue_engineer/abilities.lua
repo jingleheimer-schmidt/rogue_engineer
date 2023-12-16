@@ -674,7 +674,7 @@ local function activate_airstrike_ability(ability_data, player, character)
         }
         ---@diagnostic enable: missing-fields
     end
-    for i = 0, 360, 30 do
+    for i = 0, 360, 360/5 do
         local circumference_position = get_position_on_circumference(search_position, search_radius / 3, degrees_to_radians(i))
         ---@diagnostic disable: missing-fields
         surface.create_entity {
@@ -684,11 +684,49 @@ local function activate_airstrike_ability(ability_data, player, character)
             force = player.force,
             target = circumference_position,
             source = character,
-            speed = 1/60, -- tiles per tick? idk
+            speed = 1/60 / ((i * 10) + 1), -- tiles per tick? idk
         }
         ---@diagnostic enable: missing-fields
     end
     draw_animation(animation_name, search_position, surface, character.orientation, search_radius, frame_count, "lower-radius-visualization")
+end
+
+---@param ability_data active_ability_data
+---@param player LuaPlayer
+---@param character LuaEntity
+local function activate_dome_ability(ability_data, player, character)
+    local animation_name = ability_data.name
+    local surface = character.surface
+    local ability_radius = ability_data.radius
+    local position = character.position
+    local damage = ability_data.damage
+    local damage_per_tick = damage / aoe_damage_modifier
+    local max_count = math.ceil(ability_radius / 3)
+    local frame_count = raw_abilities_data[animation_name].frame_count
+    local final_tick = game.tick + frame_count
+    draw_animation(animation_name, position, surface, 0, ability_radius, frame_count, "explosion")
+    local enemies = get_enemies_in_radius(surface, position, ability_radius)
+    local source_enemy = enemies[1]
+    for _, enemy in pairs(enemies) do
+        ---@diagnostic disable: missing-fields
+        surface.create_entity {
+            name = "stun-sticker",
+            position = enemy.position,
+            target = enemy,
+            player = player,
+        }
+        surface.create_entity {
+            name = "flamethrower-fire-stream",
+            position = enemy.position,
+            target = enemy,
+            source = source_enemy,
+            force = player.force,
+        }
+        ---@diagnostic enable: missing-fields
+        local burning_until = game.tick + 60 * 30
+        register_burn_zone(animation_name, enemy.position, player, burning_until)
+        source_enemy = enemy
+    end
 end
 
 ---@param ability_data active_ability_data
@@ -722,6 +760,7 @@ local ability_functions = {
     circle_of_life = activate_circle_of_life_ability,
     circle_of_death = activate_circle_of_death_ability,
     airstrike = activate_airstrike_ability,
+    shield = activate_dome_ability,
 }
 
 return {
