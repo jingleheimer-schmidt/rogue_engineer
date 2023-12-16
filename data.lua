@@ -136,7 +136,8 @@ local enemy_loot = {
 }
 for type, names in pairs(enemy_loot) do
     for name, loot in pairs(names) do
-        data.raw[type][name].loot = {
+        local enemy = data.raw[type][name] --[[@type data.UnitPrototype|data.TurretPrototype|data.EnemySpawnerPrototype]]
+        enemy.loot = {
             {
                 item = "coin",
                 probability = 1,
