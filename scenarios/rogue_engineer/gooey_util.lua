@@ -113,6 +113,7 @@ local function create_arena_gui(player)
             type = "label",
             name = name .. "_title",
             caption = { "", { "ability_name." .. name }, ": "},
+            tooltip = { "", { "ability_tooltip." .. name, { "ability_name." .. name }, level, ability_data.cooldown, ability_data.radius, ability_data.damage } }
         }
         arena_gui.active_abilities_table.add {
             type = "label",
@@ -227,6 +228,7 @@ local function add_arena_gui_ability_info(player, ability_data)
         type = "label",
         name = name .. "_title",
         caption = { "", { "ability_name." .. name }, ": "},
+        tooltip = { "", { "ability_tooltip." .. name, { "ability_name." .. name }, level, ability_data.cooldown, ability_data.radius, ability_data.damage } }
     }
     arena_gui.active_abilities_table.add {
         type = "label",
@@ -242,12 +244,15 @@ end
 local function update_arena_gui_ability_info(player, ability_data)
     local arena_gui = player.gui.screen.arena_gui
     if not arena_gui then return end
-    local ability_info = arena_gui.active_abilities_table[ability_data.name .. "_level"]
-    if not ability_info then return end
+    local ability_info_level = arena_gui.active_abilities_table[ability_data.name .. "_level"]
+    if not ability_info_level then return end
     local name = ability_data.name
     local level = ability_data.level
     local max_level = #ability_data.upgrade_order + 1
-    ability_info.caption = { "", { "upgrade_locale.lvl" }, " ", level, " / ", max_level }
+    ability_info_level.caption = { "", { "upgrade_locale.lvl" }, " ", level, " / ", max_level }
+    local ability_info_title = arena_gui.active_abilities_table[ability_data.name .. "_title"]
+    if not ability_info_title then return end
+    ability_info_title.tooltip = { "", { "ability_tooltip." .. name, { "ability_name." .. name }, level, ability_data.cooldown, ability_data.radius, ability_data.damage } }
 end
 
 return {
