@@ -145,6 +145,9 @@ for type, names in pairs(enemy_loot) do
                 count_max = loot.max,
             }
         }
+        if enemy.movement_speed then
+            enemy.movement_speed = enemy.movement_speed * 0.62
+        end
     end
 end
 
