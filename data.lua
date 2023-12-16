@@ -111,12 +111,16 @@ data:extend{power_armor_mk2}
 local enemy_loot = {
     ["unit"] = {
         ["small-biter"] = { min = 1, max = 10 },
+        ["small-armoured-biter"] = { min = 1, max = 10 },
         ["small-spitter"] = { min = 5, max = 15 },
         ["medium-biter"] = { min = 5, max = 20 },
+        ["medium-armoured-biter"] = { min = 5, max = 20 },
         ["medium-spitter"] = { min = 10, max = 25 },
         ["big-biter"] = { min = 10, max = 30 },
+        ["big-armoured-biter"] = { min = 10, max = 30 },
         ["big-spitter"] = { min = 15, max = 35 },
         ["behemoth-biter"] = { min = 15, max = 40 },
+        ["behemoth-armoured-biter"] = { min = 15, max = 40 },
         ["behemoth-spitter"] = { min = 20, max = 45 },
     },
     ["turret"] = {
