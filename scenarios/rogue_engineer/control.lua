@@ -159,6 +159,7 @@ local function on_init()
         circle_of_life = true,
         circle_of_death = true,
         airstrike = true,
+        shield = true,
     }
     global.available_starting_abilities = {
         burst = true,
@@ -182,11 +183,13 @@ local function on_init()
         crystal_blossom = true,
         -- circle_of_life = true,
         circle_of_death = true,
+        airstrike = true,
+        -- shield = true,
     }
     global.default_abilities = {
-        ability_1 = "beam_blast",
-        ability_2 = "airstrike",
-        ability_3 = "rocket_launcher",
+        ability_1 = "punch",
+        ability_2 = "rocket_launcher",
+        ability_3 = "beam_blast",
     }
     global.statistics = {}
     global.flamethrower_targets = {}
@@ -284,7 +287,7 @@ local function get_damage_attribution(event)
             local position = event.entity.position
             for id, zone in pairs(global.burn_zones) do
                 local distance_from_target = distance(position, zone.position)
-                if distance_from_target <= 4 then
+                if distance_from_target <= 5 then
                     player = zone.player.valid and zone.player or nil
                     break
                 end
@@ -1144,7 +1147,7 @@ local function on_player_crafted_item(event)
     elseif name == "running-speed" then
         player.character_running_speed_modifier = player.character_running_speed_modifier + 0.005
         player.force.character_running_speed_modifier = player.force.character_running_speed_modifier + 0.005
-        local text = { "", { "message_locale.running_speed_upgraded" }, "[ ", (player.force.character_running_speed_modifier - 0.4 + player.character_running_speed_modifier) * 100, "%]" }
+        local text = { "", { "message_locale.running_speed_upgraded" }, "[ ", (player.force.character_running_speed_modifier + player.character_running_speed_modifier) * 100, "%]" }
         draw_upgrade_text(text, player, {x = 0, y = 3})
     elseif name == "health-bonus" then
         player.character_health_bonus = player.character_health_bonus + 0.5
