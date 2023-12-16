@@ -98,20 +98,24 @@ local function spawn_level_appropriate_enemy(player)
     local arena_ticks = arena_ticks_elapsed()
     local arena_minutes = arena_ticks / 60 / 60
     local enemy_name = "small-biter"
-    local chance = 15 / 100
+    local chance = 20 / 100
 
     local enemy_types = {
-        {name = "small-spitter", minute = 2, chance = chance - 1/100},
-        {name = "medium-biter", minute = 3, chance = chance - 2/100},
-        {name = "medium-spitter", minute = 4, chance = chance - 3/100},
-        {name = "small-worm-turret", minute = 5, chance = chance - 4/100},
-        {name = "big-biter", minute = 6, chance = chance - 5/100},
-        {name = "big-spitter", minute = 7, chance = chance - 6/100},
-        {name = "medium-worm-turret", minute = 8, chance = chance - 7/100},
-        {name = "behemoth-biter", minute = 9, chance = chance - 8/100},
-        {name = "behemoth-spitter", minute = 10, chance = chance - 9/100},
-        {name = "big-worm-turret", minute = 12, chance = chance - 10/100},
-        {name = "behemoth-worm-turret", minute = 14, chance = chance - 11/100},
+        {name = "small-armoured-biter", minute = 1, chance = chance - 1/100},
+        {name = "small-spitter", minute = 2, chance = chance - 2/100},
+        {name = "medium-biter", minute = 3, chance = chance - 3/100},
+        {name = "medium-armoured-biter", minute = 4, chance = chance - 4/100},
+        {name = "medium-spitter", minute = 5, chance = chance - 5/100},
+        {name = "small-worm-turret", minute = 6, chance = chance - 6/100},
+        {name = "big-biter", minute = 7, chance = chance - 7/100},
+        {name = "big-armoured-biter", minute = 8, chance = chance - 8/100},
+        {name = "big-spitter", minute = 9, chance = chance - 9/100},
+        {name = "medium-worm-turret", minute = 10, chance = chance - 10/100},
+        {name = "behemoth-biter", minute = 11, chance = chance - 11/100},
+        {name = "behemoth-armoured-biter", minute = 12, chance = chance - 12/100},
+        {name = "behemoth-spitter", minute = 13, chance = chance - 13/100},
+        {name = "big-worm-turret", minute = 14, chance = chance - 14/100},
+        {name = "behemoth-worm-turret", minute = 14.5, chance = chance - 15/100},
         {name = "behemoth-worm-turret", minute = 15, chance = 1},
     }
 
