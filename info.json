@@ -1,8 +1,8 @@
 {
   "name": "rogue_engineer",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "title": "Rogue Engineer",
-  "author": "asher_sky",
+  "author": "A roguelite scenario for Factorio.\n\nChoose a starting ability and enter the arena.\nDefeat enemies to unlock new abilities and upgrade your current ones.\nSurvive until the clock runs out.\nCompare scores and compete with friends in co-op multiplayer.",
   "contact": "",
   "homepage": "",
   "description": "asher_sky",
