@@ -98,7 +98,7 @@ local function spawn_level_appropriate_enemy(player)
     local arena_ticks = arena_ticks_elapsed()
     local arena_minutes = arena_ticks / 60 / 60
     local enemy_name = "small-biter"
-    local chance = 20 / 100
+    local chance = 16 / 100
 
     local enemy_types = {
         {name = "small-armoured-biter", minute = 1, chance = chance - 1/100},
