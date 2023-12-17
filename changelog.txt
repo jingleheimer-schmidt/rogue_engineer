@@ -1,15 +1,18 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.1
-Date: TBD
+Date: 16DEC2023
   Changes:
     - initial release to the mod portal
   Features:
     - Multiplayer compatible
     - Interactive lobby with statistics
     - 20 unique abilities
-    - Armor is unlocked by killing biters. Every 500 kills repairs your current armor by 30% max, or upgrades it to the next tier if duribility is near max
+    - 3 difficulty modes
+    - Enemies drop coins when killed
+    - Purchase new abilities and upgrades with coins
+    - Interactive lobby with top player statistics
   TODO:
-    - A chat command to reset all the statistics data
-    - A chat command to reset all the statistics data for a specific player
-    - A chat command to destroy and rebuild the arena
-    - indestructable starting area / platform? 
+    - Chat command to reset all the statistics data
+    - Chat command to reset all the statistics data for a specific player
+    - Chat command to destroy and rebuild the arena
+    - Indestructable starting area / platform? 
