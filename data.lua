@@ -146,7 +146,7 @@ for type, names in pairs(enemy_loot) do
             }
         }
         if enemy.movement_speed then
-            enemy.movement_speed = enemy.movement_speed * 0.62
+            enemy.movement_speed = enemy.movement_speed * 0.55
         end
     end
 end
