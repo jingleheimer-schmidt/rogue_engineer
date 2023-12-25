@@ -4,6 +4,8 @@ Date: 24DEC2023
   Balancing:
     - decreased enemy speed
     - increased enemy spawn rate
+  Bugfixes:
+    - fixed error when the Airstrike and Dome abilities tried to stun non-unit enemies
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.1
 Date: 17DEC2023

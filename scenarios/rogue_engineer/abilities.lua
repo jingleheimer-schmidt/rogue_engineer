@@ -666,13 +666,15 @@ local function activate_airstrike_ability(ability_data, player, character)
     local search_position = get_position_on_circumference(character.position, ability_radius, angle)
     local enemies = get_enemies_in_radius(surface, search_position, search_radius)
     for _, enemy in pairs(enemies) do
-        ---@diagnostic disable: missing-fields
-        surface.create_entity {
-            name = "stun-sticker",
-            position = enemy.position,
-            target = enemy,
-        }
-        ---@diagnostic enable: missing-fields
+        if enemy.type == "unit" then
+            ---@diagnostic disable: missing-fields
+            surface.create_entity {
+                name = "stun-sticker",
+                position = enemy.position,
+                target = enemy,
+            }
+            ---@diagnostic enable: missing-fields
+        end
     end
     for i = 0, 360, 360/5 do
         local circumference_position = get_position_on_circumference(search_position, search_radius / 3, degrees_to_radians(i))
@@ -709,12 +711,14 @@ local function activate_dome_ability(ability_data, player, character)
     local source_enemy = enemies[1]
     for _, enemy in pairs(enemies) do
         ---@diagnostic disable: missing-fields
-        surface.create_entity {
-            name = "stun-sticker",
-            position = enemy.position,
-            target = enemy,
-            player = player,
-        }
+        if enemy.type == "unit" then
+            surface.create_entity {
+                name = "stun-sticker",
+                position = enemy.position,
+                target = enemy,
+                player = player,
+            }
+        end
         surface.create_entity {
             name = "flamethrower-fire-stream",
             position = enemy.position,
