@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.4
 Date: ????
-  Changes:
+  Locale:
+    - changed the +1 extra life recipe global bonus description from "+1 ghost revival" to "revive the fallen"
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.3
 Date: 24DEC2023
