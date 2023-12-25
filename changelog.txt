@@ -1,6 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.3
 Date: 24DEC2023
+  Bugfixes:
+    - fixed error when a player leaves and rejoins a multiplayer game while the arena is active
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.2
 Date: 24DEC2023

@@ -100,15 +100,15 @@ local function create_arena_gui(player)
     local player_data = global.player_data[player.index]
     if not player_data then return end
     local abilities = player_data.abilities
+    arena_gui.add {
+        type = "table",
+        name = "active_abilities_table",
+        column_count = 2,
+    }
     for _, ability_data in pairs(abilities) do
         local name = ability_data.name
         local level = ability_data.level
         local max_level = #ability_data.upgrade_order + 1
-        arena_gui.add {
-            type = "table",
-            name = "active_abilities_table",
-            column_count = 2,
-        }
         arena_gui.active_abilities_table.add {
             type = "label",
             name = name .. "_title",
